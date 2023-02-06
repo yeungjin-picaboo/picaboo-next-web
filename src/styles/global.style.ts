@@ -54,11 +54,14 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 
-  html,
   body {
     max-width: 100vw;
-    overflow-x: hidden;
-    background-color: #373a40;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    overflow: hidden;
+    position: relative;
   }
 
   * {

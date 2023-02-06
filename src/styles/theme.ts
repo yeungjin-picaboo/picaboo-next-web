@@ -3,8 +3,9 @@ import { DefaultTheme } from 'styled-components';
 export const theme: DefaultTheme = {
   clr: {
     base: '#000000',
-    primary: '#ffffff',
+    primary: '#373A40',
     secondary: '#686D76',
+    tertiary: '#ffffff',
     accent: '#DCA11D',
   },
   bgclr: {
@@ -15,8 +16,10 @@ export const theme: DefaultTheme = {
     disabled: '#EEEEEE',
   },
   boxShadow: {
-    normal: '0 0 20px 0 rgb(0 0 0 / 25%)',
-    image: '0 4px 4px 0 rgb(0 0 0 / 25%)',
+    normal:
+      '0 4px 10px 0  rgba(0, 0, 0, 0.25), 0 2px 5px 0  rgba(0, 0, 0, 0.5)',
+    layout: '0 0 20px 0 rgba(0, 0, 0, 0.25), 0 0px 10px 0  rgba(0, 0, 0, 0.5)',
+    image: '0 4px 4px 0 rgba(0, 0, 0, 0.25), 0 2px 2px 0  rgba(0, 0, 0, 0.5)',
   },
   mixins: {
     flexBox: (direction = 'row', align = 'center', justify = 'center') => `
@@ -26,14 +29,9 @@ export const theme: DefaultTheme = {
     justify-content: ${justify};
     `,
   },
-};
-
-const customMediaQuery = (maxWidth: number): string =>
-  `@media (max-width: ${maxWidth}px)`;
-
-export const media = {
-  custom: customMediaQuery,
-  pc: customMediaQuery(1440),
-  tablet: customMediaQuery(768),
-  mobile: customMediaQuery(576),
+  media: {
+    xl: '(min-width: 1200px)',
+    lg: '(min-width: 768px)',
+    md: '(min-width: 480px)',
+  },
 };

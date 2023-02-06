@@ -1,12 +1,10 @@
-import Head from 'next/head';
+import { Responsive } from '@/src/components/common/Responsive';
+import StartLayout from '@/src/components/layout/StartLayout';
 
-export default function Home() {
+export default function Main() {
   return (
-    <>
-      <Head>
-        <title>Picaboo</title>
-        <meta name='description' content='AI picture diary app' />
-      </Head>
-    </>
+    <Responsive>
+      <StartLayout />
+    </Responsive>
   );
 }
