@@ -53,17 +53,20 @@ const GlobalStyle = createGlobalStyle`
   a, button {
     color: inherit;
   }
-
-  body {
-    max-width: 100vw;
+  html, body {
+    min-width: 100vw;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;    
-    overflow: hidden;
     position: relative;
   }
-
+  
+  body {
+    background-image: url("background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
   * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -71,8 +74,8 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     user-select: none;
+    word-break: keep-all;
   }
-
   img {
     max-width: 100%;
     display: block;

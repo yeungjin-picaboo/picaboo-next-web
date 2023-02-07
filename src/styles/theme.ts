@@ -6,6 +6,7 @@ export const theme: DefaultTheme = {
     primary: '#373A40',
     secondary: '#686D76',
     tertiary: '#ffffff',
+    quaternary: '#b9b9b9',
     accent: '#DCA11D',
   },
   bgclr: {
@@ -31,7 +32,7 @@ export const theme: DefaultTheme = {
   },
   media: {
     xl: '(min-width: 1200px)',
-    lg: '(min-width: 768px)',
-    md: '(min-width: 480px)',
+    lg: '(min-width: 769px)',
+    md: '(min-width: 481px)',
   },
 };
