@@ -2,93 +2,70 @@ import styled from 'styled-components';
 
 export const Layout = styled.div`
   width: 100vw;
-  min-height: 100vh;
-  padding: 2.5rem;
-  ${({ theme }) => theme.mixins.flexBox('column', 'baseline')}
-
-  @media ${({ theme }) => theme.media.lg} {
-    justify-content: space-between;
-    padding: 4rem;
-  }
-`;
-
-export const Content = styled.div`
-  width: 100%;
-`;
-
-export const Logo = styled.div`
-  font-size: 3rem;
-  color: ${({ theme }) => theme.clr.tertiary};
-  span {
-    color: ${({ theme }) => theme.clr.accent};
-  }
-
+  height: 100vh;
+  padding: 4rem 2rem;
+  ${({ theme }) => theme.mixins.flexBox('column', 'center', 'flex-start')};
   @media ${({ theme }) => theme.media.md} {
-    font-size: 4.5rem;
-  }
-  @media ${({ theme }) => theme.media.lg} {
-    font-size: 2.3rem;
+    justify-content: center;
   }
 `;
 
 export const Title = styled.div`
-  font-size: 2rem;
-  line-height: 2.7rem;
-  margin: 2rem 0 3.5rem 0;
+  max-width: 340px;
+  font-size: 2.5rem;
+  line-height: 3.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
   color: ${({ theme }) => theme.clr.tertiary};
-
+  span {
+    color: ${({ theme }) => theme.clr.accent};
+  }
   @media ${({ theme }) => theme.media.md} {
-    font-size: 2.8rem;
-    line-height: 3.5rem;
-    width: 412px;
+    font-size: 3rem;
   }
   @media ${({ theme }) => theme.media.lg} {
-    margin: 8rem 0 0 0;
-    font-weight: bold;
-    width: calc(767px - 8rem);
-    font-size: 3.8rem;
-    line-height: 4.5rem;
-  }
-  @media ${({ theme }) => theme.media.xl} {
-    width: 712px;
+    margin-bottom: 1rem;
+    font-size: 3.5rem;
+    max-width: 700px;
   }
 `;
 
 export const SubTitle = styled.div`
-  @media ${({ theme }) => theme.media.md} {
-    font-size: 2.8rem;
-    line-height: 3.2rem;
-    color: ${({ theme }) => theme.clr.quaternary};
-    margin: 1.5rem 0 3.5rem 0;
-    width: 530px;
+  color: ${({ theme }) => theme.clr.quaternary};
+  text-align: center;
+  margin-bottom: 3rem;
+  @media ${({ theme }) => theme.media.lg} {
+    font-size: 2.5rem;
   }
 `;
 
 export const LinkGroup = styled.div`
-  font-size: 1.3rem;
-  ${({ theme }) => theme.mixins.flexBox('column', 'baseline', 'baseline')}
-
+  width: 100%;
   @media ${({ theme }) => theme.media.md} {
-    font-size: 1.5rem;
+    ${({ theme }) => theme.mixins.flexBox('row', 'center', 'center')}
   }
   @media ${({ theme }) => theme.media.lg} {
-    flex-direction: row;
+    font-size: 1.25rem;
   }
 `;
 
 export const LinkBox = styled.div`
-  background-color: ${({ theme }) => theme.bgclr.secondary};
-  color: ${({ theme }) => theme.clr.base};
   width: 100%;
+  font-weight: bold;
+  background-color: ${({ theme }) => theme.bgclr.secondary};
+  box-shadow: ${({ theme }) => theme.boxShadow.normal};
   .link {
-    padding: 0.9em;
+    padding: 1.1em 1.5em;
     ${({ theme }) => theme.mixins.flexBox('row', 'center', 'space-between')}
   }
   &:first-child {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
-
-  @media ${({ theme }) => theme.media.lg} {
+  &:hover {
+    box-shadow: none;
+    transform: scale(0.98);
+  }
+  @media ${({ theme }) => theme.media.md} {
     width: 12em;
     &:first-child {
       margin-bottom: 0;
