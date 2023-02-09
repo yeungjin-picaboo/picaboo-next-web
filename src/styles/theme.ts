@@ -6,8 +6,10 @@ export const theme: DefaultTheme = {
     primary: '#373A40',
     secondary: '#686D76',
     tertiary: '#ffffff',
-    quaternary: '#b9b9b9',
+    quaternary: '#bababa',
     accent: '#DCA11D',
+    enabled: '#ffffff',
+    disabled: '#bababa',
   },
   bgclr: {
     base: '#373A40',
@@ -15,6 +17,10 @@ export const theme: DefaultTheme = {
     secondary: '#EEEEEE',
     enabled: '#686D76',
     disabled: '#EEEEEE',
+    focused: '#373A40',
+  },
+  borderclr: {
+    base: '#EEEEEE',
   },
   boxShadow: {
     normal:
