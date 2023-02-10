@@ -5,9 +5,9 @@ import {
   Text,
   Title,
 } from '@/src/styles/signup.style';
-import { AccountBtn } from '@/src/styles/common.style';
+import { BasicBtn } from '@/src/styles/common.style';
 import Link from 'next/link';
-import LabelInput from '../common/LabelInput';
+import LabelInput from '../common/BasicInput';
 
 export default function SignupLayout() {
   return (
@@ -45,7 +45,7 @@ export default function SignupLayout() {
             handleReset={() => {}}
             required
           />
-          <AccountBtn disabled={true}>Register</AccountBtn>
+          <BasicBtn disabled={true}>Register</BasicBtn>
         </Form>
         <Text>
           Already have an account?&nbsp;&nbsp;<Link href='/login'>Login</Link>

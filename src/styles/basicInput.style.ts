@@ -3,36 +3,32 @@ import styled from 'styled-components';
 export const Label = styled.label`
   display: block;
   margin-bottom: 0.6em;
-  font-size: calc(0.75rem + 1vw);
+  font-size: calc(1rem + 0.2vw);
   color: ${({ theme }) => theme.clr.primary};
-  @media ${({ theme }) => theme.media.lg} {
-    font-size: calc(0.25rem + 1vw);
-  }
 `;
 
 export const InputBox = styled.div`
   position: relative;
   svg {
     position: absolute;
-    top: 0.6rem;
-    right: 0.6rem;
+    top: 50%;
+    right: 0;
+    margin-right: 0.6rem;
+    transform: translateY(-50%);
+    width: calc(1.2rem + 0.2vw);
     color: ${({ theme }) => theme.clr.quaternary};
-    width: calc(0.5rem + 1vw);
   }
 `;
 
 export const InputField = styled.input`
-  font-size: calc(0.5rem + 1vw);
+  font-size: calc(0.8rem + 0.2vw);
   display: block;
   width: 100%;
   margin-bottom: 1rem;
-  padding: 0.75rem;
+  padding: 0.75rem 0.9rem;
   border: 1.5px solid ${({ theme }) => theme.borderclr.base};
   border-radius: 0.5rem;
   &::placeholder {
     color: ${({ theme }) => theme.clr.quaternary};
-  }
-  @media ${({ theme }) => theme.media.lg} {
-    font-size: calc(0.15rem + 1vw);
   }
 `;

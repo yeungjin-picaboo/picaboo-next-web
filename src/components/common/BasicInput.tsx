@@ -1,8 +1,8 @@
-import { InputBox, InputField, Label } from '@/src/styles/labelInput.style';
+import { InputBox, InputField, Label } from '@/src/styles/basicInput.style';
 import { InputProps } from '@/src/types/common.interface';
 import { X } from 'react-feather';
 
-export default function XInput({
+export default function BasicInput({
   id,
   label,
   value,
