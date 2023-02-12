@@ -11,12 +11,12 @@ export default function BasicInput({
   ...restProps
 }: InputProps) {
   return (
-    <>
+    <fieldset>
       <Label htmlFor={id}>{label}</Label>
       <InputBox>
         <InputField id={id} value={value} onChange={onChange} {...restProps} />
         <X onClick={handleReset} />
       </InputBox>
-    </>
+    </fieldset>
   );
 }

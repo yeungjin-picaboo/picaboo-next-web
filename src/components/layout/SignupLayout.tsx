@@ -8,8 +8,13 @@ import {
 import { BasicBtn } from '@/src/styles/common.style';
 import Link from 'next/link';
 import LabelInput from '../common/BasicInput';
+import { useState } from 'react';
+import useInput from '../hook/useInputs';
 
 export default function SignupLayout() {
+  const email = useInput('');
+  const password = useInput('');
+  const passwordConfirmation = useInput('');
   return (
     <Layout>
       <Container>
@@ -20,9 +25,7 @@ export default function SignupLayout() {
             id='email'
             label='Email'
             placeholder='Email'
-            value=''
-            onChange={() => {}}
-            handleReset={() => {}}
+            {...email}
             required
           />
           <LabelInput
@@ -30,9 +33,7 @@ export default function SignupLayout() {
             id='password'
             label='Password'
             placeholder='Password'
-            value=''
-            onChange={() => {}}
-            handleReset={() => {}}
+            {...password}
             required
           />
           <LabelInput
@@ -40,9 +41,7 @@ export default function SignupLayout() {
             id='confirm'
             label='Confirm password'
             placeholder='Confirm password'
-            value=''
-            onChange={() => {}}
-            handleReset={() => {}}
+            {...passwordConfirmation}
             required
           />
           <BasicBtn disabled={true}>Register</BasicBtn>

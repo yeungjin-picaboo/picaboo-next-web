@@ -15,7 +15,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   value: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  handleReset: (event: MouseEvent<SVGElement>) => void;
+  handleReset: () => void;
 }
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
