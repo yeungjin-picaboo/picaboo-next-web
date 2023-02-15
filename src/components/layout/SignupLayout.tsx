@@ -16,6 +16,7 @@ export default function SignupLayout() {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
     reset,
   } = useForm({
     defaultValues: {
@@ -44,7 +45,8 @@ export default function SignupLayout() {
                 message: 'The email adress is required',
               },
               pattern: {
-                value: /\S+@\S+\.\S+/,
+                value:
+                  /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
                 message: 'The input is not a valid email address',
               },
             })}
@@ -57,9 +59,11 @@ export default function SignupLayout() {
             placeholder='Password'
             {...register('password', {
               required: { value: true, message: 'The password is required' },
-              minLength: {
-                value: 8,
-                message: 'The password must have at least 8 characters',
+              pattern: {
+                value:
+                  /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,20}$/,
+                message:
+                  'The password must be 8 to 20 characters and a combination of numbers, letters or special characters',
               },
             })}
             error={errors?.password}
@@ -73,6 +77,11 @@ export default function SignupLayout() {
               required: {
                 value: true,
                 message: 'The password comfirmation is required',
+              },
+              validate: (value: string) => {
+                if (watch('password') != value) {
+                  return 'The password comfirmation does not match';
+                }
               },
             })}
             error={errors?.confirmation}

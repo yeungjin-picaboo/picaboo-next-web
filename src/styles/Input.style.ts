@@ -44,15 +44,20 @@ export const InputField = styled.input<{ error: boolean }>`
 `;
 
 export const MsgBox = styled.div`
-  ${({ theme }) => theme.mixins.flexBox('row', 'center', 'flex-start')}
+  display: grid;
+  grid-template-columns: calc(0.9rem + 0.2vw) auto;
+  grid-gap: 0.3rem;
   color: ${({ theme }) => theme.clr.error};
-  margin-bottom: 0.3rem;
+  margin: 0 0.3rem 0.3rem;
   svg {
     width: calc(0.9rem + 0.2vw);
-    margin: 0 0.3rem 0 0.4rem;
+    height: calc(1.3rem + 0.2vw);
   }
 `;
 
-export const ErrorMsg = styled.span`
+export const ErrorMsg = styled.div`
+  width: 100%;
+  margin-top: 0.2rem;
+  line-height: calc(1rem + 0.2vw);
   font-size: calc(0.8rem + 0.2vw);
 `;
