@@ -10,6 +10,7 @@ export const theme: DefaultTheme = {
     accent: '#DCA11D',
     enabled: '#ffffff',
     disabled: '#bababa',
+    error: '#ff3333',
   },
   bgclr: {
     base: '#373A40',
@@ -21,6 +22,8 @@ export const theme: DefaultTheme = {
   },
   borderclr: {
     base: '#EEEEEE',
+    error: '#ff3333',
+    focus: '#000000',
   },
   boxShadow: {
     normal:
