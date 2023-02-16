@@ -6,6 +6,7 @@ export const FieldSet = styled.fieldset`
 
 export const Label = styled.label<{ error: boolean }>`
   display: block;
+  margin-left: 0.1rem;
   margin-bottom: 0.6em;
   font-size: calc(0.9rem + 0.2vw);
   color: ${({ theme: { clr }, error }) => (error ? clr.error : clr.primary)};
@@ -17,9 +18,9 @@ export const InputBox = styled.div`
     position: absolute;
     top: 50%;
     right: 0;
-    margin-right: 0.6rem;
+    margin-right: 0.75rem;
     transform: translateY(-50%);
-    width: calc(1.2rem + 0.2vw);
+    width: calc(1rem + 0.2vw);
     color: ${({ theme }) => theme.clr.quaternary};
   }
 `;
@@ -48,7 +49,7 @@ export const MsgBox = styled.div`
   grid-template-columns: calc(0.9rem + 0.2vw) auto;
   grid-gap: 0.3rem;
   color: ${({ theme }) => theme.clr.error};
-  margin: 0 0.3rem 0.3rem;
+  margin: 0 0.3rem 0.1rem 0.3rem;
   svg {
     width: calc(0.9rem + 0.2vw);
     height: calc(1.3rem + 0.2vw);

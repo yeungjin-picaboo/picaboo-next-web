@@ -1,10 +1,11 @@
-import { InputHTMLAttributes, Ref } from 'react';
+import { InputHTMLAttributes, ReactElement } from 'react';
 import { FieldError } from 'react-hook-form';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
   label?: string;
   error?: FieldError | undefined;
+  icon?: ReactElement;
 }
 
 export interface LoginForm {

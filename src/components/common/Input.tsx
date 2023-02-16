@@ -11,7 +11,7 @@ import { forwardRef, Ref } from 'react';
 import { AlertOctagon } from 'react-feather';
 
 function Input(
-  { id, label, error, ...restProps }: InputProps,
+  { id, label, error, icon, ...restProps }: InputProps,
   ref: Ref<HTMLInputElement>
 ) {
   return (
@@ -28,6 +28,7 @@ function Input(
           error={error != undefined ? true : false}
           {...restProps}
         />
+        {icon && icon}
       </InputBox>
       {error && (
         <MsgBox>
