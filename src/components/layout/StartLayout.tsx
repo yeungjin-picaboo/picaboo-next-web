@@ -5,7 +5,7 @@ import {
   LinkGroup,
   SubTitle,
   Title,
-} from '@/src/styles/start.styles';
+} from '@/src/styles/layouts/start.styles';
 import { useMediaQuery } from 'react-responsive';
 import { ArrowRight, UserPlus } from 'react-feather';
 import { Barriecito } from '@next/font/google';

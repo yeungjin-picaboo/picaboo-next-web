@@ -1,6 +1,5 @@
 import { MutableRefObject, useState } from 'react';
 import { Eye, EyeOff } from 'react-feather';
-import { RefCallBack } from 'react-hook-form';
 
 export default function VisibilityIcon({
   _ref,

@@ -5,13 +5,13 @@ import {
   InputField,
   Label,
   MsgBox,
-} from '@/src/styles/Input.style';
-import { InputProps } from '@/src/types/form.interface';
+} from '@/src/styles/common/Input.style';
+import { IsInputProps } from '@/src/types/props.interface';
 import { forwardRef, Ref } from 'react';
 import { AlertOctagon } from 'react-feather';
 
 function Input(
-  { id, label, error, icon, ...restProps }: InputProps,
+  { id, label, error, icon, ...restProps }: IsInputProps,
   ref: Ref<HTMLInputElement>
 ) {
   return (
