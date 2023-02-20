@@ -12,6 +12,11 @@ export const Container = styled.div`
   min-height: 100vh;
   background-color: ${({ theme }) => theme.bgclr.primary};
   ${({ theme }) => theme.mixins.flexBox('column', 'baseline', 'space-between')}
+  a {
+    color: ${({ theme }) => theme.clr.secondary};
+    font-weight: bold;
+    float: right;
+  }
   @media ${({ theme }) => theme.media.lg} {
     padding: 3.5rem 2rem 3rem 2rem;
     width: 540px;
@@ -36,7 +41,6 @@ export const Text = styled.p`
   color: ${({ theme }) => theme.clr.quaternary};
   text-align: center;
   a {
-    color: ${({ theme }) => theme.clr.secondary};
-    font-weight: bold;
+    float: none;
   }
 `;
