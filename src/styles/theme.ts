@@ -7,6 +7,7 @@ export const theme: DefaultTheme = {
     secondary: '#686D76',
     tertiary: '#ffffff',
     quaternary: '#bababa',
+    fifth: '#eeeeee',
     accent: '#DCA11D',
     enabled: '#ffffff',
     disabled: '#bababa',

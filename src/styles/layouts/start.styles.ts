@@ -3,73 +3,66 @@ import styled from 'styled-components';
 export const Layout = styled.div`
   width: 100vw;
   height: 100vh;
-  padding: 4rem 2rem;
-  ${({ theme }) => theme.mixins.flexBox('column', 'center', 'flex-start')};
+  padding: 2rem;
+  overflow: hidden;
+  ${({ theme }) => theme.mixins.flexBox('column', 'center', 'flex-end')}
   @media ${({ theme }) => theme.media.md} {
-    justify-content: center;
+    ${({ theme }) => theme.mixins.flexBox('column')}
   }
 `;
 
-export const Title = styled.div`
-  max-width: 340px;
-  font-size: 2.5rem;
-  line-height: 3.5rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  color: ${({ theme }) => theme.clr.tertiary};
-  span {
-    color: ${({ theme }) => theme.clr.accent};
-  }
+export const ImageBox = styled.div`
+  position: relative;
+  width: 100vw;
+  height: 50vh;
   @media ${({ theme }) => theme.media.md} {
-    font-size: 3rem;
+    width: 480px;
   }
   @media ${({ theme }) => theme.media.lg} {
-    margin-bottom: 1rem;
-    font-size: 3.5rem;
-    max-width: 700px;
-  }
-`;
-
-export const SubTitle = styled.div`
-  color: ${({ theme }) => theme.clr.quaternary};
-  text-align: center;
-  margin-bottom: 3rem;
-  @media ${({ theme }) => theme.media.lg} {
-    font-size: 2.5rem;
+    min-width: 480px;
+    width: 50vw;
   }
 `;
 
 export const LinkGroup = styled.div`
   width: 100%;
+  ${({ theme }) => theme.mixins.flexBox('column')};
   @media ${({ theme }) => theme.media.md} {
-    ${({ theme }) => theme.mixins.flexBox('row', 'center', 'center')}
-  }
-  @media ${({ theme }) => theme.media.lg} {
-    font-size: 1.25rem;
+    ${({ theme }) => theme.mixins.flexBox('row')};
+    position: absolute;
+    width: auto;
+    top: 2.5rem;
+    right: 2.5rem;
   }
 `;
 
 export const LinkBox = styled.div`
   width: 100%;
   font-weight: bold;
-  background-color: ${({ theme }) => theme.bgclr.secondary};
+  margin-top: 1.3rem;
+  color: ${({ theme }) => theme.clr.fifth};
+  background-color: ${({ theme }) => theme.bgclr.base};
   box-shadow: ${({ theme }) => theme.boxShadow.normal};
   .link {
-    padding: 1.1em 1.5em;
-    ${({ theme }) => theme.mixins.flexBox('row', 'center', 'space-between')}
-  }
-  &:first-child {
-    margin-bottom: 1.5rem;
+    padding: 1.3rem 1rem;
+    ${({ theme }) =>
+      theme.mixins.flexBox('columns', 'center', 'space-between')};
   }
   &:hover {
-    box-shadow: none;
     transform: scale(0.98);
   }
   @media ${({ theme }) => theme.media.md} {
-    width: 12em;
-    &:first-child {
-      margin-bottom: 0;
-      margin-right: 2rem;
+    margin-top: 0;
+    margin-left: 1.5rem;
+    color: ${({ theme }) => theme.clr.fifth};
+    border: 2px solid ${({ theme }) => theme.borderclr.base};
+    opacity: 1;
+    border-radius: 0.8rem;
+    .link {
+      padding: 1.1rem;
+    }
+    &:hover {
+      transform: scale(1.1);
     }
   }
 `;
