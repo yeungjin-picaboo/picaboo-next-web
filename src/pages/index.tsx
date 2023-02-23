@@ -8,12 +8,19 @@ import {
 import { MobilePortrait } from '@/src/components/common/Responsive';
 import { LogIn, UserPlus } from 'react-feather';
 import Image from 'next/image';
+import logo from '../../public/logo.png';
 
 export default function StartPage() {
   return (
     <Layout>
       <ImageBox>
-        <Image src='/logo.png' fill alt='' />
+        <Image
+          src={logo}
+          fill
+          sizes='100vw, (min-width: 769px) 42vw'
+          priority
+          alt='logo'
+        />
       </ImageBox>
       <LinkGroup>
         <LinkBox>

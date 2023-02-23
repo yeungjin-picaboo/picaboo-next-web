@@ -14,13 +14,16 @@ export const Layout = styled.div`
 export const ImageBox = styled.div`
   position: relative;
   width: 100vw;
-  height: 50vh;
+  height: 45vh;
   @media ${({ theme }) => theme.media.md} {
-    width: 480px;
+    max-width: 480px;
+    min-height: 50vh;
+    height: 60vh;
   }
   @media ${({ theme }) => theme.media.lg} {
     min-width: 480px;
-    width: 50vw;
+    max-width: none;
+    width: 42vw;
   }
 `;
 
