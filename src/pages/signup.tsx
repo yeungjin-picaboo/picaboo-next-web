@@ -20,19 +20,26 @@ import { AxiosError } from 'axios';
 import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
 import { X } from 'react-feather';
+import { useRouter } from 'next/router';
 
 export default function SignupPage() {
   const { mutate } = useMutation(signupFn, {
+    onSuccess: data => {
+      alert(data.message);
+      router.push('/diary');
+    },
     onError: (error: AxiosError) => {
       alert(error.message);
+      // message 결과에 따라 input 필드 초기화 구현해야함
     },
   });
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
     watch,
-    reset,
     resetField,
   } = useForm({
     defaultValues: {
@@ -50,7 +57,6 @@ export default function SignupPage() {
   const onValid = async (data: IsSignup) => {
     // console.log({ email: data.email, password: data.password });
     mutate({ email: data.email, password: data.password });
-    reset();
   };
 
   return (
