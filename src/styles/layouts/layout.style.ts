@@ -10,7 +10,7 @@ export const StHeader = styled.div`
   width: 100vw;
   max-width: 1024px;
   height: calc(120px + 1vh);
-  padding: 0 3.5rem;
+  padding: 0 2.5rem;
   position: fixed;
   color: ${({ theme }) => theme.clr.tertiary};
   background-color: ${({ theme }) => theme.bgclr.base};
@@ -35,6 +35,8 @@ export const StNavItem = styled.div<{ current?: boolean }>`
 
 export const StContent = styled.div`
   min-height: 100%;
+  padding: calc(120px + 1vh + 2.5rem) 2.5rem 2.5rem 2.5rem;
   background-color: ${({ theme }) => theme.bgclr.primary};
+  background-color: black;
   box-shadow: ${({ theme }) => theme.boxShadow.normal};
 `;

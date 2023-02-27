@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { InputHTMLAttributes, ReactElement } from 'react';
 import { FieldError } from 'react-hook-form';
 
@@ -11,4 +11,8 @@ export interface IsInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: FieldError | undefined;
   icon?: ReactElement;
+}
+
+export interface IsDatePickerProps {
+  setDate: Dispatch<SetStateAction<string>>;
 }

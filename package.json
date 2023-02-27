@@ -24,7 +24,8 @@
     "react-query": "^3.39.3",
     "react-responsive": "^9.0.2",
     "styled-components": "^5.3.6",
-    "typescript": "4.9.4"
+    "typescript": "4.9.4",
+    "@uvarov.frontend/vanilla-calendar": "2.4.0"
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.26"
