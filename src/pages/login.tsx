@@ -7,7 +7,7 @@ import {
 } from '@/src/styles/layouts/account.style';
 import { loginFn } from '@/src/api/accountApi';
 import useInputRef from '@/src/hooks/useInputRef';
-import { BasicBtn } from '@/src/styles/common/common.style';
+import { StButton } from '@/src/styles/common/common.style';
 import { IsAccount } from '@/src/types/data.interface';
 import { emailOptions, passwordOptions } from '@/src/utils/inputOptions';
 import { Input, VisibilityIcon } from '@/src/components/common';
@@ -72,7 +72,7 @@ export default function LoginPage() {
             error={errors?.password}
           />
           <Link href='/forgot'>Forgot password?</Link>
-          <BasicBtn disabled={isSubmitting}>Register</BasicBtn>
+          <StButton disabled={isSubmitting}>Register</StButton>
         </Form>
         <Text>
           Don’t have an account?&nbsp;&nbsp;<Link href='/signup'>Register</Link>

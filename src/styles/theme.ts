@@ -17,6 +17,7 @@ export const theme: DefaultTheme = {
     base: '#373A40',
     primary: '#ffffff',
     secondary: '#EEEEEE',
+    tertiary: '#686D76',
     enabled: '#686D76',
     disabled: '#EEEEEE',
     focused: '#373A40',
@@ -30,7 +31,7 @@ export const theme: DefaultTheme = {
     normal:
       '0 4px 10px 0  rgba(0, 0, 0, 0.25), 0 2px 5px 0  rgba(0, 0, 0, 0.5)',
     layout: '0 0 20px 0 rgba(0, 0, 0, 0.25), 0 0px 10px 0  rgba(0, 0, 0, 0.5)',
-    image: '0 4px 4px 0 rgba(0, 0, 0, 0.25), 0 2px 2px 0  rgba(0, 0, 0, 0.5)',
+    image: '0 4px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0  rgba(0, 0, 0, 0.25)',
   },
   mixins: {
     flexBox: (direction = 'row', align = 'center', justify = 'center') => `

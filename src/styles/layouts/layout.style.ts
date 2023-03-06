@@ -2,16 +2,24 @@ import styled from 'styled-components';
 
 export const StLayout = styled.div`
   width: 100vw;
-  max-width: 1024px;
   height: 100vh;
+`;
+
+export const StContainer = styled.div`
+  max-width: 1024px;
+  margin: 0 auto;
+  background-color: ${({ theme }) => theme.bgclr.primary};
+  box-shadow: ${({ theme }) => theme.boxShadow.normal};
 `;
 
 export const StHeader = styled.div`
   width: 100vw;
   max-width: 1024px;
-  height: calc(120px + 1vh);
-  padding: 0 2.5rem;
-  position: fixed;
+  height: calc(100px + 1vh + 1vw);
+  padding: 0 2.25rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
   color: ${({ theme }) => theme.clr.tertiary};
   background-color: ${({ theme }) => theme.bgclr.base};
   box-shadow: ${({ theme }) => theme.boxShadow.normal};
@@ -19,7 +27,7 @@ export const StHeader = styled.div`
 `;
 
 export const StLogo = styled.div`
-  font-size: calc(2.5rem + 0.2vw);
+  font-size: 3rem;
 `;
 
 export const StNav = styled.div`
@@ -30,13 +38,10 @@ export const StNavItem = styled.div<{ current?: boolean }>`
   cursor: pointer;
   text-decoration: ${({ current }) => (current ? 'underline' : 'none')};
   margin-left: 3rem;
-  font-size: calc(1.2rem + 0.2vw);
+  font-size: 1.4rem;
 `;
 
 export const StContent = styled.div`
-  min-height: 100%;
-  padding: calc(120px + 1vh + 2.5rem) 2.5rem 2.5rem 2.5rem;
-  background-color: ${({ theme }) => theme.bgclr.primary};
-  background-color: black;
-  box-shadow: ${({ theme }) => theme.boxShadow.normal};
+  min-height: 100vh;
+  padding: 2.25rem;
 `;

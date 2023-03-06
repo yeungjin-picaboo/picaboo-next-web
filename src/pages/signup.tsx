@@ -5,7 +5,7 @@ import {
   Text,
   Title,
 } from '@/src/styles/layouts/account.style';
-import { BasicBtn } from '@/src/styles/common/common.style';
+import { StButton } from '@/src/styles/common/common.style';
 import { Input, VisibilityIcon } from '@/src/components/common';
 import { IsSignup } from '@/src/types/data.interface';
 import { signupFn } from '@/src/api/accountApi';
@@ -90,7 +90,7 @@ export default function SignupPage() {
             {...confirmation}
             error={errors?.confirmation}
           />
-          <BasicBtn disabled={isSubmitting}>Register</BasicBtn>
+          <StButton disabled={isSubmitting}>Register</StButton>
         </Form>
         <Text>
           Already have an account?&nbsp;&nbsp;<Link href='/login'>Login</Link>

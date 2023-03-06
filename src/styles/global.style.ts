@@ -60,12 +60,7 @@ const GlobalStyle = createGlobalStyle`
     align-items: center;
     justify-content: center;    
     position: relative;
-  }
-  
-  body {
-    background-image: url("background.png");
-    background-size: cover;
-    background-repeat: no-repeat;
+    overflow-x: hidden;
   }
   * {
     -webkit-box-sizing: border-box;
@@ -75,6 +70,11 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     user-select: none;
     word-break: keep-all;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  *::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
   }
   img {
     max-width: 100%;

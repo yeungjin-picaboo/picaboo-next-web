@@ -13,6 +13,6 @@ export interface IsInputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: ReactElement;
 }
 
-export interface IsDatePickerProps {
+export interface IsCalendarProps {
   setDate: Dispatch<SetStateAction<string>>;
 }

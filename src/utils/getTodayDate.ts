@@ -4,6 +4,10 @@ export default function getTodayDate() {
   const month = ('0' + (date.getMonth() + 1)).slice(-2);
   const day = ('0' + date.getDate()).slice(-2);
 
-  // result: yyyy-mm-dd
-  return year + '-' + month + '-' + day;
+  return {
+    year: year,
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+    dateStr: year + '-' + month + '-' + day, // result: yyyy-mm-dd
+  };
 }
