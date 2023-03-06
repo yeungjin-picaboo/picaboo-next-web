@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Plus } from 'react-feather';
 import MonthPicker from '../components/common/MonthPicker';
 import { StAddBtn, StItem, StList } from '../styles/common/common.style';
+import ubuntu from '../utils/font/ubuntu';
 
 const sources = [
   '/background.png',
@@ -21,19 +22,19 @@ export default function DiaryPage() {
 
   return (
     <Layout>
-      <MonthPicker />
-      <StList>
-        {sources.map((el: any, i: number) => {
-          return (
-            <StItem key={i}>
-              <Image src={el} fill alt='' />
-            </StItem>
-          );
-        })}
-      </StList>
-      <StAddBtn>
-        <Plus width={36} height={36} strokeWidth={1} />
-      </StAddBtn>
+      <main className={ubuntu.className}>
+        <MonthPicker />
+        <StList>
+          {sources.map((el: any, i: number) => {
+            return (
+              <StItem key={i}>{/* <Image src={el} fill alt='' /> */}</StItem>
+            );
+          })}
+        </StList>
+        <StAddBtn>
+          <Plus width={36} height={36} strokeWidth={1} />
+        </StAddBtn>
+      </main>
     </Layout>
   );
 }

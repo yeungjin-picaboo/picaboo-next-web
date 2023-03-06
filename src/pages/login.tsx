@@ -1,3 +1,5 @@
+import Input from '@/src/components/common/Input';
+import VisibilityIcon from '@/src/components/common/VisibilityIcon';
 import {
   Layout,
   Container,
@@ -10,13 +12,15 @@ import useInputRef from '@/src/hooks/useInputRef';
 import { StButton } from '@/src/styles/common/common.style';
 import { IsAccount } from '@/src/types/data.interface';
 import { emailOptions, passwordOptions } from '@/src/utils/inputOptions';
-import { Input, VisibilityIcon } from '@/src/components/common';
 import Link from 'next/link';
 import { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { X } from 'react-feather';
 import { useRouter } from 'next/router';
+import { Ubuntu } from '@next/font/google';
+
+const ubuntu = Ubuntu({ weight: '400', subsets: ['latin'] });
 
 export default function LoginPage() {
   const { mutate } = useMutation(loginFn, {
@@ -50,7 +54,7 @@ export default function LoginPage() {
   };
 
   return (
-    <Layout>
+    <Layout className={ubuntu.className}>
       <Container>
         <Form onSubmit={handleSubmit(onValid)}>
           <Title>Login</Title>
@@ -75,7 +79,8 @@ export default function LoginPage() {
           <StButton disabled={isSubmitting}>Register</StButton>
         </Form>
         <Text>
-          Don’t have an account?&nbsp;&nbsp;<Link href='/signup'>Register</Link>
+          Don’t have an account?&nbsp;&nbsp;
+          <Link href='/signup'>Register</Link>
         </Text>
       </Container>
     </Layout>

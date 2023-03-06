@@ -29,6 +29,7 @@ export const StList = styled.div`
 export const StItem = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.bgclr.secondary};
+  box-shadow: ${({ theme }) => theme.boxShadow.image};
   border-radius: 1rem;
   width: 100%;
   padding-bottom: 100%;
@@ -42,7 +43,6 @@ export const StItem = styled.div`
   img {
     cursor: pointer;
     border-radius: 1rem;
-    box-shadow: ${({ theme }) => theme.boxShadow.image};
   }
 `;
 

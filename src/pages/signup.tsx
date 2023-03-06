@@ -1,3 +1,5 @@
+import Input from '@/src/components/common/Input';
+import VisibilityIcon from '@/src/components/common/VisibilityIcon';
 import {
   Container,
   Form,
@@ -6,7 +8,6 @@ import {
   Title,
 } from '@/src/styles/layouts/account.style';
 import { StButton } from '@/src/styles/common/common.style';
-import { Input, VisibilityIcon } from '@/src/components/common';
 import { IsSignup } from '@/src/types/data.interface';
 import { signupFn } from '@/src/api/accountApi';
 import useInputRef from '@/src/hooks/useInputRef';
@@ -21,6 +22,9 @@ import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
 import { X } from 'react-feather';
 import { useRouter } from 'next/router';
+import { Ubuntu } from '@next/font/google';
+
+const ubuntu = Ubuntu({ weight: '400', subsets: ['latin'] });
 
 export default function SignupPage() {
   const { mutate } = useMutation(signupFn, {
@@ -60,7 +64,7 @@ export default function SignupPage() {
   };
 
   return (
-    <Layout>
+    <Layout className={ubuntu.className}>
       <Container>
         <Form onSubmit={handleSubmit(onValid)}>
           <Title>Sign up</Title>

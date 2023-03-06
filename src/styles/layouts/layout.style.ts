@@ -34,10 +34,12 @@ export const StNav = styled.div`
   ${({ theme }) => theme.mixins.flexBox('row')}
 `;
 
-export const StNavItem = styled.div<{ current?: boolean }>`
+export const StNavItem = styled.main<{ current?: boolean }>`
   cursor: pointer;
+  color: ${({ theme: { clr }, current }) =>
+    current ? clr.tertiary : clr.disabled};
   text-decoration: ${({ current }) => (current ? 'underline' : 'none')};
-  margin-left: 3rem;
+  margin-left: 3.5rem;
   font-size: 1.4rem;
 `;
 
