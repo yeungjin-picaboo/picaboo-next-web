@@ -27,7 +27,6 @@ export default function Calendar({ setDate }: IsCalendarProps) {
           e.preventDefault();
           console.log(dates);
           if (dates) setDate(dates[0]);
-          // 여기에 해당 날짜 일기 데이터 가져오는 코드 작성해야 함
         },
       },
     });

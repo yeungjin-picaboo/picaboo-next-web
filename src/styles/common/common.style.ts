@@ -19,6 +19,7 @@ export const StButton = styled.button`
 `;
 
 export const StList = styled.div`
+  margin-top: 1.5rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1.5rem;

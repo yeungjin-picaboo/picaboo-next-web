@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
    v2.0 | 20110126
    License: none (public domain)
   */
-  html, body, div, span, applet, object, iframe,
+   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
   del, dfn, em, img, ins, kbd, q, s, samp,
@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     border: 0;
     font-size: 100%;
+    font: inherit;
     vertical-align: baseline;
   }
   /* HTML5 display-role reset for older browsers */
@@ -49,9 +50,16 @@ const GlobalStyle = createGlobalStyle`
   }
   a {
     text-decoration: none;
-  }
-  a, button {
     color: inherit;
+  }
+  button{
+    background: inherit;
+    border:none;
+    box-shadow:none;
+    border-radius:0;
+    padding:0;
+    overflow:visible;
+    cursor:pointer
   }
   html, body {
     min-width: 100vw;
