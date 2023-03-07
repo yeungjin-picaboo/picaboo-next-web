@@ -1,39 +1,25 @@
 import {
-  StDateBox,
   StPickerBox,
   StPickerContent,
   StPickerHeader,
-  StPickerLayout,
   StPickerMonth,
   StPickerYear,
-  StYear,
 } from '@/src/styles/common/monthPicker';
-import getTodayDate from '@/src/utils/getTodayDate';
-import { MouseEvent, useEffect, useRef, useState } from 'react';
-import {
-  ChevronLeft,
-  ChevronRight,
-  ChevronDown,
-  ChevronUp,
-} from 'react-feather';
+import { MouseEvent, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'react-feather';
 import MonthsOfYear from '@/src/utils/constant/MonthsOfYear.json';
-import useDropdown from '@/src/hooks/useDropdown';
+import { IsMonthPickerProps } from '@/src/types/props.interface';
 
-export default function MonthPicker() {
-  const [date, setDate] = useState({
-    year: 2023,
-    month: 1,
-  });
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useDropdown(dropdownRef);
-
-  useEffect(() => {
-    const { year, month } = getTodayDate();
-    setDate({ year: year, month: month });
-  }, []);
+export default function MonthPicker({
+  date,
+  setDate,
+  isPickerOpen,
+  setIsPickerOpen,
+}: IsMonthPickerProps) {
+  const [updateDate, setUpdateDate] = useState(date);
 
   const handleYearChange = (value: number) => {
-    setDate(prev => {
+    setUpdateDate(prev => {
       return { ...prev, year: value };
     });
   };
@@ -41,46 +27,34 @@ export default function MonthPicker() {
   const handleMonthClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const button: HTMLButtonElement = e.currentTarget;
-    setDate(prev => {
+    setUpdateDate(prev => {
       return { ...prev, month: parseInt(button.id) };
     });
-    setIsOpen(!isOpen);
+    setDate({ year: updateDate.year, month: Number(button.id) });
+    setIsPickerOpen(!isPickerOpen);
   };
 
   return (
-    <>
-      {date && (
-        <StPickerLayout ref={dropdownRef}>
-          <StDateBox onClick={() => setIsOpen(!isOpen)}>
-            <>{MonthsOfYear.full[date.month - 1]}</>
-            <StYear>{date.year}</StYear>
-            {isOpen ? <ChevronUp /> : <ChevronDown />}
-          </StDateBox>
-          {isOpen && (
-            <StPickerBox>
-              <StPickerHeader>
-                <ChevronLeft onClick={() => handleYearChange(date.year - 1)} />
-                <StPickerYear>{date.year}</StPickerYear>
-                <ChevronRight onClick={() => handleYearChange(date.year + 1)} />
-              </StPickerHeader>
-              <StPickerContent>
-                {MonthsOfYear.short.map((value, index) => {
-                  return (
-                    <StPickerMonth
-                      key={value}
-                      id={`${index + 1}`}
-                      type='button'
-                      onClick={handleMonthClick}
-                    >
-                      {value}
-                    </StPickerMonth>
-                  );
-                })}
-              </StPickerContent>
-            </StPickerBox>
-          )}
-        </StPickerLayout>
-      )}
-    </>
+    <StPickerBox>
+      <StPickerHeader>
+        <ChevronLeft onClick={() => handleYearChange(updateDate.year - 1)} />
+        <StPickerYear>{updateDate.year}</StPickerYear>
+        <ChevronRight onClick={() => handleYearChange(updateDate.year + 1)} />
+      </StPickerHeader>
+      <StPickerContent>
+        {MonthsOfYear.short.map((value, index) => {
+          return (
+            <StPickerMonth
+              key={value}
+              id={`${index + 1}`}
+              type='button'
+              onClick={handleMonthClick}
+            >
+              {value}
+            </StPickerMonth>
+          );
+        })}
+      </StPickerContent>
+    </StPickerBox>
   );
 }

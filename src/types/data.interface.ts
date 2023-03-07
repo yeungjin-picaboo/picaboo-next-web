@@ -6,3 +6,8 @@ export interface IsAccount {
 export interface IsSignup extends IsAccount {
   confirmation: string;
 }
+
+export interface IsMonth {
+  year: number;
+  month: number;
+}
