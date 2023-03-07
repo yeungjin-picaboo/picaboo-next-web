@@ -9,7 +9,7 @@ import {
   StYear,
 } from '@/src/styles/common/monthPicker';
 import getTodayDate from '@/src/utils/getTodayDate';
-import { MouseEvent, useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
@@ -17,48 +17,51 @@ import {
   ChevronUp,
 } from 'react-feather';
 import MonthsOfYear from '@/src/utils/constant/MonthsOfYear.json';
+import useDropdown from '@/src/hooks/useDropdown';
 
 export default function MonthPicker() {
-  const [display, setDisplay] = useState(false);
   const [date, setDate] = useState({
     year: 2023,
     month: 1,
   });
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useDropdown(dropdownRef);
+
   useEffect(() => {
     const { year, month } = getTodayDate();
     setDate({ year: year, month: month });
   }, []);
 
-  const handleChangeYear = (value: number) => {
+  const handleYearChange = (value: number) => {
     setDate(prev => {
       return { ...prev, year: value };
     });
   };
 
-  const handleClickMonth = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleMonthClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const button: HTMLButtonElement = e.currentTarget;
     setDate(prev => {
       return { ...prev, month: parseInt(button.id) };
     });
-    setDisplay(false);
+    setIsOpen(!isOpen);
   };
 
   return (
     <>
       {date && (
-        <StPickerLayout>
-          <StDateBox onClick={() => setDisplay(prev => !prev)}>
+        <StPickerLayout ref={dropdownRef}>
+          <StDateBox onClick={() => setIsOpen(!isOpen)}>
             <>{MonthsOfYear.full[date.month - 1]}</>
             <StYear>{date.year}</StYear>
-            {display ? <ChevronUp /> : <ChevronDown />}
+            {isOpen ? <ChevronUp /> : <ChevronDown />}
           </StDateBox>
-          {display && (
+          {isOpen && (
             <StPickerBox>
               <StPickerHeader>
-                <ChevronLeft onClick={() => handleChangeYear(date.year - 1)} />
+                <ChevronLeft onClick={() => handleYearChange(date.year - 1)} />
                 <StPickerYear>{date.year}</StPickerYear>
-                <ChevronRight onClick={() => handleChangeYear(date.year + 1)} />
+                <ChevronRight onClick={() => handleYearChange(date.year + 1)} />
               </StPickerHeader>
               <StPickerContent>
                 {MonthsOfYear.short.map((value, index) => {
@@ -67,7 +70,7 @@ export default function MonthPicker() {
                       key={value}
                       id={`${index + 1}`}
                       type='button'
-                      onClick={handleClickMonth}
+                      onClick={handleMonthClick}
                     >
                       {value}
                     </StPickerMonth>

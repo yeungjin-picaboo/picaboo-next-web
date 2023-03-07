@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StPickerLayout = styled.div`
   position: relative;
+  display: inline-block;
 `;
 
 export const StDateBox = styled.div`
