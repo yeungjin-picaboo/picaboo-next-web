@@ -12,6 +12,7 @@ export const theme: DefaultTheme = {
     enabled: '#ffffff',
     disabled: '#bababa',
     error: '#ff3333',
+    danger: '#DF2E38',
   },
   bgclr: {
     base: '#373A40',
@@ -28,8 +29,7 @@ export const theme: DefaultTheme = {
     focus: '#000000',
   },
   boxShadow: {
-    normal:
-      '0 4px 10px 0  rgba(0, 0, 0, 0.25), 0 2px 5px 0  rgba(0, 0, 0, 0.5)',
+    normal: '0 4px 10px 0  rgba(0, 0, 0, 0.25)',
     layout: '0 0 20px 0 rgba(0, 0, 0, 0.25), 0 0px 10px 0  rgba(0, 0, 0, 0.5)',
     image: '0 4px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0  rgba(0, 0, 0, 0.25)',
   },

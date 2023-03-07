@@ -19,6 +19,7 @@ export const StYear = styled.span`
 export const StPickerBox = styled.div`
   position: absolute;
   z-index: 10;
+  left: -1rem;
   margin-top: 1rem;
   background-color: ${({ theme }) => theme.bgclr.primary};
   box-shadow: ${({ theme }) => theme.boxShadow.normal};
@@ -28,6 +29,10 @@ export const StPickerHeader = styled.div`
   padding: 0.8rem 1rem;
   border-bottom: 1px solid ${({ theme }) => theme.borderclr.base};
   ${({ theme }) => theme.mixins.flexBox()};
+
+  svg {
+    cursor: pointer;
+  }
 `;
 
 export const StPickerYear = styled.div`

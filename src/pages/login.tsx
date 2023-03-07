@@ -6,7 +6,7 @@ import {
   Title,
   Form,
   Text,
-} from '@/src/styles/layouts/account.style';
+} from '@/src/styles/layouts/authForm.style';
 import { loginFn } from '@/src/api/accountApi';
 import useInputRef from '@/src/hooks/useInputRef';
 import { StButton } from '@/src/styles/common/common.style';

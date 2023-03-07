@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
 export const StButton = styled.button`
@@ -22,7 +23,7 @@ export const StList = styled.div`
   margin-top: 1.5rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1.5rem;
+  grid-gap: 2rem;
   grid-template-rows: auto;
 `;
 
@@ -46,10 +47,10 @@ export const StItem = styled.div`
   }
 `;
 
-export const StAddBtn = styled.div`
+export const StAddBtn = styled(Link)`
   position: fixed;
-  bottom: 1.5rem;
-  right: calc((100% - 1024px) / 2 + 1.5rem);
+  bottom: 1.75rem;
+  right: calc((100% - 1024px) / 2 + 1.75rem);
   cursor: pointer;
   &:hover {
     transform: scale(0.94);

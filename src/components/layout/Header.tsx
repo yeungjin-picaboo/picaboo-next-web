@@ -1,5 +1,7 @@
 import { logoutFn } from '@/src/api/accountApi';
 import {
+  StDropdown,
+  StDropdownItem,
   StHeader,
   StLogo,
   StNav,
@@ -12,20 +14,23 @@ import { useMutation } from 'react-query';
 import { UserCircle } from 'tabler-icons-react';
 import audiowide from '@/src/utils/font/audiowide';
 import ubuntu from '@/src/utils/font/ubuntu';
-import { useState } from 'react';
+import { useRef } from 'react';
+import useDropdown from '@/src/hooks/useDropdown';
+import { LogOut, Shield } from 'react-feather';
 
 export default function Header() {
   const router = useRouter();
-  // 로그아웃
-  // const { mutate } = useMutation(logoutFn, {
-  //   onSuccess: data => {
-  //     alert(data.message);
-  //     router.push('/');
-  //   },
-  //   onError: (error: AxiosError) => {
-  //     alert(error.message);
-  //   },
-  // });
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useDropdown(dropdownRef);
+  const { mutate } = useMutation(logoutFn, {
+    onSuccess: data => {
+      alert(data.message);
+      router.push('/');
+    },
+    onError: (error: AxiosError) => {
+      alert(error.message);
+    },
+  });
 
   return (
     <StHeader>
@@ -43,8 +48,25 @@ export default function Header() {
         <StNavItem current={router.route === '/qna'}>
           <Link href='/qna'>QnA</Link>
         </StNavItem>
-        <StNavItem>
-          <UserCircle size={36} strokeWidth={1} color={'white'} />
+        <StNavItem ref={dropdownRef}>
+          <UserCircle
+            onClick={() => setIsOpen(!isOpen)}
+            size={36}
+            strokeWidth={1}
+            color={'white'}
+          />
+          {isOpen && (
+            <StDropdown>
+              <StDropdownItem>
+                <Shield size={20} />
+                <Link href='/account'>Account</Link>
+              </StDropdownItem>
+              <StDropdownItem onClick={() => mutate()}>
+                <LogOut size={20} />
+                Logout
+              </StDropdownItem>
+            </StDropdown>
+          )}
         </StNavItem>
       </StNav>
     </StHeader>

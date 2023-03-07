@@ -31,7 +31,7 @@ export default function DiaryPage() {
             );
           })}
         </StList>
-        <StAddBtn>
+        <StAddBtn href='/diary/write'>
           <Plus width={36} height={36} strokeWidth={1} />
         </StAddBtn>
       </main>

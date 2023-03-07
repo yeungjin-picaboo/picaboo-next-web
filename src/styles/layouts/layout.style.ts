@@ -16,7 +16,7 @@ export const StHeader = styled.div`
   width: 100vw;
   max-width: 1024px;
   height: calc(100px + 1vh + 1vw);
-  padding: 0 2.25rem;
+  padding: 0 2.75rem;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -35,15 +35,41 @@ export const StNav = styled.div`
 `;
 
 export const StNavItem = styled.main<{ current?: boolean }>`
+  position: relative;
   cursor: pointer;
-  color: ${({ theme: { clr }, current }) =>
-    current ? clr.tertiary : clr.disabled};
+
   text-decoration: ${({ current }) => (current ? 'underline' : 'none')};
   margin-left: 3.5rem;
   font-size: 1.4rem;
 `;
 
+export const StDropdown = styled.ul`
+  font-size: 1.2rem;
+  position: absolute;
+  right: -1rem;
+  color: ${({ theme }) => theme.clr.base};
+  background-color: ${({ theme }) => theme.bgclr.primary};
+  box-shadow: ${({ theme }) => theme.boxShadow.normal};
+  margin-top: 1rem;
+`;
+
+export const StDropdownItem = styled.li`
+  ${({ theme }) => theme.mixins.flexBox('row', 'center', 'flex-start')};
+  padding: 1rem;
+  border-bottom: 2px solid ${({ theme }) => theme.borderclr.base};
+  &:last-child {
+    color: ${({ theme }) => theme.clr.danger};
+    border: none;
+  }
+  &:hover {
+    background-color: ${({ theme }) => theme.bgclr.secondary};
+  }
+  svg {
+    margin-right: 0.75rem;
+  }
+`;
+
 export const StContent = styled.div`
   min-height: 100vh;
-  padding: 2.25rem;
+  padding: 2.75rem;
 `;

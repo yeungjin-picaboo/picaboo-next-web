@@ -6,7 +6,7 @@ import {
   Layout,
   Text,
   Title,
-} from '@/src/styles/layouts/account.style';
+} from '@/src/styles/layouts/authForm.style';
 import { StButton } from '@/src/styles/common/common.style';
 import { IsSignup } from '@/src/types/data.interface';
 import { signupFn } from '@/src/api/accountApi';
