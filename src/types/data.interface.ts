@@ -7,7 +7,12 @@ export interface IsSignup extends IsAccount {
   confirmation: string;
 }
 
-export interface IsMonth {
+export interface IsYearMonth {
   year: number;
   month: number;
+}
+
+export interface IsDiaryList {
+  id: string;
+  source: string;
 }

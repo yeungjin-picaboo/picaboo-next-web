@@ -1,7 +1,7 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { InputHTMLAttributes, ReactElement } from 'react';
 import { FieldError } from 'react-hook-form';
-import { IsMonth } from './data.interface';
+import { IsYearMonth } from './data.interface';
 
 export interface IsProps {
   children?: ReactNode;
@@ -19,8 +19,8 @@ export interface IsCalendarProps {
 }
 
 export interface IsMonthPickerProps {
-  date: IsMonth;
-  setDate: Dispatch<SetStateAction<IsMonth>>;
+  date: IsYearMonth;
+  setDate: Dispatch<SetStateAction<IsYearMonth>>;
   isPickerOpen: boolean;
   setIsPickerOpen: Dispatch<SetStateAction<boolean>>;
 }
