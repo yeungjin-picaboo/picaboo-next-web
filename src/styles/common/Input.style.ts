@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const FieldSet = styled.fieldset`
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.75rem;
 `;
 
 export const Label = styled.label<{ error: boolean }>`
   display: block;
   margin-left: 0.1rem;
-  margin-bottom: 0.6em;
-  font-size: calc(0.9rem + 0.2vw);
+  margin-bottom: 0.5em;
+  font-size: 1.25rem;
   color: ${({ theme: { clr }, error }) => (error ? clr.error : clr.primary)};
 `;
 
@@ -20,17 +20,17 @@ export const InputBox = styled.div`
     right: 0;
     margin-right: 0.75rem;
     transform: translateY(-50%);
-    width: calc(1rem + 0.2vw);
+    width: 1.25rem;
     color: ${({ theme }) => theme.clr.quaternary};
   }
 `;
 
 export const InputField = styled.input<{ error: boolean }>`
-  font-size: calc(0.8rem + 0.2vw);
+  font-size: 1rem;
   display: block;
   width: 100%;
-  margin-bottom: 0.3rem;
-  padding: 0.75rem 0.9rem;
+  margin-bottom: 0.5rem;
+  padding: 0.85rem 1rem;
   border: 1.5px solid
     ${({ theme: { borderclr }, error }) =>
       error ? borderclr.error : borderclr.base};
@@ -46,19 +46,21 @@ export const InputField = styled.input<{ error: boolean }>`
 
 export const MsgBox = styled.div`
   display: grid;
-  grid-template-columns: calc(0.9rem + 0.2vw) auto;
-  grid-gap: 0.3rem;
+  grid-template-columns: auto auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+  grid-gap: 0.25rem;
   color: ${({ theme }) => theme.clr.error};
-  margin: 0 0.3rem 0.1rem 0.3rem;
+  margin-left: 0.25rem;
+  margin-bottom: 0.25rem;
   svg {
-    width: calc(0.9rem + 0.2vw);
-    height: calc(1.3rem + 0.2vw);
+    width: 1.25rem;
+    height: 1.25rem;
   }
 `;
 
 export const ErrorMsg = styled.div`
   width: 100%;
-  margin-top: 0.2rem;
-  line-height: calc(1rem + 0.2vw);
-  font-size: calc(0.8rem + 0.2vw);
+  line-height: 1.25rem;
+  font-size: 1rem;
 `;

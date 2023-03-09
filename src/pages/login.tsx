@@ -19,11 +19,12 @@ import { useMutation } from 'react-query';
 import { X } from 'react-feather';
 import { useRouter } from 'next/router';
 import { Ubuntu } from '@next/font/google';
+import Loading from '../components/common/Loading';
 
 const ubuntu = Ubuntu({ weight: '400', subsets: ['latin'] });
 
 export default function LoginPage() {
-  const { mutate } = useMutation(loginFn, {
+  const { mutate, isLoading } = useMutation(loginFn, {
     onSuccess: data => {
       alert(data.message);
       router.push('/diary');
@@ -56,32 +57,38 @@ export default function LoginPage() {
   return (
     <Layout className={ubuntu.className}>
       <Container>
-        <Form onSubmit={handleSubmit(onValid)}>
-          <Title>Login</Title>
-          <Input
-            id='email'
-            label='Email'
-            placeholder='Email'
-            icon={<X onClick={() => resetField('email')} />}
-            {...register('email', emailOptions)}
-            error={errors?.email}
-          />
-          <Input
-            id='password'
-            type='password'
-            label='Password'
-            placeholder='Password'
-            icon={<VisibilityIcon _ref={passwordCurrentRef} />}
-            {...password}
-            error={errors?.password}
-          />
-          <Link href='/forgot'>Forgot password?</Link>
-          <StButton disabled={isSubmitting}>Register</StButton>
-        </Form>
-        <Text>
-          Don’t have an account?&nbsp;&nbsp;
-          <Link href='/signup'>Register</Link>
-        </Text>
+        {isLoading ? (
+          <Loading message={'Please wait...'} />
+        ) : (
+          <>
+            <Form onSubmit={handleSubmit(onValid)}>
+              <Title>Login</Title>
+              <Input
+                id='email'
+                label='Email'
+                placeholder='Email'
+                icon={<X onClick={() => resetField('email')} />}
+                {...register('email', emailOptions)}
+                error={errors?.email}
+              />
+              <Input
+                id='password'
+                type='password'
+                label='Password'
+                placeholder='Password'
+                icon={<VisibilityIcon _ref={passwordCurrentRef} />}
+                {...password}
+                error={errors?.password}
+              />
+              <Link href='/forgot'>Forgot password?</Link>
+              <StButton disabled={isSubmitting}>Register</StButton>
+            </Form>
+            <Text>
+              Don’t have an account?&nbsp;&nbsp;
+              <Link href='/signup'>Register</Link>
+            </Text>
+          </>
+        )}
       </Container>
     </Layout>
   );

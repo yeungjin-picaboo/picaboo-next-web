@@ -8,7 +8,7 @@ import {
 } from '@/src/styles/common/Input.style';
 import { IsInputProps } from '@/src/types/props.interface';
 import { forwardRef, Ref } from 'react';
-import { AlertOctagon } from 'react-feather';
+import { AlertCircle } from 'react-feather';
 
 function Input(
   { id, label, error, icon, ...restProps }: IsInputProps,
@@ -32,7 +32,7 @@ function Input(
       </InputBox>
       {error && (
         <MsgBox>
-          <AlertOctagon />
+          <AlertCircle />
           <ErrorMsg>{error.message}</ErrorMsg>
         </MsgBox>
       )}

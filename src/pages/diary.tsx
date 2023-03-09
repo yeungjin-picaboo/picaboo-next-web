@@ -16,6 +16,7 @@ import MonthsOfYear from '@/src/utils/constant/MonthsOfYear.json';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { fetchDiaryListFn } from '../api/diaryApi';
+import Loading from '../components/common/Loading';
 
 export default function DiaryPage() {
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -50,8 +51,8 @@ export default function DiaryPage() {
   }, []);
 
   return (
-    <Layout>
-      <main className={ubuntu.className}>
+    <main className={ubuntu.className}>
+      <Layout>
         {date && (
           <StPickerLayout ref={dropdownRef}>
             <StDateBox onClick={() => setIsPickerOpen(!isPickerOpen)}>
@@ -69,22 +70,23 @@ export default function DiaryPage() {
             )}
           </StPickerLayout>
         )}
-        <StList>
-          {data &&
-            data.map((el: any, i: number) => {
+        {data && (
+          <StList>
+            {data.map((el: any, i: number) => {
               return (
                 <StItem key={i}>
                   <Image src={el} fill alt='' />
                 </StItem>
               );
             })}
-          {isLoading && <></>}
-          {isError && <></>}
-        </StList>
+          </StList>
+        )}
+        {isLoading && <Loading message={'Loading diary pictures...'} />}
+        {isError && <></>}
         <StAddBtn href='/diary/write'>
           <Plus width={36} height={36} strokeWidth={1} />
         </StAddBtn>
-      </main>
-    </Layout>
+      </Layout>
+    </main>
   );
 }

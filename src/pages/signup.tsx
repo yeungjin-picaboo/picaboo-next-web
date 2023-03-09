@@ -23,11 +23,12 @@ import { useForm } from 'react-hook-form';
 import { X } from 'react-feather';
 import { useRouter } from 'next/router';
 import { Ubuntu } from '@next/font/google';
+import Loading from '../components/common/Loading';
 
 const ubuntu = Ubuntu({ weight: '400', subsets: ['latin'] });
 
 export default function SignupPage() {
-  const { mutate } = useMutation(signupFn, {
+  const { mutate, isLoading } = useMutation(signupFn, {
     onSuccess: data => {
       alert(data.message);
       router.push('/diary');
@@ -63,42 +64,57 @@ export default function SignupPage() {
     mutate({ email: data.email, password: data.password });
   };
 
+  if (isLoading) {
+    return (
+      <Layout className={ubuntu.className}>
+        <Container></Container>
+      </Layout>
+    );
+  }
+
   return (
     <Layout className={ubuntu.className}>
       <Container>
-        <Form onSubmit={handleSubmit(onValid)}>
-          <Title>Sign up</Title>
-          <Input
-            id='email'
-            label='Email'
-            placeholder='Email'
-            icon={<X onClick={() => resetField('email')} />}
-            {...register('email', emailOptions)}
-            error={errors?.email}
-          />
-          <Input
-            id='password'
-            type='password'
-            label='Password'
-            placeholder='Password'
-            icon={<VisibilityIcon _ref={passwordCurrentRef} />}
-            {...password}
-            error={errors?.password}
-          />
-          <Input
-            id='confirmation'
-            type='password'
-            label='Confirm password'
-            placeholder='Confirm password'
-            icon={<VisibilityIcon _ref={confirmCurrentRef} />}
-            {...confirmation}
-            error={errors?.confirmation}
-          />
-          <StButton disabled={isSubmitting}>Register</StButton>
-        </Form>
-        <Text>
-          Already have an account?&nbsp;&nbsp;<Link href='/login'>Login</Link>
-        </Text>
+        {isLoading ? (
+          <Loading message={'Please wait...'} />
+        ) : (
+          <>
+            <Form onSubmit={handleSubmit(onValid)}>
+              <Title>Sign up</Title>
+              <Input
+                id='email'
+                label='Email'
+                placeholder='Email'
+                icon={<X onClick={() => resetField('email')} />}
+                {...register('email', emailOptions)}
+                error={errors?.email}
+              />
+              <Input
+                id='password'
+                type='password'
+                label='Password'
+                placeholder='Password'
+                icon={<VisibilityIcon _ref={passwordCurrentRef} />}
+                {...password}
+                error={errors?.password}
+              />
+              <Input
+                id='confirmation'
+                type='password'
+                label='Confirm password'
+                placeholder='Confirm password'
+                icon={<VisibilityIcon _ref={confirmCurrentRef} />}
+                {...confirmation}
+                error={errors?.confirmation}
+              />
+              <StButton disabled={isSubmitting}>Register</StButton>
+            </Form>
+            <Text>
+              Already have an account?&nbsp;&nbsp;
+              <Link href='/login'>Login</Link>
+            </Text>
+          </>
+        )}
       </Container>
     </Layout>
   );

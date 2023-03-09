@@ -70,6 +70,8 @@ export const StDropdownItem = styled.li`
 `;
 
 export const StContent = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 100px - 1vh - 1vw);
   padding: 2.75rem;
+  display: flex;
+  flex-direction: column;
 `;
