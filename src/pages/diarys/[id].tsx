@@ -2,7 +2,6 @@ import { fetchDiaryDetailFn } from '@/src/api/diaryApi';
 import Layout from '@/src/components/layout/Layout';
 import {
   StDiary,
-  StDiaryBody,
   StDiaryContent,
   StDiaryDate,
   StDiaryHeader,
@@ -15,10 +14,18 @@ import {
 import { AxiosError } from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useMemo, useRef, useState } from 'react';
 import { ArrowLeft, Calendar, Edit, Smile, Sun, Trash2 } from 'react-feather';
 import { useQuery } from 'react-query';
+import useDropdown from '@/src/hooks/useDropdown';
+import CalendarDropdown from '@/src/components/common/CalendarDropdown';
+import getTodayDate from '@/src/utils/getTodayDate';
 
 export default function DiarysDetailPage() {
+  const { dateStr: today } = useMemo(() => getTodayDate(), []);
+  const [date, setDate] = useState(today);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isCalendarOpen, setIsCalendarOpen] = useDropdown(dropdownRef);
   const {
     query: { id },
   } = useRouter();
@@ -42,19 +49,31 @@ export default function DiarysDetailPage() {
       },
     }
   );
+
   return (
     <Layout>
       <StDiary>
         <StDiaryHeader>
           <ArrowLeft />
           <StDiaryIconBox>
-            <Calendar />
+            <div ref={dropdownRef}>
+              <Calendar onClick={() => setIsCalendarOpen(!isCalendarOpen)} />
+              {isCalendarOpen && (
+                <CalendarDropdown
+                  date={date}
+                  today={today}
+                  setDate={setDate}
+                  setIsCalendarOpen={setIsCalendarOpen}
+                />
+              )}
+            </div>
+
             <Edit />
             <Trash2 />
           </StDiaryIconBox>
         </StDiaryHeader>
         {!data && (
-          <StDiaryBody>
+          <>
             <StDiaryPictureBox>
               <Image src='/background.png' alt='' fill />
             </StDiaryPictureBox>
@@ -91,7 +110,7 @@ export default function DiarysDetailPage() {
               I’m so grateful for my education and all the opportunities my
               school gave me. I’m definitely going to visit again soon!
             </StDiaryContent>
-          </StDiaryBody>
+          </>
         )}
       </StDiary>
     </Layout>

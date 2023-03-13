@@ -8,19 +8,14 @@ export const StDiary = styled.div`
 
 export const StDiaryHeader = styled.div`
   ${({ theme }) => theme.mixins.flexBox('row', 'center', 'space-between')};
-  margin-bottom: 1.25rem;
   svg {
     width: 2rem;
     height: 2rem;
   }
 `;
 
-export const StDiaryBody = styled.div`
-  display: grid;
-  grid-gap: 1rem;
-`;
-
 export const StDiaryIconBox = styled.div`
+  ${({ theme }) => theme.mixins.flexBox()};
   svg {
     margin-left: 1rem;
   }
@@ -31,7 +26,7 @@ export const StDiaryPictureBox = styled.div`
   width: 500px;
   height: 500px;
   border-radius: 1rem;
-  margin-bottom: 0.25rem;
+  margin: 1.25rem 0;
   box-shadow: ${({ theme }) => theme.boxShadow.image};
   img {
     border-radius: 1rem;
@@ -62,6 +57,8 @@ export const StDiaryDate = styled.div`
 
 export const StDiaryTitle = styled.div`
   padding: 0 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
   font-size: 1.75rem;
   font-weight: bold;
 `;

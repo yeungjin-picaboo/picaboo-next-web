@@ -70,7 +70,6 @@ export default function DiarysPage() {
               <MonthPicker
                 date={date}
                 setDate={setDate}
-                isPickerOpen={isPickerOpen}
                 setIsPickerOpen={setIsPickerOpen}
               />
             )}

@@ -1,13 +1,17 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import VanillaCalendar from '@uvarov.frontend/vanilla-calendar';
 import '@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.css';
 import { FormatDateString } from '@uvarov.frontend/vanilla-calendar/src/types';
-import getTodayDate from '@/src/utils/getTodayDate';
 import { IsCalendarProps } from '@/src/types/props.interface';
+import { StCalendarWrapper } from '@/src/styles/common/calendar';
 
-export default function Calendar({ setDate }: IsCalendarProps) {
+export default function CalendarDropdown({
+  date,
+  today,
+  setDate,
+  setIsCalendarOpen,
+}: IsCalendarProps) {
   const calendarEl = useRef<HTMLDivElement>(null);
-  const { dateStr } = useMemo(() => getTodayDate(), []);
 
   useEffect(() => {
     if (!calendarEl.current) return;
@@ -16,10 +20,10 @@ export default function Calendar({ setDate }: IsCalendarProps) {
         lang: 'en',
         iso8601: false,
         range: {
-          max: dateStr as FormatDateString,
+          max: today as FormatDateString,
         },
         selected: {
-          dates: [dateStr],
+          dates: [date],
         },
       },
       actions: {
@@ -27,11 +31,12 @@ export default function Calendar({ setDate }: IsCalendarProps) {
           e.preventDefault();
           console.log(dates);
           if (dates) setDate(dates[0]);
+          setIsCalendarOpen(false);
         },
       },
     });
     calendar.init();
-  }, [calendarEl, dateStr]);
+  }, [calendarEl, today]);
 
-  return <div ref={calendarEl}></div>;
+  return <StCalendarWrapper ref={calendarEl} />;
 }

@@ -13,7 +13,6 @@ import { IsMonthPickerProps } from '@/src/types/props.interface';
 export default function MonthPicker({
   date,
   setDate,
-  isPickerOpen,
   setIsPickerOpen,
 }: IsMonthPickerProps) {
   const [updateDate, setUpdateDate] = useState(date);
@@ -31,7 +30,7 @@ export default function MonthPicker({
       return { ...prev, month: parseInt(button.id) };
     });
     setDate({ year: updateDate.year, month: Number(button.id) });
-    setIsPickerOpen(!isPickerOpen);
+    setIsPickerOpen(false);
   };
 
   return (

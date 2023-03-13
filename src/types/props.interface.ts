@@ -15,12 +15,14 @@ export interface IsInputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export interface IsCalendarProps {
+  date: string;
+  today: string;
   setDate: Dispatch<SetStateAction<string>>;
+  setIsCalendarOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface IsMonthPickerProps {
   date: IsYearMonth;
   setDate: Dispatch<SetStateAction<IsYearMonth>>;
-  isPickerOpen: boolean;
   setIsPickerOpen: Dispatch<SetStateAction<boolean>>;
 }
