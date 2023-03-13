@@ -16,7 +16,7 @@ export const StHeader = styled.div`
   width: 100vw;
   max-width: 1024px;
   height: calc(100px + 1vh + 1vw);
-  padding: 0 2.75rem;
+  padding: 0 2.5rem;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -71,7 +71,7 @@ export const StDropdownItem = styled.li`
 
 export const StContent = styled.div`
   min-height: calc(100vh - 100px - 1vh - 1vw);
-  padding: 2.75rem;
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
 `;

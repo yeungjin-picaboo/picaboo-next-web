@@ -1,24 +1,26 @@
 import Layout from '@/src/components/layout/Layout';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { ChevronDown, ChevronUp, Plus } from 'react-feather';
-import MonthPicker from '../components/common/MonthPicker';
-import useDropdown from '../hooks/useDropdown';
-import { StAddBtn, StItem, StList } from '../styles/common/common.style';
+import { ChevronDown, ChevronUp, Edit3 } from 'react-feather';
+import MonthPicker from '../../components/common/MonthPicker';
+import useDropdown from '../../hooks/useDropdown';
+import { StCreateBtn, StItem, StList } from '../../styles/common/common.style';
 import {
   StDateBox,
   StPickerLayout,
   StYear,
-} from '../styles/common/monthPicker';
-import ubuntu from '../utils/font/ubuntu';
-import getTodayDate from '../utils/getTodayDate';
+} from '../../styles/common/monthPicker';
+import ubuntu from '../../utils/font/ubuntu';
+import getTodayDate from '../../utils/getTodayDate';
 import MonthsOfYear from '@/src/utils/constant/MonthsOfYear.json';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
-import { fetchDiaryListFn } from '../api/diaryApi';
-import Loading from '../components/common/Loading';
+import { fetchDiaryListFn } from '../../api/diaryApi';
+import Loading from '../../components/common/Loading';
+import { useRouter } from 'next/router';
 
-export default function DiaryPage() {
+export default function DiarysPage() {
+  const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isPickerOpen, setIsPickerOpen] = useDropdown(dropdownRef);
   const [date, setDate] = useState({
@@ -44,6 +46,10 @@ export default function DiaryPage() {
       },
     }
   );
+
+  const handlePictureClick = (id: number) => {
+    router.push(`/diarys/${id}`);
+  };
 
   useEffect(() => {
     const { year, month } = getTodayDate();
@@ -75,7 +81,12 @@ export default function DiaryPage() {
             {data.map((el: any, i: number) => {
               return (
                 <StItem key={i}>
-                  <Image src={el} fill alt='' />
+                  <Image
+                    src={el.source}
+                    fill
+                    alt=''
+                    onClick={() => handlePictureClick(el.diary_id)}
+                  />
                 </StItem>
               );
             })}
@@ -83,9 +94,9 @@ export default function DiaryPage() {
         )}
         {isLoading && <Loading message={'Loading diary pictures...'} />}
         {isError && <></>}
-        <StAddBtn href='/diary/write'>
-          <Plus width={36} height={36} strokeWidth={1} />
-        </StAddBtn>
+        <StCreateBtn href='/diarys/write'>
+          <Edit3 width={30} height={30} strokeWidth={1} />
+        </StCreateBtn>
       </Layout>
     </main>
   );

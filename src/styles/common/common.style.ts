@@ -47,21 +47,19 @@ export const StItem = styled.div`
   }
 `;
 
-export const StAddBtn = styled(Link)`
+export const StCreateBtn = styled(Link)`
   position: fixed;
-  bottom: 1.75rem;
-  right: calc((100% - 1024px) / 2 + 1.75rem);
+  padding: 1rem;
+  background-color: ${({ theme }) => theme.bgclr.tertiary};
+  box-shadow: ${({ theme }) => theme.boxShadow.normal};
+  border-radius: 2.5rem;
+  bottom: 1.5rem;
+  right: calc((100% - 1024px) / 2 + 1.5rem);
   cursor: pointer;
   &:hover {
     transform: scale(0.94);
   }
   svg {
-    width: 3.75rem;
-    height: 3.75rem;
-    padding: 0.5rem;
-    box-shadow: ${({ theme }) => theme.boxShadow.normal};
     color: ${({ theme }) => theme.clr.tertiary};
-    background-color: ${({ theme }) => theme.bgclr.tertiary};
-    border-radius: 2.5rem;
   }
 `;
