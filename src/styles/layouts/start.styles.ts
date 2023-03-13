@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
-export const Layout = styled.div`
+export const StIndexLayout = styled.div`
   width: 100vw;
   height: 100vh;
   padding: 2rem;
@@ -11,7 +12,7 @@ export const Layout = styled.div`
   }
 `;
 
-export const ImageBox = styled.div`
+export const StIndexLogoBox = styled.div`
   position: relative;
   width: 100vw;
   height: 45vh;
@@ -27,7 +28,7 @@ export const ImageBox = styled.div`
   }
 `;
 
-export const LinkGroup = styled.div`
+export const StIndexLinkGroup = styled.div`
   width: 100%;
   ${({ theme }) => theme.mixins.flexBox('column')};
   @media ${({ theme }) => theme.media.md} {
@@ -39,31 +40,24 @@ export const LinkGroup = styled.div`
   }
 `;
 
-export const LinkBox = styled.div`
+export const StIndexLink = styled(Link)`
   width: 100%;
   font-weight: bold;
-  margin-top: 1.3rem;
-  color: ${({ theme }) => theme.clr.fifth};
-  background-color: ${({ theme }) => theme.bgclr.base};
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+  background-color: ${({ theme }) => theme.bgclr.secondary};
   box-shadow: ${({ theme }) => theme.boxShadow.normal};
-  .link {
-    padding: 1.3rem 1rem;
-    ${({ theme }) =>
-      theme.mixins.flexBox('columns', 'center', 'space-between')};
-  }
+  ${({ theme }) => theme.mixins.flexBox('columns', 'center', 'space-between')};
   &:hover {
     transform: scale(0.98);
   }
   @media ${({ theme }) => theme.media.md} {
     margin-top: 0;
     margin-left: 1.5rem;
-    color: ${({ theme }) => theme.clr.fifth};
     border: 2px solid ${({ theme }) => theme.borderclr.base};
     opacity: 1;
     border-radius: 0.8rem;
-    .link {
-      padding: 1.1rem;
-    }
+    padding: 1rem;
     &:hover {
       transform: scale(1.1);
     }

@@ -1,12 +1,12 @@
-import type { AppProps } from 'next/app';
-import { ThemeProvider } from 'styled-components';
+import background from '@/public/background.png';
+import CustomHead from '@/src/components/common/Head';
+import { Responsive } from '@/src/components/common/Responsive';
 import GlobalStyle from '@/src/styles/global.style';
 import { theme } from '@/src/styles/theme';
-import CustomHead from '@/src/components/common/Head';
-import { Responsive } from '../components/common/Responsive';
+import { StBackgroundImage } from '@/src/styles/common/background.style';
+import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import background from '../../public/background.png';
-import { BackgroundImage } from '../styles/common/background.style';
+import type { AppProps } from 'next/app';
 
 const queryClient = new QueryClient();
 
@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <CustomHead />
         <Responsive>
           <div>
-            <BackgroundImage src={background} alt='' />
+            <StBackgroundImage src={background} alt='' />
           </div>
 
           <Component {...pageProps} />

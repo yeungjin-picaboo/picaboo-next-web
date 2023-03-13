@@ -1,9 +1,6 @@
-import {
-  StLayout,
-  StContent,
-  StContainer,
-} from '@/src/styles/layouts/layout.style';
+import { StLayout, StContainer } from '@/src/styles/layouts/layout.style';
 import { IsProps } from '@/src/types/props.interface';
+import ubuntu from '@/src/utils/font/ubuntu';
 import Header from './Header';
 
 export default function Layout({ children }: IsProps) {
@@ -11,7 +8,7 @@ export default function Layout({ children }: IsProps) {
     <StLayout>
       <StContainer>
         <Header />
-        <StContent>{children}</StContent>
+        <div className={ubuntu.className}>{children}</div>
       </StContainer>
     </StLayout>
   );

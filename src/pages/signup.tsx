@@ -1,31 +1,29 @@
+import { signupFn } from '@/src/api/accountApi';
+import Loading from '@/src/components/common/Loading';
 import Input from '@/src/components/common/Input';
 import VisibilityIcon from '@/src/components/common/VisibilityIcon';
+import useInputRef from '@/src/hooks/useInputRef';
 import {
-  Container,
-  Form,
-  Layout,
-  Text,
-  Title,
+  StAuthFormContainer,
+  StAuthFormLayout,
+  StAuthForm,
+  StAuthFormText,
+  StAuthFormTitle,
 } from '@/src/styles/layouts/authForm.style';
 import { StButton } from '@/src/styles/common/common.style';
 import { IsSignup } from '@/src/types/data.interface';
-import { signupFn } from '@/src/api/accountApi';
-import useInputRef from '@/src/hooks/useInputRef';
 import {
   confirmationOptions,
   emailOptions,
   passwordOptions,
 } from '@/src/utils/inputOptions';
+import { ubuntu } from '@/src/utils/font';
 import Link from 'next/link';
+import { X } from 'react-feather';
 import { AxiosError } from 'axios';
 import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
-import { X } from 'react-feather';
 import { useRouter } from 'next/router';
-import { Ubuntu } from '@next/font/google';
-import Loading from '../components/common/Loading';
-
-const ubuntu = Ubuntu({ weight: '400', subsets: ['latin'] });
 
 export default function SignupPage() {
   const { mutate, isLoading } = useMutation(signupFn, {
@@ -39,7 +37,6 @@ export default function SignupPage() {
     },
   });
   const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -64,23 +61,14 @@ export default function SignupPage() {
     mutate({ email: data.email, password: data.password });
   };
 
-  if (isLoading) {
-    return (
-      <Layout className={ubuntu.className}>
-        <Container></Container>
-      </Layout>
-    );
-  }
-
   return (
-    <Layout className={ubuntu.className}>
-      <Container>
-        {isLoading ? (
-          <Loading message={'Please wait...'} />
-        ) : (
+    <StAuthFormLayout className={ubuntu.className}>
+      <StAuthFormContainer>
+        {isLoading && <Loading message={'Please wait...'} />}
+        {!isLoading && (
           <>
-            <Form onSubmit={handleSubmit(onValid)}>
-              <Title>Sign up</Title>
+            <StAuthForm onSubmit={handleSubmit(onValid)}>
+              <StAuthFormTitle>Sign up</StAuthFormTitle>
               <Input
                 id='email'
                 label='Email'
@@ -108,14 +96,14 @@ export default function SignupPage() {
                 error={errors?.confirmation}
               />
               <StButton disabled={isSubmitting}>Register</StButton>
-            </Form>
-            <Text>
+            </StAuthForm>
+            <StAuthFormText>
               Already have an account?&nbsp;&nbsp;
               <Link href='/login'>Login</Link>
-            </Text>
+            </StAuthFormText>
           </>
         )}
-      </Container>
-    </Layout>
+      </StAuthFormContainer>
+    </StAuthFormLayout>
   );
 }

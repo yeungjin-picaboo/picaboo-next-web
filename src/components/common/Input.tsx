@@ -1,10 +1,10 @@
 import {
-  ErrorMsg,
-  FieldSet,
-  InputBox,
-  InputField,
-  Label,
-  MsgBox,
+  StErrorMsg,
+  StFieldSet,
+  StInputBox,
+  StInputField,
+  StLabel,
+  StMsgBox,
 } from '@/src/styles/common/Input.style';
 import { IsInputProps } from '@/src/types/props.interface';
 import { forwardRef, Ref } from 'react';
@@ -15,28 +15,28 @@ function Input(
   ref: Ref<HTMLInputElement>
 ) {
   return (
-    <FieldSet>
+    <StFieldSet>
       {label && (
-        <Label htmlFor={id} error={error != undefined ? true : false}>
+        <StLabel htmlFor={id} error={error != undefined ? true : false}>
           {label}
-        </Label>
+        </StLabel>
       )}
-      <InputBox>
-        <InputField
+      <StInputBox>
+        <StInputField
           id={id}
           ref={ref}
           error={error != undefined ? true : false}
           {...restProps}
         />
         {icon && icon}
-      </InputBox>
+      </StInputBox>
       {error && (
-        <MsgBox>
+        <StMsgBox>
           <AlertCircle />
-          <ErrorMsg>{error.message}</ErrorMsg>
-        </MsgBox>
+          <StErrorMsg>{error.message}</StErrorMsg>
+        </StMsgBox>
       )}
-    </FieldSet>
+    </StFieldSet>
   );
 }
 

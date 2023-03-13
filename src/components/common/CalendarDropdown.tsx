@@ -1,9 +1,9 @@
+import { StCalendar } from '@/src/styles/common/calendar';
+import { IsCalendarProps } from '@/src/types/props.interface';
 import { useEffect, useRef } from 'react';
 import VanillaCalendar from '@uvarov.frontend/vanilla-calendar';
 import '@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.css';
 import { FormatDateString } from '@uvarov.frontend/vanilla-calendar/src/types';
-import { IsCalendarProps } from '@/src/types/props.interface';
-import { StCalendarWrapper } from '@/src/styles/common/calendar';
 
 export default function CalendarDropdown({
   date,
@@ -38,5 +38,5 @@ export default function CalendarDropdown({
     calendar.init();
   }, [calendarEl, today]);
 
-  return <StCalendarWrapper ref={calendarEl} />;
+  return <StCalendar ref={calendarEl} />;
 }

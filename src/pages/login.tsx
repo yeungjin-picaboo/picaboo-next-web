@@ -1,27 +1,25 @@
+import { loginFn } from '@/src/api/accountApi';
+import Loading from '@/src/components/common/Loading';
 import Input from '@/src/components/common/Input';
 import VisibilityIcon from '@/src/components/common/VisibilityIcon';
-import {
-  Layout,
-  Container,
-  Title,
-  Form,
-  Text,
-} from '@/src/styles/layouts/authForm.style';
-import { loginFn } from '@/src/api/accountApi';
 import useInputRef from '@/src/hooks/useInputRef';
+import {
+  StAuthFormContainer,
+  StAuthForm,
+  StAuthFormLayout,
+  StAuthFormTitle,
+  StAuthFormText,
+} from '@/src/styles/layouts/authForm.style';
 import { StButton } from '@/src/styles/common/common.style';
 import { IsAccount } from '@/src/types/data.interface';
 import { emailOptions, passwordOptions } from '@/src/utils/inputOptions';
+import { ubuntu } from '@/src/utils/font';
 import Link from 'next/link';
+import { X } from 'react-feather';
 import { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
-import { X } from 'react-feather';
 import { useRouter } from 'next/router';
-import { Ubuntu } from '@next/font/google';
-import Loading from '../components/common/Loading';
-
-const ubuntu = Ubuntu({ weight: '400', subsets: ['latin'] });
 
 export default function LoginPage() {
   const { mutate, isLoading } = useMutation(loginFn, {
@@ -50,19 +48,17 @@ export default function LoginPage() {
     register('password', passwordOptions)
   );
   const onValid = async (data: IsAccount) => {
-    // console.log(data);
     mutate(data);
   };
 
   return (
-    <Layout className={ubuntu.className}>
-      <Container>
-        {isLoading ? (
-          <Loading message={'Please wait...'} />
-        ) : (
+    <StAuthFormLayout className={ubuntu.className}>
+      <StAuthFormContainer>
+        {isLoading && <Loading message={'Please wait...'} />}
+        {!isLoading && (
           <>
-            <Form onSubmit={handleSubmit(onValid)}>
-              <Title>Login</Title>
+            <StAuthForm onSubmit={handleSubmit(onValid)}>
+              <StAuthFormTitle>Login</StAuthFormTitle>
               <Input
                 id='email'
                 label='Email'
@@ -82,14 +78,14 @@ export default function LoginPage() {
               />
               <Link href='/forgot'>Forgot password?</Link>
               <StButton disabled={isSubmitting}>Register</StButton>
-            </Form>
-            <Text>
+            </StAuthForm>
+            <StAuthFormText>
               Don’t have an account?&nbsp;&nbsp;
               <Link href='/signup'>Register</Link>
-            </Text>
+            </StAuthFormText>
           </>
         )}
-      </Container>
-    </Layout>
+      </StAuthFormContainer>
+    </StAuthFormLayout>
   );
 }

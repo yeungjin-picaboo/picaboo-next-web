@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const FieldSet = styled.fieldset`
+export const StFieldSet = styled.fieldset`
   margin-bottom: 0.75rem;
 `;
 
-export const Label = styled.label<{ error: boolean }>`
+export const StLabel = styled.label<{ error: boolean }>`
   display: block;
   margin-left: 0.1rem;
   margin-bottom: 0.5em;
@@ -12,7 +12,7 @@ export const Label = styled.label<{ error: boolean }>`
   color: ${({ theme: { clr }, error }) => (error ? clr.error : clr.primary)};
 `;
 
-export const InputBox = styled.div`
+export const StInputBox = styled.div`
   position: relative;
   svg {
     position: absolute;
@@ -25,12 +25,12 @@ export const InputBox = styled.div`
   }
 `;
 
-export const InputField = styled.input<{ error: boolean }>`
+export const StInputField = styled.input<{ error: boolean }>`
   font-size: 1rem;
   display: block;
   width: 100%;
   margin-bottom: 0.5rem;
-  padding: 0.85rem 1rem;
+  padding: 0.75rem 1rem;
   border: 1.5px solid
     ${({ theme: { borderclr }, error }) =>
       error ? borderclr.error : borderclr.base};
@@ -44,7 +44,7 @@ export const InputField = styled.input<{ error: boolean }>`
   }
 `;
 
-export const MsgBox = styled.div`
+export const StMsgBox = styled.div`
   display: grid;
   grid-template-columns: auto auto;
   align-items: flex-start;
@@ -59,7 +59,7 @@ export const MsgBox = styled.div`
   }
 `;
 
-export const ErrorMsg = styled.div`
+export const StErrorMsg = styled.div`
   width: 100%;
   line-height: 1.25rem;
   font-size: 1rem;

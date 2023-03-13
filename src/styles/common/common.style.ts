@@ -19,7 +19,7 @@ export const StButton = styled.button`
   }
 `;
 
-export const StList = styled.div`
+export const StPictureList = styled.div`
   margin-top: 1.5rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -27,7 +27,7 @@ export const StList = styled.div`
   grid-template-rows: auto;
 `;
 
-export const StItem = styled.div`
+export const StPictureItem = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.bgclr.secondary};
   box-shadow: ${({ theme }) => theme.boxShadow.image};

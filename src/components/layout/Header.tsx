@@ -1,4 +1,5 @@
 import { logoutFn } from '@/src/api/accountApi';
+import useDropdown from '@/src/hooks/useDropdown';
 import {
   StDropdown,
   StDropdownItem,
@@ -7,16 +8,15 @@ import {
   StNav,
   StNavItem,
 } from '@/src/styles/layouts/layout.style';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { AxiosError } from 'axios';
-import { useMutation } from 'react-query';
-import { UserCircle } from 'tabler-icons-react';
 import audiowide from '@/src/utils/font/audiowide';
 import ubuntu from '@/src/utils/font/ubuntu';
-import { useRef } from 'react';
-import useDropdown from '@/src/hooks/useDropdown';
+import Link from 'next/link';
 import { LogOut, Shield } from 'react-feather';
+import { UserCircle } from 'tabler-icons-react';
+import { AxiosError } from 'axios';
+import { useRef } from 'react';
+import { useRouter } from 'next/router';
+import { useMutation } from 'react-query';
 
 export default function Header() {
   const router = useRouter();
@@ -36,7 +36,7 @@ export default function Header() {
     <StHeader>
       <StLogo className={audiowide.className}>Pica</StLogo>
       <StNav className={ubuntu.className}>
-        <StNavItem current={router.route === '/diary'}>
+        <StNavItem current={router.route === '/diarys'}>
           <Link href='/diarys'>Diarys</Link>
         </StNavItem>
         <StNavItem current={router.route === '/stats'}>

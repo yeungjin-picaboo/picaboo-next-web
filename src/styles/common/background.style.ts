@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
-export const BackgroundImage = styled(Image)`
+export const StBackgroundImage = styled(Image)`
   width: 100vw;
   height: 100vh;
   background-image: url('background.png');

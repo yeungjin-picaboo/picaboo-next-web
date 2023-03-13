@@ -1,23 +1,27 @@
+import { fetchDiaryListFn } from '@/src/api/diaryApi';
 import Layout from '@/src/components/layout/Layout';
-import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
-import { ChevronDown, ChevronUp, Edit3 } from 'react-feather';
-import MonthPicker from '../../components/common/MonthPicker';
-import useDropdown from '../../hooks/useDropdown';
-import { StCreateBtn, StItem, StList } from '../../styles/common/common.style';
+import MonthPicker from '@/src/components/common/MonthPicker';
+import Loading from '@/src/components/common/Loading';
+import useDropdown from '@/src/hooks/useDropdown';
+import {
+  StCreateBtn,
+  StPictureItem,
+  StPictureList,
+} from '@/src/styles/common/common.style';
 import {
   StDateBox,
   StPickerLayout,
   StYear,
-} from '../../styles/common/monthPicker';
-import ubuntu from '../../utils/font/ubuntu';
-import getTodayDate from '../../utils/getTodayDate';
+} from '@/src/styles/common/monthPicker';
+import getTodayDate from '@/src/utils/getTodayDate';
 import MonthsOfYear from '@/src/utils/constant/MonthsOfYear.json';
-import { useQuery } from 'react-query';
+import Image from 'next/image';
+import { ChevronDown, ChevronUp, Edit3 } from 'react-feather';
 import { AxiosError } from 'axios';
-import { fetchDiaryListFn } from '../../api/diaryApi';
-import Loading from '../../components/common/Loading';
+import { useEffect, useRef, useState } from 'react';
+import { useQuery } from 'react-query';
 import { useRouter } from 'next/router';
+import { StPageContainer } from '@/src/styles/layouts/layout.style';
 
 export default function DiarysPage() {
   const router = useRouter();
@@ -57,8 +61,8 @@ export default function DiarysPage() {
   }, []);
 
   return (
-    <main className={ubuntu.className}>
-      <Layout>
+    <Layout>
+      <StPageContainer>
         {date && (
           <StPickerLayout ref={dropdownRef}>
             <StDateBox onClick={() => setIsPickerOpen(!isPickerOpen)}>
@@ -76,27 +80,27 @@ export default function DiarysPage() {
           </StPickerLayout>
         )}
         {data && (
-          <StList>
+          <StPictureList>
             {data.map((el: any, i: number) => {
               return (
-                <StItem key={i}>
+                <StPictureItem key={i}>
                   <Image
                     src={el.source}
                     fill
                     alt=''
                     onClick={() => handlePictureClick(el.diary_id)}
                   />
-                </StItem>
+                </StPictureItem>
               );
             })}
-          </StList>
+          </StPictureList>
         )}
         {isLoading && <Loading message={'Loading diary pictures...'} />}
         {isError && <></>}
         <StCreateBtn href='/diarys/write'>
           <Edit3 width={30} height={30} strokeWidth={1} />
         </StCreateBtn>
-      </Layout>
-    </main>
+      </StPageContainer>
+    </Layout>
   );
 }

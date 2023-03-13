@@ -1,7 +1,9 @@
 import { fetchDiaryDetailFn } from '@/src/api/diaryApi';
 import Layout from '@/src/components/layout/Layout';
+import CalendarDropdown from '@/src/components/common/CalendarDropdown';
+import useDropdown from '@/src/hooks/useDropdown';
 import {
-  StDiary,
+  StDiaryContainer,
   StDiaryContent,
   StDiaryDate,
   StDiaryHeader,
@@ -11,15 +13,13 @@ import {
   StDiaryPictureBox,
   StDiaryTitle,
 } from '@/src/styles/layouts/diary.style';
+import getTodayDate from '@/src/utils/getTodayDate';
 import { AxiosError } from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useMemo, useRef, useState } from 'react';
 import { ArrowLeft, Calendar, Edit, Smile, Sun, Trash2 } from 'react-feather';
 import { useQuery } from 'react-query';
-import useDropdown from '@/src/hooks/useDropdown';
-import CalendarDropdown from '@/src/components/common/CalendarDropdown';
-import getTodayDate from '@/src/utils/getTodayDate';
 
 export default function DiarysDetailPage() {
   const { dateStr: today } = useMemo(() => getTodayDate(), []);
@@ -52,7 +52,7 @@ export default function DiarysDetailPage() {
 
   return (
     <Layout>
-      <StDiary>
+      <StDiaryContainer>
         <StDiaryHeader>
           <ArrowLeft />
           <StDiaryIconBox>
@@ -83,8 +83,8 @@ export default function DiarysDetailPage() {
                 &nbsp;&nbsp;January 2023 Monday
               </StDiaryDate>
               <StDiaryMetaData>
-                <Smile />
                 <Sun />
+                <Smile />
               </StDiaryMetaData>
             </StDiaryInfo>
             <StDiaryTitle>I visited an old school</StDiaryTitle>
@@ -112,7 +112,7 @@ export default function DiarysDetailPage() {
             </StDiaryContent>
           </>
         )}
-      </StDiary>
+      </StDiaryContainer>
     </Layout>
   );
 }

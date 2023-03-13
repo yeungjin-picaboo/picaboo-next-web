@@ -34,7 +34,7 @@ export const StNav = styled.div`
   ${({ theme }) => theme.mixins.flexBox('row')}
 `;
 
-export const StNavItem = styled.main<{ current?: boolean }>`
+export const StNavItem = styled.div<{ current?: boolean }>`
   position: relative;
   cursor: pointer;
 
@@ -69,9 +69,9 @@ export const StDropdownItem = styled.li`
   }
 `;
 
-export const StContent = styled.div`
-  min-height: calc(100vh - 100px - 1vh - 1vw);
+export const StPageContainer = styled.div`
   padding: 2.5rem;
+  min-height: calc(100vh - 100px - 1vh - 1vw);
   display: flex;
   flex-direction: column;
 `;

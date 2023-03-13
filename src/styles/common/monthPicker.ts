@@ -27,7 +27,7 @@ export const StPickerBox = styled.div`
 `;
 
 export const StPickerHeader = styled.div`
-  padding: 0.8rem 1rem;
+  padding: 0.75rem 1rem;
   border-bottom: 1px solid ${({ theme }) => theme.borderclr.base};
   ${({ theme }) => theme.mixins.flexBox()};
 
@@ -38,7 +38,7 @@ export const StPickerHeader = styled.div`
 
 export const StPickerYear = styled.div`
   width: 100%;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: ${({ theme }) => theme.clr.primary};
   text-align: center;
 `;
@@ -51,7 +51,7 @@ export const StPickerContent = styled.div`
 export const StPickerMonth = styled.button`
   text-align: center;
   font-size: 1rem;
-  padding: 1.3rem;
+  padding: 1.25rem;
   &:hover {
     background-color: ${({ theme }) => theme.bgclr.tertiary};
     color: ${({ theme }) => theme.clr.tertiary};

@@ -5,10 +5,10 @@ import {
   StPickerMonth,
   StPickerYear,
 } from '@/src/styles/common/monthPicker';
+import { IsMonthPickerProps } from '@/src/types/props.interface';
+import MonthsOfYear from '@/src/utils/constant/MonthsOfYear.json';
 import { MouseEvent, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'react-feather';
-import MonthsOfYear from '@/src/utils/constant/MonthsOfYear.json';
-import { IsMonthPickerProps } from '@/src/types/props.interface';
 
 export default function MonthPicker({
   date,

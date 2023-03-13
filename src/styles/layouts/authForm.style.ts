@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const Layout = styled.div`
+export const StAuthFormLayout = styled.div`
   width: 100vw;
   min-height: 100vh;
   ${({ theme }) => theme.mixins.flexBox()}
 `;
 
-export const Container = styled.div`
+export const StAuthFormContainer = styled.div`
   padding: 4rem 2rem 3rem 2rem;
   width: 100vw;
   min-height: 100vh;
@@ -26,18 +26,18 @@ export const Container = styled.div`
   }
 `;
 
-export const Form = styled.form`
+export const StAuthForm = styled.form`
   width: 100%;
 `;
 
-export const Title = styled.div`
-  font-size: 2.25rem;
+export const StAuthFormTitle = styled.div`
+  font-size: 2rem;
   margin-bottom: 2.25rem;
 `;
 
-export const Text = styled.p`
+export const StAuthFormText = styled.p`
   font-size: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.75rem;
   width: 100%;
   color: ${({ theme }) => theme.clr.quaternary};
   text-align: center;

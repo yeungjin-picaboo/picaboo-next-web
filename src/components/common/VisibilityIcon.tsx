@@ -7,14 +7,14 @@ export default function VisibilityIcon({
   _ref: MutableRefObject<HTMLInputElement | null>;
 }) {
   const [visible, setVisible] = useState(false);
-  const handleClick = () => {
+  const handleIconClick = () => {
     _ref.current!.type = visible ? 'password' : 'text';
     setVisible(!visible);
   };
   return (
     <>
-      {visible && <Eye onClick={handleClick} />}
-      {!visible && <EyeOff onClick={handleClick} />}
+      {visible && <Eye onClick={handleIconClick} />}
+      {!visible && <EyeOff onClick={handleIconClick} />}
     </>
   );
 }
