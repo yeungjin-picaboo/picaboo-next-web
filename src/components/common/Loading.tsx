@@ -1,7 +1,7 @@
 import {
   LoadingText,
   StSpinnerContainer,
-} from '@/src/styles/common/Loading.style';
+} from '@/src/styles/common/loading.style';
 import { BeatLoader } from 'react-spinners';
 
 export default function Loading({

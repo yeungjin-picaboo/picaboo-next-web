@@ -14,7 +14,7 @@ export default function CalendarDropdown({
   const calendarEl = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!calendarEl.current) return;
+    if (!calendarEl.current || !date) return;
     const calendar = new VanillaCalendar(calendarEl.current, {
       settings: {
         lang: 'en',
@@ -25,11 +25,7 @@ export default function CalendarDropdown({
         selected: {
           dates: [date],
         },
-      },
-      actions: {
-        clickDay(e: MouseEvent, dates: string[] | undefined) {
-          e.preventDefault();
-          console.log(dates);
+        onSelect: (dates: string[] | undefined, dateObj: Date) => {
           if (dates) setDate(dates[0]);
           setIsCalendarOpen(false);
         },

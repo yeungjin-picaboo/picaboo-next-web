@@ -28,8 +28,8 @@ export default function DiarysPage() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isPickerOpen, setIsPickerOpen] = useDropdown(dropdownRef);
   const [date, setDate] = useState({
-    year: 0,
-    month: 0,
+    year: 2023,
+    month: 3,
   });
   const { isLoading, isError, data, error } = useQuery(
     // queryKey: 쿼리를 고유하게 식별하는 문자열이나 배열으로 쿼리 키가 변경되면 React Query는 새로운 데이터를 가져와 캐시를 업데이트함
@@ -79,6 +79,8 @@ export default function DiarysPage() {
             )}
           </StPickerLayout>
         )}
+        {isLoading && <Loading message={'Loading diary pictures...'} />}
+        {isError && <></>}
         {data && (
           <StPictureList>
             {data.map((el: any, i: number) => {
@@ -95,8 +97,6 @@ export default function DiarysPage() {
             })}
           </StPictureList>
         )}
-        {isLoading && <Loading message={'Loading diary pictures...'} />}
-        {isError && <></>}
         <StCreateBtn href='/diarys/write'>
           <Edit3 width={30} height={30} strokeWidth={1} />
         </StCreateBtn>

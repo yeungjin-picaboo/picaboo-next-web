@@ -1,9 +1,9 @@
 import { QueryFunctionContext } from 'react-query';
-import { request } from '../utils/request';
+import { request } from '@/src/utils/request';
 
 export const fetchDiaryListFn = async ({ queryKey }: QueryFunctionContext) => {
   const [, month, year] = queryKey;
-  const response = await request.get(`diarys/year/${year}/months/${month}`);
+  const response = await request.get(`diarys/years/${year}/months/${month}`);
   return response.data;
 };
 

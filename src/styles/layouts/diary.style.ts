@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 export const StDiaryContainer = styled.div`
   width: calc(500px + 5rem);
-  min-height: calc(100vh - 100px - 1vh - 1vw - 5rem);
+  min-height: calc(100vh - 100px - 1vh - 1vw);
   color: ${({ theme }) => theme.clr.primary};
   border-right: 2px solid ${({ theme }) => theme.borderclr.base};
+  display: flex;
+  flex-direction: column;
 `;
 
 export const StDiaryHeader = styled.div`
@@ -52,6 +54,7 @@ export const StDiaryMetaData = styled.div`
   grid-gap: 0.75rem;
   color: ${({ theme }) => theme.clr.secondary};
   svg {
+    cursor: pointer;
     width: 1.75rem;
     height: 1.75rem;
   }
@@ -59,13 +62,6 @@ export const StDiaryMetaData = styled.div`
 
 export const StDiaryDate = styled.div`
   font-size: 1.25rem;
-  span {
-    cursor: pointer;
-    font-size: 1.75rem;
-    font-weight: bold;
-    text-decoration: underline;
-    color: ${({ theme }) => theme.clr.accent};
-  }
 `;
 
 export const StDiaryTitle = styled.div`
@@ -76,7 +72,7 @@ export const StDiaryTitle = styled.div`
 `;
 
 export const StDiaryContent = styled.div`
-  padding: 0.5rem 2.75rem 2.75rem 2.75rem;
+  padding: 0.75rem 2.75rem 2.75rem 2.75rem;
   font-size: 1.5rem;
   line-height: 1.75rem;
 `;
