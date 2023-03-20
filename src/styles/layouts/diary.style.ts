@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const StDiaryContainer = styled.div`
   width: calc(500px + 5rem);
   min-height: calc(100vh - 100px - 1vh - 1vw);
-  color: ${({ theme }) => theme.clr.primary};
   display: flex;
   flex-direction: column;
 `;
@@ -42,7 +41,8 @@ export const StDiaryPictureBox = styled.div`
 `;
 
 export const StDiaryInfo = styled.div`
-  margin-top: 1.5rem;
+  color: ${({ theme }) => theme.clr.secondary};
+  margin-top: 1.25rem;
   padding: 0 2.75rem;
   ${({ theme }) => theme.mixins.flexBox('row', 'center', 'space-between')};
 `;
@@ -51,7 +51,6 @@ export const StDiaryMetaData = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 0.75rem;
-  color: ${({ theme }) => theme.clr.secondary};
   svg {
     cursor: pointer;
     width: 1.75rem;
@@ -65,13 +64,15 @@ export const StDiaryDate = styled.div`
 
 export const StDiaryTitle = styled.div`
   padding: 0 2.75rem;
-  margin-top: 0.75rem;
+  margin-top: 1rem;
   font-size: 1.75rem;
   font-weight: bold;
+  color: ${({ theme }) => theme.clr.primary};
 `;
 
 export const StDiaryContent = styled.div`
   padding: 1rem 2.75rem 2.75rem 2.75rem;
   font-size: 1.5rem;
-  line-height: 1.75rem;
+  line-height: 2rem;
+  color: ${({ theme }) => theme.clr.secondary};
 `;

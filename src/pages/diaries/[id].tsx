@@ -23,6 +23,11 @@ import { useMemo, useRef, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { logoutFn } from '@/src/api/accountApi';
 import Loading from '@/src/components/common/Loading';
+import dayjs from 'dayjs';
+import 'dayjs/plugin/devHelper';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+
+dayjs.extend(localizedFormat);
 
 export default function DiariesDetailPage() {
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -94,7 +99,9 @@ export default function DiariesDetailPage() {
               <Image src={data.source} width={500} height={500} alt='' />
             </StDiaryPictureBox>
             <StDiaryInfo>
-              <StDiaryDate>{data.date}</StDiaryDate>
+              <StDiaryDate>
+                {dayjs(data.date).format('dddd, MMMM D, YYYY')}
+              </StDiaryDate>
               <StDiaryMetaData>
                 <Sun />
                 <Smile />

@@ -3,8 +3,8 @@ import { DefaultTheme } from 'styled-components';
 export const theme: DefaultTheme = {
   clr: {
     base: '#000000',
-    primary: '#373A40',
-    secondary: '#686D76',
+    primary: '#565656',
+    secondary: '#6C6C6C',
     tertiary: '#ffffff',
     quaternary: '#bababa',
     fifth: '#eeeeee',
