@@ -1,4 +1,4 @@
-import { StCalendar } from '@/src/styles/common/calendar';
+import { StCalendar } from '@/src/styles/common/Calendar.styled';
 import { IsCalendarProps } from '@/src/types/props.interface';
 import { useEffect, useRef } from 'react';
 import VanillaCalendar from '@uvarov.frontend/vanilla-calendar';

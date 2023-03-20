@@ -4,7 +4,7 @@ import {
   StPickerHeader,
   StPickerMonth,
   StPickerYear,
-} from '@/src/styles/common/monthPicker';
+} from '@/src/styles/common/MonthPicker.styled';
 import { IsMonthPickerProps } from '@/src/types/props.interface';
 import MonthsOfYear from '@/src/utils/constant/MonthsOfYear.json';
 import { MouseEvent, useState } from 'react';

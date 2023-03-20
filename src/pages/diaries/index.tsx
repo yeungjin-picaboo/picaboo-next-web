@@ -7,12 +7,12 @@ import {
   StCreateBtn,
   StPictureItem,
   StPictureList,
-} from '@/src/styles/common/common.style';
+} from '@/src/styles/common/Common.styled';
 import {
   StDateBox,
   StPickerLayout,
   StYear,
-} from '@/src/styles/common/monthPicker';
+} from '@/src/styles/common/MonthPicker.styled';
 import getTodayDate from '@/src/utils/getTodayDate';
 import MonthsOfYear from '@/src/utils/constant/MonthsOfYear.json';
 import Image from 'next/image';
@@ -21,7 +21,7 @@ import { AxiosError } from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useRouter } from 'next/router';
-import { StPageContainer } from '@/src/styles/layouts/layout.style';
+import { StPageContainer } from '@/src/styles/layouts/Layout.styled';
 
 export default function DiariesPage() {
   const router = useRouter();

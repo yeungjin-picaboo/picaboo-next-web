@@ -7,7 +7,7 @@ import {
   StLogo,
   StNav,
   StNavItem,
-} from '@/src/styles/layouts/layout.style';
+} from '@/src/styles/layouts/Layout.styled';
 import audiowide from '@/src/utils/font/audiowide';
 import ubuntu from '@/src/utils/font/ubuntu';
 import Link from 'next/link';
@@ -36,7 +36,7 @@ export default function Header() {
     <StHeader>
       <StLogo className={audiowide.className}>Pica</StLogo>
       <StNav className={ubuntu.className}>
-        <StNavItem current={router.route === '/diaries'}>
+        <StNavItem current={router.route.startsWith('/diaries')}>
           <Link href='/diaries'>Diaries</Link>
         </StNavItem>
         <StNavItem current={router.route === '/stats'}>

@@ -12,7 +12,7 @@ import {
   StDiaryMetaData,
   StDiaryPictureBox,
   StDiaryTitle,
-} from '@/src/styles/layouts/diary.style';
+} from '@/src/styles/layouts/Diary.styled';
 import getTodayDate from '@/src/utils/getTodayDate';
 import Link from 'next/link';
 import Image from 'next/image';

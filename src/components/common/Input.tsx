@@ -5,7 +5,7 @@ import {
   StInputField,
   StLabel,
   StMsgBox,
-} from '@/src/styles/common/Input.style';
+} from '@/src/styles/common/Input.styled';
 import { IsInputProps } from '@/src/types/props.interface';
 import { forwardRef, Ref } from 'react';
 import { AlertCircle } from 'react-feather';

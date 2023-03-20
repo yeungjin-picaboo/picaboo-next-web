@@ -9,8 +9,8 @@ import {
   StAuthForm,
   StAuthFormText,
   StAuthFormTitle,
-} from '@/src/styles/layouts/authForm.style';
-import { StButton } from '@/src/styles/common/common.style';
+} from '@/src/styles/layouts/AuthForm.styled';
+import { StButton } from '@/src/styles/common/Common.styled';
 import { IsSignup } from '@/src/types/data.interface';
 import {
   confirmationOptions,

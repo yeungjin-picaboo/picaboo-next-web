@@ -5,7 +5,7 @@ import {
   StIndexLogoBox,
   StIndexLink,
   StIndexLinkGroup,
-} from '@/src/styles/layouts/start.styles';
+} from '@/src/styles/layouts/Start.styled';
 import Image from 'next/image';
 import { LogIn, UserPlus } from 'react-feather';
 

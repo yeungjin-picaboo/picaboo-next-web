@@ -1,9 +1,9 @@
 import background from '@/public/background.png';
 import CustomHead from '@/src/components/common/Head';
 import { Responsive } from '@/src/components/common/Responsive';
-import GlobalStyle from '@/src/styles/global.style';
+import GlobalStyle from '@/src/styles/Global.styled';
 import { theme } from '@/src/styles/theme';
-import { StBackgroundImage } from '@/src/styles/common/background.style';
+import { StBackgroundImage } from '@/src/styles/common/Background.styled';
 import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import type { AppProps } from 'next/app';

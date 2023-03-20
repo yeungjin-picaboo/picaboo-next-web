@@ -9,8 +9,8 @@ import {
   StAuthFormLayout,
   StAuthFormTitle,
   StAuthFormText,
-} from '@/src/styles/layouts/authForm.style';
-import { StButton } from '@/src/styles/common/common.style';
+} from '@/src/styles/layouts/AuthForm.styled';
+import { StButton } from '@/src/styles/common/Common.styled';
 import { IsAccount } from '@/src/types/data.interface';
 import { emailOptions, passwordOptions } from '@/src/utils/inputOptions';
 import { ubuntu } from '@/src/utils/font';
