@@ -24,7 +24,7 @@ import { useMutation, useQuery } from 'react-query';
 import { logoutFn } from '@/src/api/accountApi';
 import Loading from '@/src/components/common/Loading';
 
-export default function DiarysDetailPage() {
+export default function DiariesDetailPage() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isCalendarOpen, setIsCalendarOpen] = useDropdown(dropdownRef);
   const router = useRouter();
@@ -66,7 +66,7 @@ export default function DiarysDetailPage() {
     <Layout>
       <StDiaryContainer>
         <StDiaryHeader>
-          <Link href='/diarys'>
+          <Link href='/diaries'>
             <ArrowLeft />
           </Link>
           <StDiaryIconBox>
@@ -81,7 +81,7 @@ export default function DiarysDetailPage() {
                 />
               )}
             </div>
-            <Link href='/diarys/edit'>
+            <Link href='/diaries/edit'>
               <Edit />
             </Link>
             <Trash2 onClick={() => mutate()} />

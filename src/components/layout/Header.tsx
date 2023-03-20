@@ -36,8 +36,8 @@ export default function Header() {
     <StHeader>
       <StLogo className={audiowide.className}>Pica</StLogo>
       <StNav className={ubuntu.className}>
-        <StNavItem current={router.route === '/diarys'}>
-          <Link href='/diarys'>Diarys</Link>
+        <StNavItem current={router.route === '/diaries'}>
+          <Link href='/diaries'>Diaries</Link>
         </StNavItem>
         <StNavItem current={router.route === '/stats'}>
           <Link href='/stats'>Stats</Link>

@@ -4,7 +4,6 @@ export const StDiaryContainer = styled.div`
   width: calc(500px + 5rem);
   min-height: calc(100vh - 100px - 1vh - 1vw);
   color: ${({ theme }) => theme.clr.primary};
-  border-right: 2px solid ${({ theme }) => theme.borderclr.base};
   display: flex;
   flex-direction: column;
 `;
@@ -66,13 +65,13 @@ export const StDiaryDate = styled.div`
 
 export const StDiaryTitle = styled.div`
   padding: 0 2.75rem;
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   font-size: 1.75rem;
   font-weight: bold;
 `;
 
 export const StDiaryContent = styled.div`
-  padding: 0.75rem 2.75rem 2.75rem 2.75rem;
+  padding: 1rem 2.75rem 2.75rem 2.75rem;
   font-size: 1.5rem;
   line-height: 1.75rem;
 `;

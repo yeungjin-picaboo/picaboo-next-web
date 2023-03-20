@@ -23,7 +23,7 @@ import { useQuery } from 'react-query';
 import { useRouter } from 'next/router';
 import { StPageContainer } from '@/src/styles/layouts/layout.style';
 
-export default function DiarysPage() {
+export default function DiariesPage() {
   const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isPickerOpen, setIsPickerOpen] = useDropdown(dropdownRef);
@@ -52,7 +52,7 @@ export default function DiarysPage() {
   );
 
   const handlePictureClick = (id: number) => {
-    router.push(`/diarys/${id}`);
+    router.push(`/diaries/${id}`);
   };
 
   useEffect(() => {
@@ -83,11 +83,12 @@ export default function DiarysPage() {
         {isError && <></>}
         {data && (
           <StPictureList>
-            {data.map((el: any, i: number) => {
+            {data.map((el: any) => {
               return (
-                <StPictureItem key={i}>
+                <StPictureItem key={el.diary_id}>
                   <Image
                     src={el.source}
+                    sizes='268px'
                     fill
                     alt=''
                     onClick={() => handlePictureClick(el.diary_id)}
@@ -97,7 +98,7 @@ export default function DiarysPage() {
             })}
           </StPictureList>
         )}
-        <StCreateBtn href='/diarys/write'>
+        <StCreateBtn href='/diaries/new'>
           <Edit3 width={30} height={30} strokeWidth={1} />
         </StCreateBtn>
       </StPageContainer>

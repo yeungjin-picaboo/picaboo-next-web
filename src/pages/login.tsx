@@ -25,7 +25,7 @@ export default function LoginPage() {
   const { mutate, isLoading } = useMutation(loginFn, {
     onSuccess: data => {
       alert(data.message);
-      router.push('/diary');
+      router.push('/diaries');
     },
     onError: (error: AxiosError) => {
       alert(error.message);

@@ -29,7 +29,7 @@ export default function SignupPage() {
   const { mutate, isLoading } = useMutation(signupFn, {
     onSuccess: data => {
       alert(data.message);
-      router.push('/diary');
+      router.push('/diaries');
     },
     onError: (error: AxiosError) => {
       alert(error.message);
