@@ -31,3 +31,8 @@ export interface IsMetaPickerProps {
   title: string;
   list: Array<IsMetaPickerList>;
 }
+
+export interface IsNavigationProps {
+  route: string;
+  list: Array<string>;
+}

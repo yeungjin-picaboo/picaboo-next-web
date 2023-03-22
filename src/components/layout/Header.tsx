@@ -3,8 +3,10 @@ import useDropdown from '@/src/hooks/useDropdown';
 import {
   StDropdown,
   StDropdownItem,
+  StDropdownMenu,
   StHeader,
   StLogo,
+  StMenu,
   StNav,
   StNavItem,
 } from '@/src/styles/layouts/Layout.styled';
@@ -17,6 +19,7 @@ import { AxiosError } from 'axios';
 import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
+import Navigation from './Navigation';
 
 export default function Header() {
   const router = useRouter();
@@ -35,20 +38,12 @@ export default function Header() {
   return (
     <StHeader>
       <StLogo className={audiowide.className}>Pica</StLogo>
-      <StNav className={ubuntu.className}>
-        <StNavItem current={router.route.startsWith('/diaries')}>
-          <Link href='/diaries'>Diaries</Link>
-        </StNavItem>
-        <StNavItem current={router.route === '/stats'}>
-          <Link href='/stats'>Stats</Link>
-        </StNavItem>
-        <StNavItem current={router.route === '/nfts'}>
-          <Link href='/nfts'>Nfts</Link>
-        </StNavItem>
-        <StNavItem current={router.route === '/qna'}>
-          <Link href='/qna'>QnA</Link>
-        </StNavItem>
-        <StNavItem ref={dropdownRef}>
+      <StMenu>
+        <Navigation
+          route={router.route}
+          list={['diaries', 'stats', 'nfts', 'qna']}
+        />
+        <StDropdownMenu ref={dropdownRef}>
           <UserCircle
             onClick={() => setIsOpen(!isOpen)}
             size={36}
@@ -67,8 +62,8 @@ export default function Header() {
               </StDropdownItem>
             </StDropdown>
           )}
-        </StNavItem>
-      </StNav>
+        </StDropdownMenu>
+      </StMenu>
     </StHeader>
   );
 }

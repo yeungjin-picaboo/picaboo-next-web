@@ -30,17 +30,24 @@ export const StLogo = styled.div`
   font-size: 3rem;
 `;
 
+export const StMenu = styled.div`
+  font-size: 1.4rem;
+  ${({ theme }) => theme.mixins.flexBox('row')};
+`;
+
 export const StNav = styled.div`
-  ${({ theme }) => theme.mixins.flexBox('row')}
+  ${({ theme }) => theme.mixins.flexBox('row')};
 `;
 
 export const StNavItem = styled.div<{ current?: boolean }>`
-  position: relative;
   cursor: pointer;
-
   text-decoration: ${({ current }) => (current ? 'underline' : 'none')};
-  margin-left: 3.5rem;
-  font-size: 1.4rem;
+  margin-right: 3.5rem;
+`;
+
+export const StDropdownMenu = styled.div`
+  cursor: pointer;
+  position: relative;
 `;
 
 export const StDropdown = styled.ul`
