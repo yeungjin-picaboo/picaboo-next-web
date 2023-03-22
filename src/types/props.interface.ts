@@ -1,7 +1,7 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { InputHTMLAttributes, ReactElement } from 'react';
 import { FieldError } from 'react-hook-form';
-import { IsYearMonth } from './data.interface';
+import { IsMetaPickerList, IsYearMonth } from './data.interface';
 
 export interface IsProps {
   children?: ReactNode;
@@ -25,4 +25,9 @@ export interface IsMonthPickerProps {
   date: IsYearMonth;
   setDate: Dispatch<SetStateAction<IsYearMonth>>;
   setIsPickerOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface IsMetaPickerProps {
+  title: string;
+  list: Array<IsMetaPickerList>;
 }

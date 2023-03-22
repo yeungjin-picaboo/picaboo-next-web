@@ -24,10 +24,7 @@ import { useMutation, useQuery } from 'react-query';
 import { logoutFn } from '@/src/api/accountApi';
 import Loading from '@/src/components/common/Loading';
 import dayjs from 'dayjs';
-import 'dayjs/plugin/devHelper';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
-
-dayjs.extend(localizedFormat);
+import 'dayjs/locale/es';
 
 export default function DiariesDetailPage() {
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -100,7 +97,7 @@ export default function DiariesDetailPage() {
             </StDiaryPictureBox>
             <StDiaryInfo>
               <StDiaryDate>
-                {dayjs(data.date).format('dddd, MMMM D, YYYY')}
+                {dayjs(data.date).locale('en-us').format('dddd, MMMM D, YYYY')}
               </StDiaryDate>
               <StDiaryMetaData>
                 <Sun />

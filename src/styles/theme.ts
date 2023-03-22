@@ -8,6 +8,7 @@ export const theme: DefaultTheme = {
     tertiary: '#ffffff',
     quaternary: '#bababa',
     fifth: '#eeeeee',
+    sixth: '#686D76',
     accent: '#DCA11D',
     enabled: '#ffffff',
     disabled: '#bababa',
@@ -29,9 +30,11 @@ export const theme: DefaultTheme = {
     focus: '#000000',
   },
   boxShadow: {
-    normal: '0 4px 8px 0  rgba(0, 0, 0, 0.1), 0 2px 4px 0  rgba(0, 0, 0, 0.25)',
+    normal:
+      '0 4px 10px 0  rgba(0, 0, 0, 0.1), 0 2px 6px 0  rgba(0, 0, 0, 0.25)',
     layout: '0 0 20px 0 rgba(0, 0, 0, 0.25), 0 0px 10px 0  rgba(0, 0, 0, 0.5)',
     image: '0 6px 12px 0 rgba(0, 0, 0, 0.1), 0 3px 6px 0  rgba(0, 0, 0, 0.25)',
+    inset: 'inset 0px 0px 6px 2px rgba(0, 0, 0, 0.25)',
   },
   mixins: {
     flexBox: (direction = 'row', align = 'center', justify = 'center') => `

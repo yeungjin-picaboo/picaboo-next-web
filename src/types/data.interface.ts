@@ -1,3 +1,5 @@
+import { ReactElement } from 'react';
+
 export interface IsAccount {
   email: string;
   password: string;
@@ -15,4 +17,9 @@ export interface IsYearMonth {
 export interface IsDiaryList {
   id: string;
   source: string;
+}
+
+export interface IsMetaPickerList {
+  id: string;
+  icon: ReactElement;
 }

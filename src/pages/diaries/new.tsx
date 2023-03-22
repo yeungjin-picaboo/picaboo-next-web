@@ -1,10 +1,12 @@
 import Layout from '@/src/components/layout/Layout';
-import { StDiaryContainer } from '@/src/styles/layouts/Diary.styled';
+import DiaryEntryForm from '@/src/components/layout/DiaryEntryForm';
+import DiaryMetaPickerForm from '@/src/components/layout/DiaryMetaPickerForm';
 
 export default function CreateDiaryPage() {
   return (
     <Layout>
-      <StDiaryContainer></StDiaryContainer>
+      {/* <DiaryEntryForm /> */}
+      <DiaryMetaPickerForm />
     </Layout>
   );
 }
