@@ -1,55 +1,44 @@
-import { loginFn } from '@/src/api/accountApi';
-import Loading from '@/src/components/common/Loading';
-import Input from '@/src/components/common/Input';
-import VisibilityIcon from '@/src/components/common/VisibilityIcon';
-import useInputRef from '@/src/hooks/useInputRef';
-import {
-  StAuthFormContainer,
-  StAuthForm,
-  StAuthFormLayout,
-  StAuthFormTitle,
-  StAuthFormText,
-} from '@/src/styles/layouts/AuthForm.styled';
-import { StButton } from '@/src/styles/common/Common.styled';
-import { IsAccount } from '@/src/types/data.interface';
-import { emailOptions, passwordOptions } from '@/src/utils/inputOptions';
-import { ubuntu } from '@/src/utils/font';
 import Link from 'next/link';
-import { X } from 'react-feather';
+import { emailOptions, passwordOptions } from '@/utils/inputOptions';
+import ubuntu from '@/styles/fonts/ubuntu';
+import Loading from '@/components/atoms/Loading/Loading';
+import Input from '@/components/atoms/Input/Input';
+import { StButton } from '@/styles/components/StButton.styles';
+import {
+  StAuthForm,
+  StAuthFormContainer,
+  StAuthFormLayout,
+  StAuthFormText,
+  StAuthFormTitle,
+} from '@/styles/components/StAuthForm.styles';
+import useAuthForm from '@/hooks/useAuthForm';
+import useInputRef from '@/hooks/useInputRef';
+import { loginFn } from '@/apis/accountApi';
 import { AxiosError } from 'axios';
-import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
 import { useRouter } from 'next/router';
 
 export default function LoginPage() {
-  const { mutate, isLoading } = useMutation(loginFn, {
-    onSuccess: data => {
-      alert(data.message);
-      router.push('/diaries');
-    },
-    onError: (error: AxiosError) => {
-      alert(error.message);
-      // message 결과에 따라 input 필드 초기화 구현해야함
-    },
-  });
   const router = useRouter();
   const {
+    isLoading,
+    onSubmit,
+    isSubmitting,
+    errors,
     register,
-    handleSubmit,
-    formState: { isSubmitting, errors },
-    resetField,
-  } = useForm({
-    defaultValues: {
-      email: '',
-      password: '',
+    handleResetEmail,
+  } = useAuthForm(
+    loginFn,
+    data => {
+      alert(data.message);
+      router.push('/diary');
     },
-  });
+    (error: AxiosError) => {
+      alert(error.message);
+    }
+  );
   const { currentRef: passwordCurrentRef, ...password } = useInputRef(
     register('password', passwordOptions)
   );
-  const onValid = async (data: IsAccount) => {
-    mutate(data);
-  };
 
   return (
     <StAuthFormLayout className={ubuntu.className}>
@@ -57,13 +46,14 @@ export default function LoginPage() {
         {isLoading && <Loading message={'Please wait...'} />}
         {!isLoading && (
           <>
-            <StAuthForm onSubmit={handleSubmit(onValid)}>
+            <StAuthForm onSubmit={onSubmit}>
               <StAuthFormTitle>Login</StAuthFormTitle>
               <Input
                 id='email'
                 label='Email'
                 placeholder='Email'
-                icon={<X onClick={() => resetField('email')} />}
+                resetIconMode
+                handleResetEmail={handleResetEmail}
                 {...register('email', emailOptions)}
                 error={errors?.email}
               />
@@ -72,12 +62,13 @@ export default function LoginPage() {
                 type='password'
                 label='Password'
                 placeholder='Password'
-                icon={<VisibilityIcon _ref={passwordCurrentRef} />}
+                _ref={passwordCurrentRef}
                 {...password}
+                viewIconMode
                 error={errors?.password}
               />
               <Link href='/forgot'>Forgot password?</Link>
-              <StButton disabled={isSubmitting}>Register</StButton>
+              <StButton disabled={isSubmitting}>Login</StButton>
             </StAuthForm>
             <StAuthFormText>
               Don’t have an account?&nbsp;&nbsp;

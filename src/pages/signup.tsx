@@ -1,65 +1,52 @@
-import { signupFn } from '@/src/api/accountApi';
-import Loading from '@/src/components/common/Loading';
-import Input from '@/src/components/common/Input';
-import VisibilityIcon from '@/src/components/common/VisibilityIcon';
-import useInputRef from '@/src/hooks/useInputRef';
+import { signupFn } from '@/apis/accountApi';
+import Input from '@/components/atoms/Input/Input';
+import Loading from '@/components/atoms/Loading/Loading';
+import useAuthForm from '@/hooks/useAuthForm';
+import useInputRef from '@/hooks/useInputRef';
 import {
+  StAuthForm,
   StAuthFormContainer,
   StAuthFormLayout,
-  StAuthForm,
   StAuthFormText,
   StAuthFormTitle,
-} from '@/src/styles/layouts/AuthForm.styled';
-import { StButton } from '@/src/styles/common/Common.styled';
-import { IsSignup } from '@/src/types/data.interface';
+} from '@/styles/components/StAuthForm.styles';
+import { StButton } from '@/styles/components/StButton.styles';
+import ubuntu from '@/styles/fonts/ubuntu';
 import {
   confirmationOptions,
   emailOptions,
   passwordOptions,
-} from '@/src/utils/inputOptions';
-import { ubuntu } from '@/src/utils/font';
-import Link from 'next/link';
-import { X } from 'react-feather';
+} from '@/utils/inputOptions';
 import { AxiosError } from 'axios';
-import { useMutation } from 'react-query';
-import { useForm } from 'react-hook-form';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 export default function SignupPage() {
-  const { mutate, isLoading } = useMutation(signupFn, {
-    onSuccess: data => {
-      alert(data.message);
-      router.push('/diaries');
-    },
-    onError: (error: AxiosError) => {
-      alert(error.message);
-      // message 결과에 따라 input 필드 초기화 구현해야함
-    },
-  });
   const router = useRouter();
   const {
-    register,
-    handleSubmit,
-    formState: { isSubmitting, errors },
+    isLoading,
+    onSubmit,
     watch,
-    resetField,
-  } = useForm({
-    defaultValues: {
-      email: '',
-      password: '',
-      confirmation: '',
+    isSubmitting,
+    errors,
+    register,
+    handleResetEmail,
+  } = useAuthForm(
+    signupFn,
+    data => {
+      alert(data.message);
+      router.push('/diary');
     },
-  });
+    (error: AxiosError) => {
+      alert(error.message);
+    }
+  );
   const { currentRef: passwordCurrentRef, ...password } = useInputRef(
     register('password', passwordOptions)
   );
   const { currentRef: confirmCurrentRef, ...confirmation } = useInputRef(
     register('confirmation', confirmationOptions(watch))
   );
-  const onValid = async (data: IsSignup) => {
-    // console.log({ email: data.email, password: data.password });
-    mutate({ email: data.email, password: data.password });
-  };
 
   return (
     <StAuthFormLayout className={ubuntu.className}>
@@ -67,13 +54,14 @@ export default function SignupPage() {
         {isLoading && <Loading message={'Please wait...'} />}
         {!isLoading && (
           <>
-            <StAuthForm onSubmit={handleSubmit(onValid)}>
+            <StAuthForm onSubmit={onSubmit}>
               <StAuthFormTitle>Sign up</StAuthFormTitle>
               <Input
                 id='email'
                 label='Email'
                 placeholder='Email'
-                icon={<X onClick={() => resetField('email')} />}
+                resetIconMode
+                handleResetEmail={handleResetEmail}
                 {...register('email', emailOptions)}
                 error={errors?.email}
               />
@@ -82,7 +70,8 @@ export default function SignupPage() {
                 type='password'
                 label='Password'
                 placeholder='Password'
-                icon={<VisibilityIcon _ref={passwordCurrentRef} />}
+                viewIconMode
+                _ref={passwordCurrentRef}
                 {...password}
                 error={errors?.password}
               />
@@ -91,7 +80,8 @@ export default function SignupPage() {
                 type='password'
                 label='Confirm password'
                 placeholder='Confirm password'
-                icon={<VisibilityIcon _ref={confirmCurrentRef} />}
+                viewIconMode
+                _ref={confirmCurrentRef}
                 {...confirmation}
                 error={errors?.confirmation}
               />

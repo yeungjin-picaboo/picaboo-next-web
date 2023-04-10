@@ -1,4 +1,4 @@
-import Layout from '@/src/components/layout/Layout';
+import Layout from '@/components/blocks/Layout/Layout';
 
 export default function NftsPage() {
   return <Layout></Layout>;

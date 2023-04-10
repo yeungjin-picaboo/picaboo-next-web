@@ -1,3 +1,6 @@
+import ICredentials from '@/types/ICredentials';
+import { UseFormWatch } from 'react-hook-form';
+
 export const emailOptions = {
   required: {
     value: true,
@@ -20,7 +23,7 @@ export const passwordOptions = {
   },
 };
 
-export const confirmationOptions = (watch: any) => {
+export const confirmationOptions = (watch: UseFormWatch<ICredentials>) => {
   return {
     required: {
       value: true,

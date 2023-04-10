@@ -1,11 +1,10 @@
 import { useState, useEffect, RefObject } from 'react';
 
-function useDropdown(
+export default function useDropdown(
   ref: RefObject<HTMLElement>,
   initialState: boolean = false
 ) {
   const [isOpen, setIsOpen] = useState<boolean>(initialState);
-
   const handleClickOutside = (event: MouseEvent) => {
     if (ref.current && !ref.current.contains(event.target as Node)) {
       setIsOpen(false);
@@ -21,5 +20,3 @@ function useDropdown(
 
   return [isOpen, setIsOpen] as const;
 }
-
-export default useDropdown;

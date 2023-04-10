@@ -1,3 +1,5 @@
-export default function Account() {
-  return <></>;
+import Layout from '@/components/blocks/Layout/Layout';
+
+export default function AccountPage() {
+  return <Layout></Layout>;
 }
