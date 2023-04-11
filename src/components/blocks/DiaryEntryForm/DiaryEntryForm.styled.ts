@@ -26,6 +26,7 @@ export const StDiaryEntryBox = styled.div`
   margin: 1.5rem 0;
   padding: 2rem;
   box-shadow: ${({ theme }) => theme.boxShadow.inset};
+  min-height: 552px;
 `;
 
 export const StDiaryTitleInput = styled.input`

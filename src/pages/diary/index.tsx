@@ -43,7 +43,7 @@ export default function DiariesPage() {
       retry: 0, // 실패 시 쿼리 재시도 몇 번 할지 결정, 기본값은 3이고 true로 설정하면 무한 재시도, false로 설정하면 재시도 X
       onSuccess: data => {
         // 성공시 호출
-        console.log(data);
+        // console.log(data);
       },
       onError: (error: AxiosError) => {
         // 실패시 호출 (401, 404 같은 error가 아니라 정말 api 호출이 실패한 경우만 호출됨)

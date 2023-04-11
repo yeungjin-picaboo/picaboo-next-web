@@ -13,7 +13,7 @@ import {
 } from '@/styles/components/StAuthForm.styles';
 import useAuthForm from '@/hooks/useAuthForm';
 import useInputRef from '@/hooks/useInputRef';
-import { loginFn } from '@/apis/accountApi';
+import { loginFn } from '@/apis/authApi';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 
@@ -72,7 +72,7 @@ export default function LoginPage() {
             </StAuthForm>
             <StAuthFormText>
               Don’t have an account?&nbsp;&nbsp;
-              <Link href='/signup'>Register</Link>
+              <Link href='/register'>Register</Link>
             </StAuthFormText>
           </>
         )}

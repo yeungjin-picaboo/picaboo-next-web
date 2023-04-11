@@ -17,19 +17,22 @@ export const StMetaPickerList = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: auto;
-  grid-gap: 1.25rem;
+  grid-gap: 1.3rem;
 `;
 
 export const StMetaPickerItem = styled.div`
   text-align: center;
 `;
 
-export const StMetaPickerIconBox = styled.div`
+export const StMetaPickerIconBox = styled.div<{ clicked: boolean }>`
   position: relative;
   width: 100%;
   padding-top: 100%;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.bgclr.secondary};
+  background-color: ${({ theme, clicked }) =>
+    clicked ? theme.bgclr.tertiary : theme.bgclr.secondary};
+  color: ${({ theme, clicked }) =>
+    clicked ? theme.clr.tertiary : theme.clr.sixth};
   margin-bottom: 0.75rem;
   svg {
     position: absolute;

@@ -9,7 +9,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/es';
 import useDropdown from '@/hooks/useDropdown';
 import { fetchDiaryDetailFn } from '@/apis/diaryApi';
-import { logoutFn } from '@/apis/accountApi';
+import { logoutFn } from '@/apis/authApi';
 import Layout from '@/components/blocks/Layout/Layout';
 import Loading from '@/components/atoms/Loading/Loading';
 import DatePicker from '@/components/atoms/DatePicker/DatePicker';

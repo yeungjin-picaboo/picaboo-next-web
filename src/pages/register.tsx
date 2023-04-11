@@ -1,4 +1,4 @@
-import { signupFn } from '@/apis/accountApi';
+import { registerFn } from '@/apis/authApi';
 import Input from '@/components/atoms/Input/Input';
 import Loading from '@/components/atoms/Loading/Loading';
 import useAuthForm from '@/hooks/useAuthForm';
@@ -21,7 +21,7 @@ import { AxiosError } from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function SignupPage() {
+export default function RegisterPage() {
   const router = useRouter();
   const {
     isLoading,
@@ -32,7 +32,7 @@ export default function SignupPage() {
     register,
     handleResetEmail,
   } = useAuthForm(
-    signupFn,
+    registerFn,
     data => {
       alert(data.message);
       router.push('/diary');

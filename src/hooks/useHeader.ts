@@ -1,4 +1,4 @@
-import { logoutFn } from '@/apis/accountApi';
+import { logoutFn } from '@/apis/authApi';
 import useDropdown from '@/hooks/useDropdown';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';

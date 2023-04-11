@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { StButton } from './StButton.styles';
 
-export const StDiaryForm = styled.div`
+export const StDiaryForm = styled.form`
   width: calc(480px + 5rem);
   min-height: calc(100vh - 90px - 1vh - 1vw);
   padding: 2.5rem;

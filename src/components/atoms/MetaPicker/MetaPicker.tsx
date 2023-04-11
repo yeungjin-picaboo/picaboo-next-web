@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { Dispatch, MouseEvent, ReactElement, SetStateAction } from 'react';
 import {
   StMetaPicker,
   StMetaPickerIconBox,
@@ -10,16 +10,32 @@ import {
 interface IMetaPicker {
   title: 'Mood' | 'Weather';
   list: Array<{ name: string; icon: ReactElement }>;
+  pick: string;
+  setPick: Dispatch<SetStateAction<string>>;
 }
 
-export default function MetaPicker({ title, list }: IMetaPicker) {
+export default function MetaPicker({
+  title,
+  list,
+  pick,
+  setPick,
+}: IMetaPicker) {
+  const handleIconClick = (e: MouseEvent<HTMLDivElement>) => {
+    setPick(e.currentTarget.id);
+  };
   return (
     <StMetaPicker>
       <StMetaPickerTitle>{title}</StMetaPickerTitle>
       <StMetaPickerList>
         {list.map(item => (
-          <StMetaPickerItem key={item.name}>
-            <StMetaPickerIconBox>{item.icon}</StMetaPickerIconBox>
+          <StMetaPickerItem
+            id={item.name}
+            key={item.name}
+            onClick={handleIconClick}
+          >
+            <StMetaPickerIconBox clicked={item.name === pick}>
+              {item.icon}
+            </StMetaPickerIconBox>
             <span>{item.name}</span>
           </StMetaPickerItem>
         ))}
