@@ -1,15 +1,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, Calendar, Edit, Smile, Sun, Trash2 } from 'react-feather';
+import { ArrowLeft, Calendar, Edit, Trash2 } from 'react-feather';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
-import { useRef, useState } from 'react';
+import { ReactElement, useEffect, useRef, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es';
 import useDropdown from '@/hooks/useDropdown';
 import { fetchDiaryDetailFn } from '@/apis/diaryApi';
-import { logoutFn } from '@/apis/authApi';
 import Layout from '@/components/blocks/Layout/Layout';
 import Loading from '@/components/atoms/Loading/Loading';
 import DatePicker from '@/components/atoms/DatePicker/DatePicker';
@@ -27,11 +26,22 @@ import {
 import useTodayDate from '@/hooks/useTodayDate';
 import weather from '@/data/weather';
 import moods from '@/data/moods';
+import useLogout from '@/hooks/useLogout';
+
+interface IIcons {
+  weatherIcon: JSX.Element | undefined;
+  emotionIcon: JSX.Element | undefined;
+}
 
 export default function DiariesDetailPage() {
+  const [icons, setIcons] = useState<IIcons | undefined>();
+  const [date, setDate] = useState('');
+  const { dateStr } = useTodayDate();
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const [isCalendarOpen, setIsCalendarOpen] = useDropdown(dropdownRef);
+  const [isCalendarOpen, setIsCalendarOpen, handleCalendarOpen] =
+    useDropdown(dropdownRef);
   const router = useRouter();
+  const handleLogout = useLogout();
   const { isLoading, isError, data } = useQuery(
     // queryKey: 쿼리를 고유하게 식별하는 문자열이나 배열으로 쿼리 키가 변경되면 React Query는 새로운 데이터를 가져와 캐시를 업데이트함
     ['diary', router.query.id],
@@ -45,7 +55,7 @@ export default function DiariesDetailPage() {
       onSuccess: data => {
         // 성공시 호출
         // console.log(data);
-        setDate(data.date);
+        setDate(data.date as string);
       },
       onError: (error: AxiosError) => {
         // 실패시 호출 (401, 404 같은 error가 아니라 정말 api 호출이 실패한 경우만 호출됨)
@@ -53,28 +63,14 @@ export default function DiariesDetailPage() {
       },
     }
   );
-  const { mutate } = useMutation(logoutFn, {
-    onSuccess: data => {
-      alert(data.message);
-      router.push('/');
-    },
-    onError: (error: AxiosError) => {
-      alert(error.message);
-      // message 결과에 따라 input 필드 초기화 구현해야함
-    },
-  });
-  const todayDate = useTodayDate();
-  const [date, setDate] = useState(data?.date);
-  const weatherIcon = weather.find(el => {
-    if (el.name === data?.weather) {
-      return true;
-    }
-  })?.icon;
-  const emotionIcon = moods.find(el => {
-    if (el.name === data?.emotion) {
-      return true;
-    }
-  })?.icon;
+  useEffect(
+    () =>
+      setIcons({
+        weatherIcon: weather.find(el => el.name === data?.weather)?.icon,
+        emotionIcon: moods.find(el => el.name === data?.emotion)?.icon,
+      }),
+    [data]
+  );
 
   return (
     <Layout>
@@ -85,11 +81,11 @@ export default function DiariesDetailPage() {
           </Link>
           <StDiaryIconBox>
             <div ref={dropdownRef}>
-              <Calendar onClick={() => setIsCalendarOpen(!isCalendarOpen)} />
+              <Calendar onClick={handleCalendarOpen} />
               {isCalendarOpen && (
                 <DatePicker
                   date={date}
-                  today={todayDate.dateStr}
+                  today={dateStr}
                   setDate={setDate}
                   setIsCalendarOpen={setIsCalendarOpen}
                 />
@@ -98,7 +94,7 @@ export default function DiariesDetailPage() {
             <Link href='/diary/edit'>
               <Edit />
             </Link>
-            <Trash2 onClick={() => mutate()} />
+            <Trash2 onClick={handleLogout} />
           </StDiaryIconBox>
         </StDiaryHeader>
         {isLoading && <Loading message='Loading diary...' />}
@@ -112,8 +108,8 @@ export default function DiariesDetailPage() {
                 {dayjs(data.date).locale('en-us').format('dddd, MMMM D, YYYY')}
               </StDiaryDate>
               <StDiaryMetaData>
-                {weatherIcon}
-                {emotionIcon}
+                {icons?.weatherIcon}
+                {icons?.emotionIcon}
               </StDiaryMetaData>
             </StDiaryInfo>
             <StDiaryTitle>{data.title}</StDiaryTitle>

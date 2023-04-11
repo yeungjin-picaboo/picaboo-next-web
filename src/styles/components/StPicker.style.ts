@@ -6,6 +6,7 @@ export const StPickerLayout = styled.div`
 `;
 
 export const StDateBox = styled.div`
+  width: fit-content;
   ${({ theme }) => theme.mixins.flexBox('row', 'center', 'flex-start')};
   font-weight: 700;
   font-size: 1.75rem;

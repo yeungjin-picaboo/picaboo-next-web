@@ -26,7 +26,8 @@ import useTodayDate from '@/hooks/useTodayDate';
 
 export default function DiariesPage() {
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const [isPickerOpen, setIsPickerOpen] = useDropdown(dropdownRef);
+  const [isPickerOpen, setIsPickerOpen, handlePickerOpen] =
+    useDropdown(dropdownRef);
   const todayDate = useTodayDate();
   const [date, setDate] = useState<IsYearMonth | null>({
     year: todayDate.year,
@@ -56,8 +57,8 @@ export default function DiariesPage() {
     <Layout>
       <StDiaryListContainer>
         {date && (
-          <StPickerLayout ref={dropdownRef}>
-            <StDateBox onClick={() => setIsPickerOpen(!isPickerOpen)}>
+          <StPickerLayout>
+            <StDateBox ref={dropdownRef} onClick={handlePickerOpen}>
               <>{MONTHS_Full[date.month - 1]}</>
               <StYear>{date.year}</StYear>
               {isPickerOpen ? <ChevronUp /> : <ChevronDown />}

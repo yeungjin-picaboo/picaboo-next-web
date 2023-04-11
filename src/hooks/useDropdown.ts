@@ -10,6 +10,7 @@ export default function useDropdown(
       setIsOpen(false);
     }
   };
+  const handleOpen = () => setIsOpen(!isOpen);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -18,5 +19,5 @@ export default function useDropdown(
     };
   }, [ref]);
 
-  return [isOpen, setIsOpen] as const;
+  return [isOpen, setIsOpen, handleOpen] as const;
 }
