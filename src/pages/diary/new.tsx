@@ -2,18 +2,25 @@ import Loading from '@/components/atoms/Loading/Loading';
 import DiaryEntryForm from '@/components/blocks/DiaryEntryForm/DiaryEntryForm';
 import DiaryMetaForm from '@/components/blocks/DiaryMetaForm/DiaryMetaForm';
 import Layout from '@/components/blocks/Layout/Layout';
+import useTodayDate from '@/hooks/useTodayDate';
 import IDiary from '@/types/IDiary';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function CreateDiaryPage() {
   const [entry, setEntry] = useState<IDiary>({
-    date: new Date(),
     title: '',
     content: '',
-    emotion: 'happy',
-    weather: 'sunny',
+    emotion: '',
+    weather: '',
+    date: '',
   });
-  const { date, title, content, emotion, weather } = entry;
+  const { dateStr } = useTodayDate();
+  const [date, setDate] = useState<string>(dateStr);
+  const { title, content, emotion, weather } = entry;
+
+  useEffect(() => {
+    setEntry(prev => ({ ...prev, date }));
+  }, [date]);
 
   return (
     <Layout>
@@ -21,7 +28,9 @@ export default function CreateDiaryPage() {
         <DiaryEntryForm
           title={title}
           content={content}
+          dateStr={dateStr}
           date={date}
+          setDate={setDate}
           setEntry={setEntry}
         />
       )}

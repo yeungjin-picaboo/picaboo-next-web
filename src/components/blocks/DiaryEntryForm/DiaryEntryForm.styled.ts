@@ -1,22 +1,30 @@
 import styled from 'styled-components';
 
-export const StDiaryDateSelector = styled.div`
+export const StDiaryDateContainer = styled.div`
   flex: 1;
   height: 2rem;
-  ${({ theme }) => theme.mixins.flexBox()};
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-left: 0.25rem;
-  }
+  display: flex;
+  justify-content: center;
+`;
+
+export const StDiaryDateSelector = styled.div`
+  position: relative;
 `;
 
 export const StSelectedDate = styled.div`
+  position: relative;
+  width: fit-content;
   ${({ theme }) => theme.mixins.flexBox()};
   font-size: 1.25rem;
   font-weight: bold;
   line-height: 2rem;
   cursor: pointer;
+  & > svg {
+    position: static;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 0.25rem;
+  }
 `;
 
 export const StDiaryEntryBox = styled.div`

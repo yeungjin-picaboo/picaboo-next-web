@@ -28,6 +28,10 @@ export const StDiaryIconBox = styled.div`
   }
 `;
 
+export const StStCalendarContainer = styled.div`
+  position: relative;
+`;
+
 export const StDiaryPictureBox = styled.div`
   position: relative;
   width: 480px;

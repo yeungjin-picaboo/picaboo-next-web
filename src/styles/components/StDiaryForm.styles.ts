@@ -10,10 +10,11 @@ export const StDiaryForm = styled.form`
 `;
 
 export const StDiaryFormHeader = styled.div`
+  position: relative;
   display: flex;
   height: 2rem;
   margin-bottom: 1.5rem;
-  & > svg {
+  svg {
     position: absolute;
     width: 2rem;
     height: 2rem;

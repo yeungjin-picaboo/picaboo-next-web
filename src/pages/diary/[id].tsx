@@ -3,8 +3,8 @@ import Image from 'next/image';
 import { ArrowLeft, Calendar, Edit, Trash2 } from 'react-feather';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
-import { ReactElement, useEffect, useRef, useState } from 'react';
-import { useMutation, useQuery } from 'react-query';
+import { useEffect, useRef, useState } from 'react';
+import { useQuery } from 'react-query';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es';
 import useDropdown from '@/hooks/useDropdown';
@@ -22,6 +22,7 @@ import {
   StDiaryMetaData,
   StDiaryPictureBox,
   StDiaryTitle,
+  StStCalendarContainer,
 } from '@/styles/components/StDiary.styles';
 import useTodayDate from '@/hooks/useTodayDate';
 import weather from '@/data/weather';
@@ -80,7 +81,7 @@ export default function DiariesDetailPage() {
             <ArrowLeft />
           </Link>
           <StDiaryIconBox>
-            <div ref={dropdownRef}>
+            <StStCalendarContainer ref={dropdownRef}>
               <Calendar onClick={handleCalendarOpen} />
               {isCalendarOpen && (
                 <DatePicker
@@ -90,7 +91,7 @@ export default function DiariesDetailPage() {
                   setIsCalendarOpen={setIsCalendarOpen}
                 />
               )}
-            </div>
+            </StStCalendarContainer>
             <Link href='/diary/edit'>
               <Edit />
             </Link>

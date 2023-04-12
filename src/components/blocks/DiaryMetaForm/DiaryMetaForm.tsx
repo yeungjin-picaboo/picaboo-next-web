@@ -10,9 +10,8 @@ import MetaPicker from '@/components/atoms/MetaPicker/MetaPicker';
 import moodList from '@/data/moods';
 import weatherList from '@/data/weather';
 import IDiary from '@/types/IDiary';
-import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
-import { useMutation } from 'react-query';
-import { createDiaryFn, createDiaryPictureFn } from '@/apis/diaryApi';
+import { Dispatch, SetStateAction } from 'react';
+import useDiaryMetaForm from '@/hooks/useDiaryMetaForm';
 
 interface IDiaryMetaFormProps {
   entry: IDiary;
@@ -23,22 +22,8 @@ export default function DiaryMetaForm({
   entry,
   setEntry,
 }: IDiaryMetaFormProps) {
-  const { mutate: createDiary } = useMutation(createDiaryFn);
-  const { mutate: createDiaryPicture } = useMutation(createDiaryPictureFn);
-  const [weather, setWeather] = useState(entry.weather);
-  const [emotion, setEmotion] = useState(entry.emotion);
-  const goBack = () => {
-    setEntry(prev => ({ ...prev, emotion: '', weather: '' }));
-  };
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    createDiary({ ...entry, emotion, weather });
-    createDiaryPicture({
-      title: entry.title,
-      content: entry.content,
-      emotion: entry.emotion,
-    });
-  };
+  const { weather, emotion, setWeather, setEmotion, goBack, handleSubmit } =
+    useDiaryMetaForm(entry, setEntry);
   return (
     <StDiaryForm onSubmit={handleSubmit}>
       <StDiaryFormHeader>

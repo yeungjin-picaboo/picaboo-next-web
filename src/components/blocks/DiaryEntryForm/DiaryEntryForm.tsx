@@ -1,4 +1,4 @@
-import { ChevronDown, X } from 'react-feather';
+import { ChevronDown, ChevronUp, X } from 'react-feather';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es';
 import ProgressBar from '@/components/atoms/ProgressBar/ProgressBar';
@@ -9,69 +9,73 @@ import {
 } from '@/styles/components/StDiaryForm.styles';
 import {
   StDiaryContentTextarea,
+  StDiaryDateContainer,
   StDiaryDateSelector,
   StDiaryEntryBox,
   StDiaryTitleInput,
   StSelectedDate,
 } from './DiaryEntryForm.styled';
-import { UseMutateFunction, useMutation } from 'react-query';
-import { AxiosError } from 'axios';
-import IDiaryFields from '@/types/IDiaryFields';
 import IDiary from '@/types/IDiary';
-import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
-import { fetchDiaryMetaFn } from '@/apis/diaryApi';
+import { Dispatch, SetStateAction, useRef } from 'react';
 import Loading from '@/components/atoms/Loading/Loading';
+import useDiaryEntryForm from '@/hooks/useDiaryEntryForm';
+import useDropdown from '@/hooks/useDropdown';
+import DatePicker from '@/components/atoms/DatePicker/DatePicker';
+import useTodayDate from '@/hooks/useTodayDate';
+import Link from 'next/link';
 
 interface IDiaryEntryFormProps {
   title: string;
   content: string;
-  date: Date;
+  dateStr: string;
+  date: string;
+  setDate: Dispatch<SetStateAction<string>>;
   setEntry: Dispatch<SetStateAction<IDiary>>;
 }
 
 export default function DiaryEntryForm({
   title,
   content,
+  dateStr,
   date,
+  setDate,
   setEntry,
 }: IDiaryEntryFormProps) {
-  const { mutate, isLoading } = useMutation(fetchDiaryMetaFn, {
-    onSuccess: data => {
-      setEntry(current => ({
-        ...current,
-        emotion: data.emotion,
-        weather: data.weather,
-      }));
-    },
-    onError: (error: AxiosError) => {
-      alert(error.message);
-    },
-  });
-  const handleChange = ({
-    target: { name, value },
-  }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setEntry(prev => ({ ...prev, [name]: value }));
-  };
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    mutate({ title, content });
-  };
-  const isDisabled = title.length === 0 || content.length === 0;
-
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isCalendarOpen, setIsCalendarOpen, handleCalendarOpen] =
+    useDropdown(dropdownRef);
+  const { isLoading, handleChange, handleSubmit, isDisabled } =
+    useDiaryEntryForm(title, content, setEntry);
   return (
     <>
       {isLoading && <Loading message='Analyzing...' />}
       {!isLoading && (
         <StDiaryForm onSubmit={handleSubmit}>
           <StDiaryFormHeader>
-            <X />
-            <StDiaryDateSelector>
-              <StSelectedDate>
-                {dayjs(date).locale('en-us').format('dddd, MMMM D, YYYY')}
-              </StSelectedDate>
-              <ChevronDown />
-            </StDiaryDateSelector>
+            <Link href='/diary'>
+              <X />
+            </Link>
+            <StDiaryDateContainer>
+              <StDiaryDateSelector
+                ref={dropdownRef}
+                onClick={handleCalendarOpen}
+              >
+                <StSelectedDate>
+                  {dayjs(date).locale('en-us').format('dddd, MMMM D, YYYY')}
+                  {isCalendarOpen ? <ChevronUp /> : <ChevronDown />}
+                </StSelectedDate>
+                {isCalendarOpen && (
+                  <DatePicker
+                    date={date.toString()}
+                    today={dateStr}
+                    setDate={setDate}
+                    setIsCalendarOpen={setIsCalendarOpen}
+                  />
+                )}
+              </StDiaryDateSelector>
+            </StDiaryDateContainer>
           </StDiaryFormHeader>
+
           <ProgressBar progress={50} />
           <StDiaryEntryBox>
             <StDiaryTitleInput

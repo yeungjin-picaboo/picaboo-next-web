@@ -4,7 +4,7 @@ export const StMonthPickerBox = styled.div`
   position: absolute;
   z-index: 10;
   left: -1rem;
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   background-color: ${({ theme }) => theme.bgclr.primary};
   box-shadow: ${({ theme }) => theme.boxShadow.normal};
 `;

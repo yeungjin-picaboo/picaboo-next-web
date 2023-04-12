@@ -1,8 +1,10 @@
 import '@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.css';
+import '@uvarov.frontend/vanilla-calendar/build/themes/light.min.css';
 import VanillaCalendar from '@uvarov.frontend/vanilla-calendar';
 import { FormatDateString } from '@uvarov.frontend/vanilla-calendar/src/types';
 import { StDatePicker } from './DatePicker.styled';
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
+import React from 'react';
 
 interface IDatePickerProps {
   date: string;
@@ -27,11 +29,10 @@ export default function DatePicker({
         range: {
           max: today as FormatDateString,
         },
-        selected: {
-          dates: [date],
-        },
-        onSelect: (dates: string[] | undefined, dateObj: Date) => {
-          if (dates) setDate(dates[0]);
+      },
+      actions: {
+        clickDay(event, dates) {
+          setDate(dates[0]);
           setIsCalendarOpen(false);
         },
       },
