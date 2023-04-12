@@ -10,8 +10,8 @@ export default function CreateDiaryPage() {
   const [entry, setEntry] = useState<IDiary>({
     title: '',
     content: '',
-    emotion: '',
-    weather: '',
+    emotion: 'happy',
+    weather: 'sunny',
     date: '',
   });
   const { dateStr } = useTodayDate();
