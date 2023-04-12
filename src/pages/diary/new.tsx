@@ -1,4 +1,3 @@
-import Loading from '@/components/atoms/Loading/Loading';
 import DiaryEntryForm from '@/components/blocks/DiaryEntryForm/DiaryEntryForm';
 import DiaryMetaForm from '@/components/blocks/DiaryMetaForm/DiaryMetaForm';
 import Layout from '@/components/blocks/Layout/Layout';
@@ -10,8 +9,8 @@ export default function CreateDiaryPage() {
   const [entry, setEntry] = useState<IDiary>({
     title: '',
     content: '',
-    emotion: 'happy',
-    weather: 'sunny',
+    emotion: '',
+    weather: '',
     date: '',
   });
   const { dateStr } = useTodayDate();

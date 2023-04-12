@@ -21,7 +21,6 @@ import Loading from '@/components/atoms/Loading/Loading';
 import useDiaryEntryForm from '@/hooks/useDiaryEntryForm';
 import useDropdown from '@/hooks/useDropdown';
 import DatePicker from '@/components/atoms/DatePicker/DatePicker';
-import useTodayDate from '@/hooks/useTodayDate';
 import Link from 'next/link';
 
 interface IDiaryEntryFormProps {

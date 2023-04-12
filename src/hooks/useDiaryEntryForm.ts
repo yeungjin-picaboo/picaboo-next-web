@@ -3,12 +3,15 @@ import IDiary from '@/types/IDiary';
 import { AxiosError } from 'axios';
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
 import { useMutation } from 'react-query';
+import useGeolocation from './useGeolocation';
 
 export default function useDiaryEntryForm(
   title: string,
   content: string,
   setEntry: Dispatch<SetStateAction<IDiary>>
 ) {
+  const { position, error } = useGeolocation();
+  console.log(position);
   const { mutate, isLoading } = useMutation(fetchDiaryMetaFn, {
     onSuccess: data => {
       setEntry(current => ({
@@ -28,7 +31,13 @@ export default function useDiaryEntryForm(
   };
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutate({ title, content });
+    let latitude = 0;
+    let longitude = 0;
+    if (!error) {
+      latitude = position.latitude;
+      longitude = position.longitude;
+    }
+    mutate({ title, content, latitude, longitude });
   };
   const isDisabled = title.length === 0 || content.length === 0;
 

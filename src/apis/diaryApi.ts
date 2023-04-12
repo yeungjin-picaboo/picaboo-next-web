@@ -1,6 +1,5 @@
 import { QueryFunctionContext } from 'react-query';
 import axiosInstance from '@/utils/axiosInstance';
-import IDiaryFields from '@/types/IDiaryFields';
 import IDiary from '@/types/IDiary';
 
 export const fetchDiaryListFn = async ({ queryKey }: QueryFunctionContext) => {
@@ -19,11 +18,9 @@ export const fetchDiaryDetailFn = async ({
   return response.data;
 };
 
-export const fetchDiaryMetaFn = async (data: IDiaryFields) => {
-  const longitude = 0;
-  const latitude = 0;
+export const fetchDiaryMetaFn = async (data: IDiaryAnalysisRequest) => {
   const response = await axiosInstance.get('diary/meta', {
-    params: { ...data, longitude, latitude },
+    params: data,
   });
   return response.data;
 };
