@@ -4,30 +4,31 @@ import { ArrowLeft, Calendar, Edit, Trash2 } from 'react-feather';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es';
 import useDropdown from '@/hooks/useDropdown';
-import { fetchDiaryDetailFn } from '@/apis/diaryApi';
+import { deleteDiaryFn, fetchDiaryDetailFn } from '@/apis/diaryApi';
 import Layout from '@/components/blocks/Layout/Layout';
 import Loading from '@/components/atoms/Loading/Loading';
 import DatePicker from '@/components/atoms/DatePicker/DatePicker';
 import {
-  StDiaryContainer,
   StDiaryContent,
   StDiaryDate,
   StDiaryHeader,
-  StDiaryIconBox,
   StDiaryInfo,
-  StDiaryMetaData,
+  StDiaryMetaIcon,
   StDiaryPictureBox,
   StDiaryTitle,
-  StStCalendarContainer,
+  StCalendarBox,
+  StDiaryIconContainer,
+  StDiary,
 } from '@/styles/components/StDiary.styles';
 import useTodayDate from '@/hooks/useTodayDate';
 import weather from '@/data/weather';
 import moods from '@/data/moods';
-import useLogout from '@/hooks/useLogout';
+import useDeleteModal from '@/hooks/useDeleteModal';
+import DeleteModal from '@/components/blocks/DeleteModal/DeleteModal';
 
 interface IIcons {
   weatherIcon: JSX.Element | undefined;
@@ -35,14 +36,7 @@ interface IIcons {
 }
 
 export default function DiariesDetailPage() {
-  const [icons, setIcons] = useState<IIcons | undefined>();
-  const [date, setDate] = useState('');
-  const { dateStr } = useTodayDate();
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const [isCalendarOpen, setIsCalendarOpen, handleCalendarOpen] =
-    useDropdown(dropdownRef);
   const router = useRouter();
-  const handleLogout = useLogout();
   const { isLoading, isError, data } = useQuery(
     // queryKey: 쿼리를 고유하게 식별하는 문자열이나 배열으로 쿼리 키가 변경되면 React Query는 새로운 데이터를 가져와 캐시를 업데이트함
     ['diary', router.query.id],
@@ -64,6 +58,26 @@ export default function DiariesDetailPage() {
       },
     }
   );
+  const { mutate } = useMutation(deleteDiaryFn, {
+    onSuccess: data => {
+      alert(data.message);
+      router.push('/diary');
+    },
+    onError: (error: AxiosError) => {
+      alert(error.message);
+      // message 결과에 따라 input 필드 초기화 구현해야함
+    },
+  });
+  const [icons, setIcons] = useState<IIcons | undefined>();
+  const [date, setDate] = useState('');
+  const { dateStr } = useTodayDate();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isCalendarOpen, setIsCalendarOpen, handleCalendarOpen] =
+    useDropdown(dropdownRef);
+  const { isModalOpen, handleOpen, handleClose, handleDelete } = useDeleteModal(
+    data?.diary_id,
+    mutate
+  );
   useEffect(
     () =>
       setIcons({
@@ -75,13 +89,13 @@ export default function DiariesDetailPage() {
 
   return (
     <Layout>
-      <StDiaryContainer>
+      <StDiary>
         <StDiaryHeader>
           <Link href='/diary'>
             <ArrowLeft />
           </Link>
-          <StDiaryIconBox>
-            <StStCalendarContainer ref={dropdownRef}>
+          <StDiaryIconContainer>
+            <StCalendarBox ref={dropdownRef}>
               <Calendar onClick={handleCalendarOpen} />
               {isCalendarOpen && (
                 <DatePicker
@@ -91,12 +105,20 @@ export default function DiariesDetailPage() {
                   setIsCalendarOpen={setIsCalendarOpen}
                 />
               )}
-            </StStCalendarContainer>
+            </StCalendarBox>
             <Link href='/diary/edit'>
               <Edit />
             </Link>
-            <Trash2 onClick={handleLogout} />
-          </StDiaryIconBox>
+            <Trash2 onClick={handleOpen} />
+            {isModalOpen && (
+              <DeleteModal
+                titleMsg='Delete Diary'
+                subMsg='Are you sure you want to delete this diary?'
+                handleDelete={handleDelete}
+                handleClose={handleClose}
+              ></DeleteModal>
+            )}
+          </StDiaryIconContainer>
         </StDiaryHeader>
         {isLoading && <Loading message='Loading diary...' />}
         {data && (
@@ -108,16 +130,16 @@ export default function DiariesDetailPage() {
               <StDiaryDate>
                 {dayjs(data.date).locale('en-us').format('dddd, MMMM D, YYYY')}
               </StDiaryDate>
-              <StDiaryMetaData>
+              <StDiaryMetaIcon>
                 {icons?.weatherIcon}
                 {icons?.emotionIcon}
-              </StDiaryMetaData>
+              </StDiaryMetaIcon>
             </StDiaryInfo>
             <StDiaryTitle>{data.title}</StDiaryTitle>
             <StDiaryContent>{data.content}</StDiaryContent>
           </>
         )}
-      </StDiaryContainer>
+      </StDiary>
     </Layout>
   );
 }
