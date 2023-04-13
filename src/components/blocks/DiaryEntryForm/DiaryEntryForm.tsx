@@ -74,7 +74,6 @@ export default function DiaryEntryForm({
               </StDiaryDateSelector>
             </StDiaryDateContainer>
           </StDiaryFormHeader>
-
           <ProgressBar progress={50} />
           <StDiaryEntryBox>
             <StDiaryTitleInput

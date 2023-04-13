@@ -1,21 +1,22 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
 export const StHeader = styled.div`
   width: 100vw;
   max-width: 1024px;
-  height: calc(90px + 1vh + 1vw);
-  padding: 0 2.5rem;
+  height: calc(80px + 1vh + 1vw);
+  padding: 0 2.25rem;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 11;
   color: ${({ theme }) => theme.clr.tertiary};
   background-color: ${({ theme }) => theme.bgclr.base};
-  box-shadow: ${({ theme }) => theme.boxShadow.normal};
   ${({ theme }) => theme.mixins.flexBox('row', 'center', 'space-between')}
 `;
 
-export const StLogo = styled.div`
-  font-size: 2.75rem;
+export const StLogo = styled(Link)`
+  font-weight: bold;
+  font-size: 2.5rem;
 `;
 
 export const StMenu = styled.div`

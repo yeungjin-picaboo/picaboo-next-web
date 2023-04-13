@@ -33,8 +33,9 @@ export const StDiaryEntryBox = styled.div`
   flex-direction: column;
   margin: 1.5rem 0;
   padding: 2rem;
+  border-radius: 1.25rem;
   box-shadow: ${({ theme }) => theme.boxShadow.inset};
-  min-height: 552px;
+  min-height: 534px;
 `;
 
 export const StDiaryTitleInput = styled.input`

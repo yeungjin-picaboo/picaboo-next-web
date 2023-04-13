@@ -19,7 +19,9 @@ export default function Header() {
 
   return (
     <StHeader>
-      <StLogo className={comforterBrush.className}>Picaboo</StLogo>
+      <StLogo href='/diary' className={comforterBrush.className}>
+        Picaboo
+      </StLogo>
       <StMenu>
         <Navigation route={route} list={['diary', 'stats', 'nfts', 'qna']} />
         <StDropdownMenu ref={dropdownRef}>

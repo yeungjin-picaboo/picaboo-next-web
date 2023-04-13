@@ -3,21 +3,22 @@ import styled from 'styled-components';
 export const StMetaPicker = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1.75rem;
+  border-radius: 1.25rem;
   box-shadow: ${({ theme }) => theme.boxShadow.inset};
   color: ${({ theme }) => theme.clr.sixth};
 `;
 
 export const StMetaPickerTitle = styled.h1`
   font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 `;
 
 export const StMetaPickerList = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: auto;
-  grid-gap: 1.3rem;
+  grid-gap: 1.25rem;
 `;
 
 export const StMetaPickerItem = styled.div`
@@ -39,7 +40,7 @@ export const StMetaPickerIconBox = styled.div<{ clicked: boolean }>`
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.25rem;
+    height: 2.25rem;
   }
 `;

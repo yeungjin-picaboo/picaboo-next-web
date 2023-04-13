@@ -13,7 +13,7 @@ export const StContainer = styled.div`
 `;
 
 export const StContent = styled.div`
-  min-height: calc(100vh - 90px - 1vh - 1vw);
+  min-height: calc(100vh - 80px - 1vh - 1vw);
   display: flex;
   flex-direction: column;
 `;
