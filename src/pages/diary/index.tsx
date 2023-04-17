@@ -18,13 +18,13 @@ import IsYearMonth from '@/types/IYearMonth';
 import { AxiosError } from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, ChevronUp, Edit3 } from 'react-feather';
 import { useQuery } from 'react-query';
 import { StDiaryCreateBtn } from '@/styles/components/StDiaryCreateBtn.styles';
 import useTodayDate from '@/hooks/useTodayDate';
 
-export default function DiariesPage() {
+export default function DiaryListPage() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isPickerOpen, setIsPickerOpen, handlePickerOpen] =
     useDropdown(dropdownRef);
