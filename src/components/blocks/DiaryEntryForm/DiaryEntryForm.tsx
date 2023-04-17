@@ -26,7 +26,7 @@ import Link from 'next/link';
 interface IDiaryEntryFormProps {
   title: string;
   content: string;
-  dateStr: string;
+  today: string;
   date: string;
   setDate: Dispatch<SetStateAction<string>>;
   setEntry: Dispatch<SetStateAction<IDiary>>;
@@ -35,7 +35,7 @@ interface IDiaryEntryFormProps {
 export default function DiaryEntryForm({
   title,
   content,
-  dateStr,
+  today,
   date,
   setDate,
   setEntry,
@@ -47,7 +47,7 @@ export default function DiaryEntryForm({
     useDiaryEntryForm(title, content, setEntry);
   return (
     <>
-      {isLoading && <Loading message='Analyzing...' />}
+      {isLoading && <Loading message='Analyzing with AI...' />}
       {!isLoading && (
         <StDiaryForm onSubmit={handleSubmit}>
           <StDiaryFormHeader>
@@ -65,9 +65,9 @@ export default function DiaryEntryForm({
                 </StSelectedDate>
                 {isCalendarOpen && (
                   <DatePicker
-                    date={date.toString()}
-                    today={dateStr}
-                    setDate={setDate}
+                    current={today}
+                    selected={date}
+                    setSelected={setDate}
                     setIsCalendarOpen={setIsCalendarOpen}
                   />
                 )}

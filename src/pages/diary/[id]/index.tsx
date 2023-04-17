@@ -99,14 +99,20 @@ export default function DiariesDetailPage() {
               <Calendar onClick={handleCalendarOpen} />
               {isCalendarOpen && (
                 <DatePicker
-                  date={date}
-                  today={dateStr}
-                  setDate={setDate}
+                  current={dateStr}
+                  selected={date}
+                  setSelected={setDate}
                   setIsCalendarOpen={setIsCalendarOpen}
                 />
               )}
             </StCalendarBox>
-            <Link href='/diary/edit'>
+            <Link
+              href={{
+                pathname: '/diary/edit',
+                query: { data: JSON.stringify(data) },
+              }}
+              as={`/diary/${router.query.id}/edit`}
+            >
               <Edit />
             </Link>
             <Trash2 onClick={handleOpen} />

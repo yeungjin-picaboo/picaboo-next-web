@@ -1,7 +1,7 @@
 import getTodayDate from '@/utils/getTodayDate';
 import { useEffect, useState } from 'react';
 
-interface ITodayDate {
+interface IDateObj {
   year: number;
   month: number;
   day: number;
@@ -9,7 +9,7 @@ interface ITodayDate {
 }
 
 export default function useTodayDate() {
-  const [todayDate, setTodayDate] = useState<ITodayDate>(getTodayDate());
+  const [todayDate, setTodayDate] = useState<IDateObj>(getTodayDate());
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {

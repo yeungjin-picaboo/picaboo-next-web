@@ -11,7 +11,6 @@ export default function useDiaryEntryForm(
   setEntry: Dispatch<SetStateAction<IDiary>>
 ) {
   const { position, error } = useGeolocation();
-  console.log(position);
   const { mutate, isLoading } = useMutation(fetchDiaryMetaFn, {
     onSuccess: data => {
       setEntry(current => ({

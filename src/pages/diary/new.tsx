@@ -27,7 +27,7 @@ export default function CreateDiaryPage() {
         <DiaryEntryForm
           title={title}
           content={content}
-          dateStr={dateStr}
+          today={dateStr}
           date={date}
           setDate={setDate}
           setEntry={setEntry}
