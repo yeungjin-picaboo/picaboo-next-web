@@ -17,6 +17,10 @@ export default function CreateDiaryPage() {
   const [date, setDate] = useState<string>(dateStr);
   const { title, content, emotion, weather } = entry;
 
+  // 페이지가 로드될 때마다 스크롤 위치를 페이지 상단으로 이동
+  // 참고: https://github.com/vercel/next.js/issues/45187
+  useEffect(() => document.body?.scrollTo(0, 0), []);
+
   useEffect(() => {
     setEntry(prev => ({ ...prev, date }));
   }, [date]);
