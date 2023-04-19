@@ -1,4 +1,4 @@
-import { fetchDiaryDetailFn } from '@/apis/diaryApi';
+import { fetchDiaryFn } from '@/apis/diaryApi';
 import Loading from '@/components/atoms/Loading/Loading';
 import DiaryEntryForm from '@/components/blocks/DiaryEntryForm/DiaryEntryForm';
 import DiaryMetaForm from '@/components/blocks/DiaryMetaForm/DiaryMetaForm';
@@ -13,7 +13,7 @@ export default function DiaryEditPage() {
   const {
     query: { id, data: queryData },
   } = useRouter();
-  const { isLoading, data } = useQuery(['diary', id], fetchDiaryDetailFn, {
+  const { isLoading, data } = useQuery(['diary', id], fetchDiaryFn, {
     enabled: !!id && !queryData,
     retry: 0,
   });
@@ -71,9 +71,9 @@ export default function DiaryEditPage() {
       {isLoading && <Loading message='Loading...' />}
       {!isLoading && !(emotion && weather) && (
         <DiaryEntryForm
+          today={dateStr}
           title={title}
           content={content}
-          today={dateStr}
           date={date}
           setDate={setDate}
           setEntry={setDiary}

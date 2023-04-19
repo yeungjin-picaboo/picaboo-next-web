@@ -29,9 +29,9 @@ export default function CreateDiaryPage() {
     <Layout>
       {!(emotion && weather) && (
         <DiaryEntryForm
+          today={dateStr}
           title={title}
           content={content}
-          today={dateStr}
           date={date}
           setDate={setDate}
           setEntry={setEntry}

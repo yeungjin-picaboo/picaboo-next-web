@@ -24,18 +24,18 @@ import DatePicker from '@/components/atoms/DatePicker/DatePicker';
 import Link from 'next/link';
 
 interface IDiaryEntryFormProps {
+  today: string;
   title: string;
   content: string;
-  today: string;
   date: string;
   setDate: Dispatch<SetStateAction<string>>;
   setEntry: Dispatch<SetStateAction<IDiary>>;
 }
 
 export default function DiaryEntryForm({
+  today,
   title,
   content,
-  today,
   date,
   setDate,
   setEntry,
@@ -55,13 +55,11 @@ export default function DiaryEntryForm({
               <X />
             </Link>
             <StDiaryDateContainer>
-              <StDiaryDateSelector
-                ref={dropdownRef}
-                onClick={handleCalendarOpen}
-              >
-                <StSelectedDate>
+              <StDiaryDateSelector ref={dropdownRef}>
+                <StSelectedDate onClick={handleCalendarOpen}>
+                  {/* 영운씨가 해결 */}
                   {dayjs(date).locale('en-us').format('dddd, MMMM D, YYYY')}
-                  {isCalendarOpen ? <ChevronUp /> : <ChevronDown />}
+                  {isCalendarOpen ? <ChevronDown /> : <ChevronUp />}
                 </StSelectedDate>
                 {isCalendarOpen && (
                   <DatePicker

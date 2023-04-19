@@ -82,11 +82,11 @@ export default function DiaryListPage() {
           <StDiaryPictureList>
             {data.map((el: any) => {
               return (
-                <StDiaryPictureItem key={el.diary_id}>
-                  <Link href={`/diary/${el.diary_id}`}>
-                    <Image src={el.source} sizes='268px' fill alt='' />
-                  </Link>
-                </StDiaryPictureItem>
+                <Link href={`/diary/${el.diary_id}`} key={el.diary_id}>
+                  <StDiaryPictureItem>
+                    <Image src={el.source} sizes='268px' fill priority alt='' />
+                  </StDiaryPictureItem>
+                </Link>
               );
             })}
           </StDiaryPictureList>

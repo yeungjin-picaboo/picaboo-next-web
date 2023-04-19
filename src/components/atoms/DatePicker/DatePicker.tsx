@@ -1,13 +1,14 @@
 import '@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.css';
 import '@uvarov.frontend/vanilla-calendar/build/themes/light.min.css';
 import VanillaCalendar from '@uvarov.frontend/vanilla-calendar';
-import { FormatDateString } from '@uvarov.frontend/vanilla-calendar/src/types';
 import { StDatePicker } from './DatePicker.styled';
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import React from 'react';
+import { FormatDateString } from '@uvarov.frontend/vanilla-calendar/src/types';
 
 interface IDatePickerProps {
   current: string;
+  enabled?: Array<string>;
   selected: string;
   setSelected: Dispatch<SetStateAction<string>>;
   setIsCalendarOpen: Dispatch<SetStateAction<boolean>>;
@@ -16,6 +17,7 @@ interface IDatePickerProps {
 export default function DatePicker({
   current,
   selected,
+  enabled = [],
   setSelected,
   setIsCalendarOpen,
 }: IDatePickerProps) {
@@ -36,7 +38,6 @@ export default function DatePicker({
           year: Number(selected.substring(0, 4)),
         },
       },
-
       actions: {
         clickDay(event, dates) {
           setSelected(dates[0]);
@@ -45,7 +46,13 @@ export default function DatePicker({
       },
     });
     datePicker.init();
-  }, [datePickerEl, selected, current]);
+
+    if (enabled.length > 0) {
+      datePicker.settings.range.disableAllDays = true;
+      datePicker.settings.range.enabled = enabled;
+      datePicker.update();
+    }
+  }, [datePickerEl, selected]);
 
   return <StDatePicker ref={datePickerEl} />;
 }
