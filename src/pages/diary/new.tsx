@@ -26,7 +26,7 @@ export default function CreateDiaryPage() {
   }, [date]);
 
   return (
-    <Layout>
+    <Layout type='small'>
       {!(emotion && weather) && (
         <DiaryEntryForm
           today={dateStr}

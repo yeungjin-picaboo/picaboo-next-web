@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 export const StDiaryHeader = styled.div`
   padding: 2.25rem 2.25rem 0.75rem 2.25rem;
-  margin-bottom: 0.5rem;
   position: sticky;
-  top: calc(80px + 1vh + 1vw);
+  top: 80px;
   z-index: 10;
   background-color: ${({ theme }) => theme.bgclr.primary};
   ${({ theme }) => theme.mixins.flexBox('row', 'center', 'space-between')};

@@ -5,15 +5,15 @@ export const StLayout = styled.div`
   height: 100vh;
 `;
 
-export const StContainer = styled.div`
-  max-width: 1024px;
-  margin: 0 auto;
-  background-color: ${({ theme }) => theme.bgclr.primary};
-  box-shadow: ${({ theme }) => theme.boxShadow.normal};
-`;
-
 export const StContent = styled.div`
+  padding: 0 4rem;
+  width: 1280px;
+  margin: 0 auto;
   min-height: calc(100vh - 80px - 1vh - 1vw);
   display: flex;
   flex-direction: column;
+`;
+
+export const StSmallContent = styled(StContent)`
+  max-width: 980px;
 `;

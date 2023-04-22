@@ -1,19 +1,23 @@
-import { StLayout, StContainer, StContent } from './Layout.styled';
+import { StLayout, StContent, StSmallContent } from './Layout.styled';
 import ubuntu from '@/styles/fonts/ubuntu';
 import { ReactNode } from 'react';
 import Header from '../Header/Header';
 
 interface ILayoutProps {
   children?: ReactNode;
+  type: 'default' | 'small';
 }
 
-export default function Layout({ children }: ILayoutProps) {
+export default function Layout({ children, type }: ILayoutProps) {
   return (
     <StLayout>
-      <StContainer>
-        <Header />
+      <Header />
+      {type === 'default' && (
         <StContent className={ubuntu.className}>{children}</StContent>
-      </StContainer>
+      )}
+      {type === 'small' && (
+        <StSmallContent className={ubuntu.className}>{children}</StSmallContent>
+      )}
     </StLayout>
   );
 }

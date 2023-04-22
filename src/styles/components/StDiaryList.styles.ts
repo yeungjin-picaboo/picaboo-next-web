@@ -8,10 +8,10 @@ export const StDiaryListContainer = styled.div`
 `;
 
 export const StDiaryPictureList = styled.div`
-  margin-top: 1.5rem;
+  margin-top: 1.75rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1.75rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 2.25rem;
   grid-template-rows: auto;
 `;
 

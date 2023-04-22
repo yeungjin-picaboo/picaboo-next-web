@@ -21,7 +21,6 @@ import weather from '@/data/weather';
 import moods from '@/data/moods';
 import DiaryHeader from '@/components/blocks/DiaryHeader/DiaryHeader';
 import { fetchDiaryWithDateFn } from '@/apis/diaryApi';
-import IDiary from '@/types/IDiary';
 
 interface IWeatherEmotionIcons {
   weatherIcon: JSX.Element | undefined;
@@ -81,20 +80,12 @@ export default function DiaryDetailPage() {
   }, [date]);
 
   return (
-    <Layout>
+    <Layout type='small'>
       {diaryLoading && <Loading message='Loading diary...' />}
       {diary && (
         <StDiaryContainer>
           <DiaryHeader diary={diary} date={date} setDate={setDate} />
-          <StDiaryPictureBox>
-            <Image
-              src={diary.source}
-              width={480}
-              height={480}
-              alt=''
-              priority
-            />
-          </StDiaryPictureBox>
+          <StDiaryTitle>{diary.title}</StDiaryTitle>
           <StDiaryInfo>
             <StDiaryDate>
               {dayjs(diary.date).locale('en-us').format('dddd, MMMM D, YYYY')}
@@ -104,7 +95,15 @@ export default function DiaryDetailPage() {
               {icons?.emotionIcon}
             </StDiaryMetaIcon>
           </StDiaryInfo>
-          <StDiaryTitle>{diary.title}</StDiaryTitle>
+          <StDiaryPictureBox>
+            <Image
+              src={diary.source}
+              width={512}
+              height={512}
+              alt=''
+              priority
+            />
+          </StDiaryPictureBox>
           <StDiaryContent>{diary.content}</StDiaryContent>
         </StDiaryContainer>
       )}

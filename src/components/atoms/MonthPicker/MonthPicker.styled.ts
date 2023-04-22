@@ -5,17 +5,19 @@ export const StMonthPickerBox = styled.div`
   z-index: 10;
   left: -1rem;
   margin-top: 0.75rem;
+  border-radius: 1rem;
   background-color: ${({ theme }) => theme.bgclr.primary};
   box-shadow: ${({ theme }) => theme.boxShadow.normal};
 `;
 
 export const StMonthPickerHeader = styled.div`
-  padding: 0.75rem 1rem;
   border-bottom: 1px solid ${({ theme }) => theme.borderclr.base};
   ${({ theme }) => theme.mixins.flexBox()};
-  svg {
-    cursor: pointer;
-  }
+`;
+
+export const StMonthPickerArrow = styled.div`
+  cursor: pointer;
+  padding: 0.75rem 1rem;
 `;
 
 export const StMonthPickerYear = styled.div`
@@ -35,7 +37,6 @@ export const StMonthPickerMonth = styled.button`
   font-size: 1rem;
   padding: 1.25rem;
   &:hover {
-    background-color: ${({ theme }) => theme.bgclr.tertiary};
-    color: ${({ theme }) => theme.clr.tertiary};
+    background-color: ${({ theme }) => theme.bgclr.secondary};
   }
 `;

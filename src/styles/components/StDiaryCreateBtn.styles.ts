@@ -1,19 +1,19 @@
-import Link from "next/link";
-import styled from "styled-components";
+import Link from 'next/link';
+import styled from 'styled-components';
 
 export const StDiaryCreateBtn = styled(Link)`
   position: fixed;
   padding: 1rem;
-  background-color: ${({ theme }) => theme.bgclr.secondary};
+  background-color: ${({ theme }) => theme.bgclr.base};
   box-shadow: ${({ theme }) => theme.boxShadow.normal};
-  border-radius: 2.5rem;
-  bottom: 1.5rem;
-  right: calc((100vw - 1024px) / 2 + 1.5rem);
+  border-radius: 50%;
+  bottom: 2rem;
+  right: 2rem;
   cursor: pointer;
   &:hover {
     transform: scale(0.94);
   }
   svg {
-    color: ${({ theme }) => theme.clr.primary};
+    color: ${({ theme }) => theme.clr.tertiary};
   }
 `;

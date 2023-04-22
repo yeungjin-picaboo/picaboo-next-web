@@ -27,13 +27,13 @@ export const theme: DefaultTheme = {
   },
   borderclr: {
     base: '#EEEEEE',
+    primary: '#bababa',
     error: '#ff3333',
     focus: '#000000',
   },
   boxShadow: {
     normal:
       '0 4px 10px 0  rgba(0, 0, 0, 0.1), 0 2px 6px 0  rgba(0, 0, 0, 0.25)',
-    layout: '0 0 20px 0 rgba(0, 0, 0, 0.25), 0 0px 10px 0  rgba(0, 0, 0, 0.5)',
     image: '0 5px 20px 0 rgba(0, 0, 0, 0.25), 0 2px 8px 0  rgba(0, 0, 0, 0.5)',
     inset: 'inset 0px 0px 4px 1px rgba(0, 0, 0, 0.25)',
   },

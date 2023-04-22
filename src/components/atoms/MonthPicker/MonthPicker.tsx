@@ -1,6 +1,7 @@
 import MONTHS_SHORT from '@/data/months_short.json';
 import { ChevronLeft, ChevronRight } from 'react-feather';
 import {
+  StMonthPickerArrow,
   StMonthPickerBox,
   StMonthPickerContent,
   StMonthPickerHeader,
@@ -28,9 +29,13 @@ export default function MonthPicker({
   return (
     <StMonthPickerBox>
       <StMonthPickerHeader>
-        <ChevronLeft onClick={decrementYear} />
+        <StMonthPickerArrow onClick={decrementYear}>
+          <ChevronLeft />
+        </StMonthPickerArrow>
         <StMonthPickerYear>{year}</StMonthPickerYear>
-        <ChevronRight onClick={incrementYear} />
+        <StMonthPickerArrow onClick={incrementYear}>
+          <ChevronRight />
+        </StMonthPickerArrow>
       </StMonthPickerHeader>
       <StMonthPickerContent>
         {MONTHS_SHORT.map((value, index) => {

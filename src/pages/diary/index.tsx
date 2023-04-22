@@ -58,11 +58,11 @@ export default function DiaryListPage() {
   useEffect(() => document.body?.scrollTo(0, 0), []);
 
   return (
-    <Layout>
+    <Layout type='default'>
       <StDiaryListContainer>
         {date && (
-          <StPickerLayout>
-            <StDateBox ref={dropdownRef} onClick={handlePickerOpen}>
+          <StPickerLayout ref={dropdownRef}>
+            <StDateBox onClick={handlePickerOpen}>
               <>{MONTHS_Full[date.month - 1]}</>
               <StYear>{date.year}</StYear>
               {isPickerOpen ? <ChevronUp /> : <ChevronDown />}

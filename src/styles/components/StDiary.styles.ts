@@ -1,27 +1,22 @@
 import styled from 'styled-components';
 
 export const StDiaryContainer = styled.div`
-  width: calc(480px + 4.5rem);
   min-height: calc(100vh - 80px - 1vh - 1vw);
   display: flex;
   flex-direction: column;
 `;
 
-export const StDiaryPictureBox = styled.div`
-  position: relative;
-  width: 480px;
-  height: 480px;
-  margin: 0 auto;
-  border-radius: 1.25rem;
-  box-shadow: ${({ theme }) => theme.boxShadow.image};
-  img {
-    border-radius: 1rem;
-  }
+export const StDiaryTitle = styled.div`
+  padding: 0 2.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: ${({ theme }) => theme.clr.primary};
 `;
 
 export const StDiaryInfo = styled.div`
   color: ${({ theme }) => theme.clr.secondary};
-  margin-top: 1.25rem;
   padding: 0 2.75rem;
   ${({ theme }) => theme.mixins.flexBox('row', 'center', 'space-between')};
 `;
@@ -29,7 +24,7 @@ export const StDiaryInfo = styled.div`
 export const StDiaryMetaIcon = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 0.5rem;
+  grid-gap: 0.75rem;
   svg {
     cursor: pointer;
     width: 2rem;
@@ -41,12 +36,13 @@ export const StDiaryDate = styled.div`
   font-size: 1.25rem;
 `;
 
-export const StDiaryTitle = styled.div`
-  padding: 0 2.5rem;
-  margin-top: 1rem;
-  font-size: 1.75rem;
-  font-weight: bold;
-  color: ${({ theme }) => theme.clr.primary};
+export const StDiaryPictureBox = styled.div`
+  position: relative;
+  margin: 0.75rem 2.25rem;
+  background-color: #eeeeee;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
 `;
 
 export const StDiaryContent = styled.div`

@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { StButton } from './StButton.styles';
 
 export const StDiaryForm = styled.form`
-  width: calc(480px + 4.5rem);
   min-height: calc(100vh - 80px - 1vh - 1vw);
   padding: 2.25rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;

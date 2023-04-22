@@ -67,7 +67,7 @@ export default function DiaryEditPage() {
   }, [date]);
 
   return (
-    <Layout>
+    <Layout type='small'>
       {isLoading && <Loading message='Loading...' />}
       {!isLoading && !(emotion && weather) && (
         <DiaryEntryForm

@@ -57,7 +57,6 @@ export default function DiaryEntryForm({
             <StDiaryDateContainer>
               <StDiaryDateSelector ref={dropdownRef}>
                 <StSelectedDate onClick={handleCalendarOpen}>
-                  {/* 영운씨가 해결 */}
                   {dayjs(date).locale('en-us').format('dddd, MMMM D, YYYY')}
                   {isCalendarOpen ? <ChevronDown /> : <ChevronUp />}
                 </StSelectedDate>
