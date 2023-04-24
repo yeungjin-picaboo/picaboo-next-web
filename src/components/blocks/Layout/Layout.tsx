@@ -1,10 +1,9 @@
 import { StLayout, StContent, StSmallContent } from './Layout.styled';
 import ubuntu from '@/styles/fonts/ubuntu';
-import { ReactNode } from 'react';
 import Header from '../Header/Header';
+import IProps from '@/types/IProps';
 
-interface ILayoutProps {
-  children?: ReactNode;
+interface ILayoutProps extends IProps {
   type: 'default' | 'small';
 }
 

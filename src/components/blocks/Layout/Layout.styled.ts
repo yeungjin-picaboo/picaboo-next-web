@@ -3,6 +3,9 @@ import styled from 'styled-components';
 export const StLayout = styled.div`
   width: 100vw;
   height: 100vh;
+  position: relative;
+  top: 0;
+  left: 0;
 `;
 
 export const StContent = styled.div`

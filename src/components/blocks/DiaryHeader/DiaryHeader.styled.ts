@@ -4,7 +4,7 @@ export const StDiaryHeader = styled.div`
   padding: 2.25rem 2.25rem 0.75rem 2.25rem;
   position: sticky;
   top: 80px;
-  z-index: 10;
+  z-index: 1;
   background-color: ${({ theme }) => theme.bgclr.primary};
   ${({ theme }) => theme.mixins.flexBox('row', 'center', 'space-between')};
   svg {

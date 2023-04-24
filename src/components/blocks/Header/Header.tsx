@@ -20,7 +20,7 @@ import Image from 'next/image';
 import ubuntu from '@/styles/fonts/ubuntu';
 
 export default function Header() {
-  const { route, isOpen, dropdownRef, handleDropdown, handleLogout } =
+  const { route, isDropdownOpen, dropdownRef, handleDropdown, handleLogout } =
     useHeader();
 
   return (
@@ -32,7 +32,7 @@ export default function Header() {
         </StLogo>
         <Navigation
           route={route}
-          list={['diary', 'stats', 'marketplace', 'qna']}
+          list={['diary', 'stats', 'marketplace', 'question']}
         />
       </StHeaderLeft>
       <StHeaderRight>
@@ -42,9 +42,9 @@ export default function Header() {
             Connect Wallet
           </StWalletText>
         </StWalletBox>
-        <StUserDropdown ref={dropdownRef} isOpen={isOpen}>
+        <StUserDropdown ref={dropdownRef} isOpen={isDropdownOpen}>
           <UserCircle onClick={handleDropdown} size={30} strokeWidth={1} />
-          {isOpen && (
+          {isDropdownOpen && (
             <StDropdown>
               <StDropdownItem>
                 <Shield size={18} />

@@ -69,7 +69,6 @@ const GlobalStyle = createGlobalStyle`
     align-items: center;
     justify-content: center;    
     position: relative;
-    overflow-x: hidden;
   }
   * {
     -webkit-box-sizing: border-box;

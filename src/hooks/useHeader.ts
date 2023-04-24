@@ -8,7 +8,7 @@ import { useMutation } from 'react-query';
 export default function useHeader() {
   const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useDropdown(dropdownRef);
+  const [isDropdownOpen, setIsDropdowOpen] = useDropdown(dropdownRef);
   const { mutate } = useMutation(logoutFn, {
     onSuccess: data => {
       alert(data.message);
@@ -21,9 +21,9 @@ export default function useHeader() {
 
   return {
     route: router.route,
-    isOpen,
+    isDropdownOpen,
     dropdownRef,
-    handleDropdown: () => setIsOpen(!isOpen),
+    handleDropdown: () => setIsDropdowOpen(!isDropdownOpen),
     handleLogout: () => mutate(),
   };
 }

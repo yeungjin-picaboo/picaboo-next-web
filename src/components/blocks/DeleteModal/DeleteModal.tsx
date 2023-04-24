@@ -8,10 +8,11 @@ import {
   StModalFooter,
   StModalIconBox,
   StModalMsgBox,
-  StModalOverlay,
   StModalSubMsg,
   StModalTitleMsg,
 } from './DeleteModal.styled';
+import { StModalOverlay } from '@/styles/components/StModalOverlay';
+import Portal from '../Portal/Portal';
 
 interface IDeleteModalProps {
   titleMsg: string;
@@ -27,27 +28,29 @@ export default function DeleteModal({
   handleClose,
 }: IDeleteModalProps) {
   return (
-    <StModalOverlay>
-      <StModal>
-        <StModalBody>
-          <StModalIconBox>
-            <Image
-              src={AlertTriangleFilled}
-              alt='alert'
-              width={70}
-              height={70}
-            />
-          </StModalIconBox>
-          <StModalMsgBox>
-            <StModalTitleMsg>{titleMsg}</StModalTitleMsg>
-            <StModalSubMsg>{subMsg}</StModalSubMsg>
-          </StModalMsgBox>
-        </StModalBody>
-        <StModalFooter>
-          <StCancelBtn onClick={handleClose}>Cancel</StCancelBtn>
-          <StDeleteBtn onClick={handleDelete}>Delete</StDeleteBtn>
-        </StModalFooter>
-      </StModal>
-    </StModalOverlay>
+    <Portal qs={'#__next'}>
+      <StModalOverlay>
+        <StModal>
+          <StModalBody>
+            <StModalIconBox>
+              <Image
+                src={AlertTriangleFilled}
+                alt='alert'
+                width={70}
+                height={70}
+              />
+            </StModalIconBox>
+            <StModalMsgBox>
+              <StModalTitleMsg>{titleMsg}</StModalTitleMsg>
+              <StModalSubMsg>{subMsg}</StModalSubMsg>
+            </StModalMsgBox>
+          </StModalBody>
+          <StModalFooter>
+            <StCancelBtn onClick={handleClose}>Cancel</StCancelBtn>
+            <StDeleteBtn onClick={handleDelete}>Delete</StDeleteBtn>
+          </StModalFooter>
+        </StModal>
+      </StModalOverlay>
+    </Portal>
   );
 }

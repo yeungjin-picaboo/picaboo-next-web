@@ -1,6 +1,7 @@
 import { QueryFunctionContext } from 'react-query';
 import axiosInstance from '@/utils/axiosInstance';
 import IDiary from '@/types/IDiary';
+import IDiaryAnalysisRequest from '@/types/IDiaryAnalysisRequest';
 
 export const fetchDiaryListFn = async ({ queryKey }: QueryFunctionContext) => {
   const [, month, year] = queryKey;
@@ -24,6 +25,13 @@ export const fetchDiaryDatesFn = async () => {
 export const fetchDiaryWithDateFn = async (date: string) => {
   const response = await axiosInstance.get('diary/date', {
     params: { date: date },
+  });
+  return response.data;
+};
+
+export const fetchDiaryMetaFn = async (data: IDiaryAnalysisRequest) => {
+  const response = await axiosInstance.get('diary/meta', {
+    params: data,
   });
   return response.data;
 };

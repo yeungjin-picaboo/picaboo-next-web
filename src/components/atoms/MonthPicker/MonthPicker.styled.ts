@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StMonthPickerBox = styled.div`
   position: absolute;
-  z-index: 10;
+  z-index: 2;
   left: -1rem;
   margin-top: 0.75rem;
   border-radius: 1rem;

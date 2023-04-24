@@ -7,7 +7,8 @@ export const StHeader = styled.div`
   padding: 0 4rem;
   position: sticky;
   top: 0;
-  z-index: 11;
+  left: 0;
+  z-index: 3;
   color: ${({ theme }) => theme.clr.tertiary};
   background-color: ${({ theme }) => theme.bgclr.base};
   box-shadow: ${({ theme }) => theme.boxShadow.normal};
