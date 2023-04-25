@@ -16,13 +16,11 @@ import { ChevronDown, ChevronUp, Edit3 } from 'react-feather';
 import { useQuery } from 'react-query';
 import { StDiaryCreateBtn } from '@/styles/components/StDiaryCreateBtn.styled';
 import useTodayDate from '@/hooks/useTodayDate';
-import Link from 'next/link';
 import {
-  StPictureItem,
   StPictureList,
   StPictureListContainer,
 } from '@/styles/components/StPictureList.styled';
-import Image from 'next/image';
+import PictureItem from '@/components/atoms/PictureItem/PictureItem';
 
 export default function DiaryListPage() {
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -82,11 +80,12 @@ export default function DiaryListPage() {
           <StPictureList>
             {data.map((el: any) => {
               return (
-                <Link href={`/diary/${el.diary_id}`} key={el.diary_id}>
-                  <StPictureItem>
-                    <Image src={el.source} sizes='268px' fill priority alt='' />
-                  </StPictureItem>
-                </Link>
+                <PictureItem
+                  key={el.diary_id}
+                  link={`/diary/${el.diary_id}`}
+                  id={el.diary_id}
+                  src={el.source}
+                />
               );
             })}
           </StPictureList>
