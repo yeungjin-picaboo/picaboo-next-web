@@ -8,7 +8,6 @@ export const StAuthFormLayout = styled.div`
 
 export const StAuthFormContainer = styled.div`
   padding: 4rem 2.5rem 3rem 2.5rem;
-  border-radius: 1.25rem;
   width: 100vw;
   min-height: 100vh;
   background-color: ${({ theme }) => theme.bgclr.primary};

@@ -6,7 +6,7 @@ import {
   StDiaryForm,
   StDiaryFormButton,
   StDiaryFormHeader,
-} from '@/styles/components/StDiaryForm.styles';
+} from '@/styles/components/StDiaryForm.styled';
 import {
   StDiaryContentTextarea,
   StDiaryDateContainer,

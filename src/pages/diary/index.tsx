@@ -5,24 +5,24 @@ import MonthPicker from '@/components/atoms/MonthPicker/MonthPicker';
 import MONTHS_Full from '@/data/months_full.json';
 import useDropdown from '@/hooks/useDropdown';
 import {
-  StDiaryListContainer,
-  StDiaryPictureItem,
-  StDiaryPictureList,
-} from '@/styles/components/StDiaryList.styles';
-import {
   StDateBox,
   StPickerLayout,
   StYear,
-} from '@/styles/components/StPicker.style';
+} from '@/styles/components/StPicker.styled';
 import IsYearMonth from '@/types/IYearMonth';
 import { AxiosError } from 'axios';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, ChevronUp, Edit3 } from 'react-feather';
 import { useQuery } from 'react-query';
-import { StDiaryCreateBtn } from '@/styles/components/StDiaryCreateBtn.styles';
+import { StDiaryCreateBtn } from '@/styles/components/StDiaryCreateBtn.styled';
 import useTodayDate from '@/hooks/useTodayDate';
+import Link from 'next/link';
+import {
+  StPictureItem,
+  StPictureList,
+  StPictureListContainer,
+} from '@/styles/components/StPictureList.styled';
+import Image from 'next/image';
 
 export default function DiaryListPage() {
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -59,7 +59,7 @@ export default function DiaryListPage() {
 
   return (
     <Layout type='default'>
-      <StDiaryListContainer>
+      <StPictureListContainer>
         {date && (
           <StPickerLayout ref={dropdownRef}>
             <StDateBox onClick={handlePickerOpen}>
@@ -79,22 +79,22 @@ export default function DiaryListPage() {
         {isLoading && <Loading message={'Loading diary pictures...'} />}
         {isError && <></>}
         {data && (
-          <StDiaryPictureList>
+          <StPictureList>
             {data.map((el: any) => {
               return (
                 <Link href={`/diary/${el.diary_id}`} key={el.diary_id}>
-                  <StDiaryPictureItem>
+                  <StPictureItem>
                     <Image src={el.source} sizes='268px' fill priority alt='' />
-                  </StDiaryPictureItem>
+                  </StPictureItem>
                 </Link>
               );
             })}
-          </StDiaryPictureList>
+          </StPictureList>
         )}
         <StDiaryCreateBtn href='/diary/new'>
           <Edit3 width={30} height={30} strokeWidth={1} />
         </StDiaryCreateBtn>
-      </StDiaryListContainer>
+      </StPictureListContainer>
     </Layout>
   );
 }

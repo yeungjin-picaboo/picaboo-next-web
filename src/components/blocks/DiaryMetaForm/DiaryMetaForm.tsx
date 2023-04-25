@@ -3,7 +3,7 @@ import {
   StDiaryForm,
   StDiaryFormButton,
   StDiaryFormHeader,
-} from '@/styles/components/StDiaryForm.styles';
+} from '@/styles/components/StDiaryForm.styled';
 import { ArrowLeft } from 'react-feather';
 import { StDiaryMetaContainer } from './DiaryMetaForm.styled';
 import MetaPicker from '@/components/atoms/MetaPicker/MetaPicker';

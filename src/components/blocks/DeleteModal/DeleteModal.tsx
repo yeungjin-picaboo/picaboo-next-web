@@ -11,7 +11,7 @@ import {
   StModalSubMsg,
   StModalTitleMsg,
 } from './DeleteModal.styled';
-import { StModalOverlay } from '@/styles/components/StModalOverlay';
+import { StModalOverlay } from '@/styles/components/StModalOverlay.styled';
 import Portal from '../Portal/Portal';
 
 interface IDeleteModalProps {

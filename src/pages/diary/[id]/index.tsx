@@ -16,7 +16,7 @@ import {
   StDiaryPictureBox,
   StDiaryTitle,
   StDiaryContainer,
-} from '@/styles/components/StDiary.styles';
+} from '@/styles/components/StDiary.styled';
 import weather from '@/data/weather';
 import moods from '@/data/moods';
 import DiaryHeader from '@/components/blocks/DiaryHeader/DiaryHeader';

@@ -4,6 +4,16 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picaboonftimage.s3.ap-northeast-2.amazonaws.com',
+        port: '',
+        pathname: '/*',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;

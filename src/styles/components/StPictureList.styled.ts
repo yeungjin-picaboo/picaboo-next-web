@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const StDiaryListContainer = styled.div`
+export const StPictureListContainer = styled.div`
   padding: 2.25rem;
   flex: 1;
   display: flex;
   flex-direction: column;
 `;
 
-export const StDiaryPictureList = styled.div`
+export const StPictureList = styled.div`
   margin-top: 1.75rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -15,7 +15,7 @@ export const StDiaryPictureList = styled.div`
   grid-template-rows: auto;
 `;
 
-export const StDiaryPictureItem = styled.div`
+export const StPictureItem = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.bgclr.secondary};
   box-shadow: ${({ theme }) => theme.boxShadow.image};
