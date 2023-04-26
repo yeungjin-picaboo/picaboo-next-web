@@ -12,6 +12,12 @@ export const StDiaryHeader = styled.div`
     height: 2rem;
     cursor: pointer;
   }
+  img {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    margin-right: 0.25rem;
+  }
 `;
 
 export const StDiaryIconContainer = styled.div`

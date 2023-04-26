@@ -18,6 +18,9 @@ import {
 import { ClipLoader } from 'react-spinners';
 import DatePicker from '@/components/atoms/DatePicker/DatePicker';
 import useTodayDate from '@/hooks/useTodayDate';
+import Image from 'next/image';
+import useModal from '@/hooks/useModal';
+import MintModal from '../MintModal/MintModal';
 
 interface IDiaryHeaderProps {
   diary: IDiary;
@@ -51,11 +54,17 @@ export default function DiaryHeader({
       // message 결과에 따라 input 필드 초기화 구현해야함
     },
   });
-  const { isModalOpen, handleOpen, handleClose, handleDelete } = useDeleteModal(
-    diary?.diary_id,
-    '/diary',
-    mutate
-  );
+  const {
+    isModalOpen: isDeleteModalOpen,
+    handleOpen: handleDeleteModalOpen,
+    handleClose: handleDeleteModalClose,
+    handleDelete,
+  } = useDeleteModal(diary?.diary_id, '/diary', mutate);
+  const {
+    isModalOpen: isNftModalOpen,
+    handleModalOpen: handleNftModalOpen,
+    handleModalClose: handleNftModalClose,
+  } = useModal();
 
   useEffect(() => {
     if (calendar !== undefined && calendar.length > 0) {
@@ -84,6 +93,19 @@ export default function DiaryHeader({
         <ArrowLeft />
       </Link>
       <StDiaryIconContainer>
+        <Image
+          src='/icons/hexagon-letter-n.svg'
+          alt=''
+          width={32}
+          height={32}
+          onClick={handleNftModalOpen}
+        />
+        {isNftModalOpen && (
+          <MintModal
+            imageUrl={process.env.NEXT_PUBLIC_DIARY_IMAGE_URL + diary.source}
+            handleClose={handleNftModalClose}
+          />
+        )}
         <Link
           href={{
             pathname: `/diary/${router.query.id}/edit`,
@@ -93,13 +115,13 @@ export default function DiaryHeader({
         >
           <Edit />
         </Link>
-        <Trash2 onClick={handleOpen} />
-        {isModalOpen && (
+        <Trash2 onClick={handleDeleteModalOpen} />
+        {isDeleteModalOpen && (
           <DeleteModal
             titleMsg='Delete Diary'
             subMsg='Are you sure you want to delete this diary?'
             handleDelete={handleDelete}
-            handleClose={handleClose}
+            handleClose={handleDeleteModalClose}
           />
         )}
         <StCalendarBox ref={dropdownRef}>

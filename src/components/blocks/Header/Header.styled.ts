@@ -5,7 +5,7 @@ export const StHeader = styled.div`
   width: 100vw;
   height: 80px;
   padding: 0 4rem;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 3;

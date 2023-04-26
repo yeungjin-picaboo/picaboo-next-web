@@ -5,7 +5,7 @@ import {
   StPictureListContainer,
 } from '@/styles/components/StPictureList.styled';
 import { useEffect, useState } from 'react';
-import { fetchNftsFn, fetchNumOfToken } from '@/apis/nftsApi';
+import { fetchNftsFn } from '@/apis/nftsApi';
 import useWeb3 from '@/hooks/useWeb3';
 import PictureItem from '@/components/atoms/PictureItem/PictureItem';
 
@@ -13,21 +13,17 @@ export default function MarketplacePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [listOfUrl, setListOfUrl] = useState<any[]>([]);
   const { myContract } = useWeb3();
-  const [numOfToken, setNumOfToken] = useState<any>();
-  const [start, setStart] = useState<number>(1);
-  const numOfPictures = 9;
 
   useEffect(() => {
     setIsLoading(true);
     if (myContract !== null) {
       (async () => {
-        const urlList = await fetchNftsFn(myContract, start, numOfPictures);
+        const urlList = await fetchNftsFn(myContract);
         setListOfUrl(urlList);
-        setNumOfToken(fetchNumOfToken(myContract));
         setIsLoading(false);
       })();
     }
-  }, [start, myContract]);
+  }, [myContract]);
 
   return (
     <Layout type='default'>
@@ -35,7 +31,7 @@ export default function MarketplacePage() {
       {!isLoading && (
         <StPictureListContainer>
           <StPictureList>
-            {listOfUrl.map(el => {
+            {[...listOfUrl].reverse().map(el => {
               return (
                 el.tokenId !== '0' &&
                 el.tokenURI !== undefined && (

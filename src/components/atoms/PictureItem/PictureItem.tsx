@@ -12,7 +12,7 @@ export default function PictureItem({ link, id, src }: IPictureItemProps) {
   return (
     <Link href={link} key={id}>
       <StPictureItem>
-        <Image src={src} sizes='268px' fill priority alt='' />
+        <Image src={src} sizes='268px' fill alt='' />
       </StPictureItem>
     </Link>
   );
