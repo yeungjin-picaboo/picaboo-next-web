@@ -22,17 +22,8 @@ export const fetchDiaryDatesFn = async () => {
   return response.data;
 };
 
-export const fetchDiaryWithDateFn = async (date: string) => {
-  const response = await axiosInstance.get('diary/date', {
-    params: { date: date },
-  });
-  return response.data;
-};
-
 export const fetchDiaryMetaFn = async (data: IDiaryAnalysisRequest) => {
-  const response = await axiosInstance.post('diary/meta', {
-    params: data,
-  });
+  const response = await axiosInstance.post('diary/meta', data);
   return response.data;
 };
 
@@ -41,7 +32,18 @@ export const createDiaryFn = async (data: IDiary) => {
   return response.data;
 };
 
-export const deleteDiaryFn = async (id: number) => {
+export const updateDiaryFn = async (data: IDiary) => {
+  const { diary_id, title, content, weather, emotion } = data;
+  const response = await axiosInstance.put(`diary/${diary_id}`, {
+    title,
+    content,
+    weather,
+    emotion,
+  });
+  return response.data;
+};
+
+export const deleteDiaryFn = async (id: string) => {
   const response = await axiosInstance.delete(`diary/${id}`);
   return response.data;
 };

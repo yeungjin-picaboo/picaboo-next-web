@@ -36,7 +36,7 @@ export default function Header() {
     <StHeader>
       <StHeaderLeft>
         <StLogo href='/diary' className={comforterBrush.className}>
-          <Image src='/logo.png' alt='' width={40} height={40} />
+          <Image src='/icons/logo.png' alt='' width={40} height={40} />
           <StLogoText>Picaboo</StLogoText>
         </StLogo>
         <Navigation

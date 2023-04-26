@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { UseMutateFunction } from 'react-query';
 
 export default function useDeleteModal(
-  id: number,
-  url: string,
-  onDelete: UseMutateFunction<any, AxiosError<unknown, any>, number, unknown>
+  id: string,
+  route: string,
+  onDelete: UseMutateFunction<any, AxiosError<unknown, any>, string, unknown>
 ) {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,7 +29,7 @@ export default function useDeleteModal(
     onDelete(id);
     setIsDeleting(false);
     setIsModalOpen(false);
-    router.push(url);
+    router.push(route);
   };
 
   return { isModalOpen, handleOpen, handleClose, handleDelete };

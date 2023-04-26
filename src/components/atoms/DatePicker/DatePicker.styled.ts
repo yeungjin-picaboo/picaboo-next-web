@@ -5,5 +5,5 @@ export const StDatePicker = styled.div`
   z-index: 10;
   right: 0;
   margin-top: 0.25rem;
-  box-shadow: ${({ theme }) => theme.boxShadow.normal};
+  box-shadow: ${({ theme }) => theme.boxShadow.button};
 `;

@@ -16,9 +16,9 @@ export default function useMonthPicker(
     e.preventDefault();
     const button: HTMLButtonElement = e.currentTarget;
     setUpdateDate(prev => {
-      return { ...prev, month: parseInt(button.id) };
+      return { ...prev, month: button.id };
     });
-    setDate({ year: updateDate.year, month: Number(button.id) });
+    setDate({ year: updateDate.year, month: button.id });
     setIsPickerOpen(false);
   };
 

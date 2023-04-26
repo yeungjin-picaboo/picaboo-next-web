@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { useMutation, useQuery } from 'react-query';
+import { useEffect, useRef, useState } from 'react';
+import { useQuery } from 'react-query';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es';
 import { fetchDiaryFn } from '@/apis/diaryApi';
@@ -20,7 +20,6 @@ import {
 import weather from '@/data/weather';
 import moods from '@/data/moods';
 import DiaryHeader from '@/components/blocks/DiaryHeader/DiaryHeader';
-import { fetchDiaryWithDateFn } from '@/apis/diaryApi';
 
 interface IWeatherEmotionIcons {
   weatherIcon: JSX.Element | undefined;
@@ -29,8 +28,7 @@ interface IWeatherEmotionIcons {
 
 export default function DiaryDetailPage() {
   const router = useRouter();
-  const [date, setDate] = useState('');
-  const [diaryDate, setDiaryDate] = useState('');
+  const [selectedDate, setSelectedDate] = useState('');
   const [icons, setIcons] = useState<IWeatherEmotionIcons | undefined>();
   const { isLoading: diaryLoading, data: diary } = useQuery(
     // queryKey: 쿼리를 고유하게 식별하는 문자열이나 배열으로 쿼리 키가 변경되면 React Query는 새로운 데이터를 가져와 캐시를 업데이트함
@@ -43,8 +41,7 @@ export default function DiaryDetailPage() {
       onSuccess: data => {
         // 성공시 호출
         // console.log(data);
-        setDate(data.date as string);
-        setDiaryDate(data.date as string);
+        setSelectedDate(data.date as string);
       },
       onError: (error: AxiosError) => {
         // 실패시 호출 (401, 404 같은 error가 아니라 정말 api 호출이 실패한 경우만 호출됨)
@@ -52,15 +49,6 @@ export default function DiaryDetailPage() {
       },
     }
   );
-  const { mutate } = useMutation(fetchDiaryWithDateFn, {
-    onSuccess: data => {
-      router.push(`/diary/${data.diary_id}`);
-    },
-    onError: (error: AxiosError) => {
-      alert(error.message);
-      // message 결과에 따라 input 필드 초기화 구현해야함
-    },
-  });
 
   // 페이지가 로드될 때마다 스크롤 위치를 페이지 상단으로 이동
   // 참고: https://github.com/vercel/next.js/issues/45187
@@ -73,18 +61,16 @@ export default function DiaryDetailPage() {
     });
   }, [diary]);
 
-  useEffect(() => {
-    if (date !== '' && date !== diaryDate) {
-      mutate(date);
-    }
-  }, [date]);
-
   return (
     <Layout type='small'>
       {diaryLoading && <Loading message='Loading diary...' />}
       {diary && (
         <StDiaryContainer>
-          <DiaryHeader diary={diary} date={date} setDate={setDate} />
+          <DiaryHeader
+            diary={diary}
+            selectedDate={diary.date}
+            setSelectedDate={setSelectedDate}
+          />
           <StDiaryTitle>{diary.title}</StDiaryTitle>
           <StDiaryInfo>
             <StDiaryDate>
@@ -97,7 +83,7 @@ export default function DiaryDetailPage() {
           </StDiaryInfo>
           <StDiaryPictureBox>
             <Image
-              src={diary.source}
+              src={process.env.NEXT_PUBLIC_DIARY_IMAGE_URL + diary.source}
               width={512}
               height={512}
               alt=''

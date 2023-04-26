@@ -21,8 +21,11 @@ import {
   StPictureListContainer,
 } from '@/styles/components/StPictureList.styled';
 import PictureItem from '@/components/atoms/PictureItem/PictureItem';
+import { StPictureItem } from '@/components/atoms/PictureItem/PictureItem.styled';
+import ImageLoading from '@/components/atoms/ImageLoading/ImageLoading';
 
 export default function DiaryListPage() {
+  const timerId = useRef<NodeJS.Timer>();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isPickerOpen, setIsPickerOpen, handlePickerOpen] =
     useDropdown(dropdownRef);
@@ -31,7 +34,7 @@ export default function DiaryListPage() {
     year: todayDate.year,
     month: todayDate.month,
   });
-  const { isLoading, isError, data, error } = useQuery(
+  const { isLoading, isError, data, error, refetch } = useQuery(
     // queryKey: 쿼리를 고유하게 식별하는 문자열이나 배열으로 쿼리 키가 변경되면 React Query는 새로운 데이터를 가져와 캐시를 업데이트함
     ['list', String(date?.month), String(date?.year)],
     // queryFn: 쿼리를 호출하는 함수로 Promise를 반환해야하며, 해당 Promise가 resolve되면 데이터가 반환됨
@@ -43,6 +46,11 @@ export default function DiaryListPage() {
       onSuccess: data => {
         // 성공시 호출
         // console.log(data);
+        if (!data.source) {
+          if (!timerId.current) {
+            timerId.current = setInterval(() => refetch(), 2500);
+          }
+        } else clearInterval(timerId.current);
       },
       onError: (error: AxiosError) => {
         // 실패시 호출 (401, 404 같은 error가 아니라 정말 api 호출이 실패한 경우만 호출됨)
@@ -61,7 +69,7 @@ export default function DiaryListPage() {
         {date && (
           <StPickerLayout ref={dropdownRef}>
             <StDateBox onClick={handlePickerOpen}>
-              <>{MONTHS_Full[date.month - 1]}</>
+              <>{MONTHS_Full[Number(date.month) - 1]}</>
               <StYear>{date.year}</StYear>
               {isPickerOpen ? <ChevronUp /> : <ChevronDown />}
             </StDateBox>
@@ -79,12 +87,24 @@ export default function DiaryListPage() {
         {data && (
           <StPictureList>
             {data.map((el: any) => {
+              if (el.source === null) {
+                return (
+                  <StPictureItem
+                    key={el.diary_id}
+                    onClick={() => {
+                      alert('The picture is not yet complete.');
+                    }}
+                  >
+                    <ImageLoading message='Drawing...' />
+                  </StPictureItem>
+                );
+              }
               return (
                 <PictureItem
                   key={el.diary_id}
                   link={`/diary/${el.diary_id}`}
                   id={el.diary_id}
-                  src={el.source}
+                  src={process.env.NEXT_PUBLIC_DIARY_IMAGE_URL + el.source}
                 />
               );
             })}

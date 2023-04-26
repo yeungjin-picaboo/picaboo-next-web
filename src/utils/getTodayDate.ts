@@ -6,8 +6,8 @@ export default function getTodayDate() {
 
   return {
     year: year,
-    month: date.getMonth() + 1,
-    day: date.getDate(),
+    month: month,
+    day: day,
     dateStr: year + '-' + month + '-' + day, // result: yyyy-mm-dd
   };
 }

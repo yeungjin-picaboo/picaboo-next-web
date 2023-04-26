@@ -1,5 +1,5 @@
 export default interface IDiary {
-  diary_id?: number;
+  diary_id?: string;
   title: string;
   content: string;
   emotion: string;

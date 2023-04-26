@@ -3,7 +3,7 @@ import { ArrowLeft, Calendar, Edit, Trash2 } from 'react-feather';
 import DeleteModal from '../DeleteModal/DeleteModal';
 import useDropdown from '@/hooks/useDropdown';
 import useDeleteModal from '@/hooks/useDeleteModal';
-import { Dispatch, SetStateAction, useRef } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { deleteDiaryFn, fetchDiaryDatesFn } from '@/apis/diaryApi';
 import { useMutation, useQuery } from 'react-query';
@@ -21,22 +21,23 @@ import useTodayDate from '@/hooks/useTodayDate';
 
 interface IDiaryHeaderProps {
   diary: IDiary;
-  date: string;
-  setDate: Dispatch<SetStateAction<string>>;
+  selectedDate: string;
+  setSelectedDate: Dispatch<SetStateAction<string>>;
 }
 
 export default function DiaryHeader({
   diary,
-  date,
-  setDate,
+  selectedDate,
+  setSelectedDate,
 }: IDiaryHeaderProps) {
   const router = useRouter();
   const { dateStr } = useTodayDate();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [enableDates, setEnableDates] = useState<Array<string>>([]);
   const [isCalendarOpen, setIsCalendarOpen, handleCalendarOpen] =
     useDropdown(dropdownRef);
-  const { isLoading: datesLoading, data: diaryDates } = useQuery(
-    'diaryDates',
+  const { isLoading: calendarLoading, data: calendar } = useQuery(
+    'calendar',
     fetchDiaryDatesFn,
     { retry: 0, enabled: isCalendarOpen }
   );
@@ -52,9 +53,30 @@ export default function DiaryHeader({
   });
   const { isModalOpen, handleOpen, handleClose, handleDelete } = useDeleteModal(
     diary?.diary_id,
-    'diary',
+    '/diary',
     mutate
   );
+
+  useEffect(() => {
+    if (calendar !== undefined && calendar.length > 0) {
+      setEnableDates(
+        calendar.map((el: { diary_id: string; date: string }) => el.date)
+      );
+    }
+  }, [calendar]);
+
+  useEffect(() => {
+    if (calendar !== undefined && calendar.length > 0) {
+      const selectedId = calendar.map(
+        (el: { diary_id: string; date: string }) => {
+          if (el.date === selectedDate) {
+            return el.diary_id;
+          }
+        }
+      );
+      router.push(`/diary/${selectedId}`);
+    }
+  }, [selectedDate]);
 
   return (
     <StDiaryHeader>
@@ -82,17 +104,17 @@ export default function DiaryHeader({
         )}
         <StCalendarBox ref={dropdownRef}>
           <Calendar onClick={handleCalendarOpen} />
-          {datesLoading && (
+          {calendarLoading && (
             <StCalendarLoadingBox>
               <ClipLoader />
             </StCalendarLoadingBox>
           )}
-          {!datesLoading && isCalendarOpen && (
+          {!calendarLoading && isCalendarOpen && (
             <DatePicker
-              enabled={diaryDates}
+              enabled={enableDates}
               current={dateStr}
-              selected={date}
-              setSelected={setDate}
+              selected={selectedDate}
+              setSelected={setSelectedDate}
               setIsCalendarOpen={setIsCalendarOpen}
             />
           )}

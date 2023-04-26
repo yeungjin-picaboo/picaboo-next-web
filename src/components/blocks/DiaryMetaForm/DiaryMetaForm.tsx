@@ -14,16 +14,18 @@ import { Dispatch, SetStateAction } from 'react';
 import useDiaryMetaForm from '@/hooks/useDiaryMetaForm';
 
 interface IDiaryMetaFormProps {
+  isEditMode?: boolean;
   entry: IDiary;
   setEntry: Dispatch<SetStateAction<IDiary>>;
 }
 
 export default function DiaryMetaForm({
+  isEditMode,
   entry,
   setEntry,
 }: IDiaryMetaFormProps) {
   const { weather, emotion, setWeather, setEmotion, goBack, handleSubmit } =
-    useDiaryMetaForm(entry, setEntry);
+    useDiaryMetaForm(isEditMode, entry, setEntry);
   return (
     <StDiaryForm onSubmit={handleSubmit}>
       <StDiaryFormHeader>

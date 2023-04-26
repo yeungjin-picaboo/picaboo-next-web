@@ -3,14 +3,13 @@ import { useEffect, useState } from 'react';
 
 interface IDateObj {
   year: number;
-  month: number;
-  day: number;
+  month: string;
+  day: string;
   dateStr: string;
 }
 
 export default function useTodayDate() {
   const [todayDate, setTodayDate] = useState<IDateObj>(getTodayDate());
-
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setTodayDate(getTodayDate());

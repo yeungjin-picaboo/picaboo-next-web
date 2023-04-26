@@ -20,6 +20,7 @@ export default function DiaryEditPage() {
   const { dateStr } = useTodayDate();
   const [date, setDate] = useState<string>(dateStr);
   const [diary, setDiary] = useState<IDiary>({
+    diary_id: '',
     title: '',
     content: '',
     emotion: '',
@@ -48,9 +49,10 @@ export default function DiaryEditPage() {
 
   useEffect(() => {
     if (data) {
-      const { title, content, date } = data;
+      const { diary_id, title, content, date } = data;
       setDiary(prev => ({
         ...prev,
+        diary_id,
         title,
         content,
         date,
@@ -80,7 +82,7 @@ export default function DiaryEditPage() {
         />
       )}
       {!isLoading && emotion && weather && (
-        <DiaryMetaForm entry={diary} setEntry={setDiary} />
+        <DiaryMetaForm isEditMode={true} entry={diary} setEntry={setDiary} />
       )}
     </Layout>
   );

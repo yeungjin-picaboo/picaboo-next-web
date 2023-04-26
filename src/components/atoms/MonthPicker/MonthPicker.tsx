@@ -42,7 +42,7 @@ export default function MonthPicker({
           return (
             <StMonthPickerMonth
               key={value}
-              id={`${index + 1}`}
+              id={`${('0' + (index + 1)).slice(-2)}`}
               type='button'
               onClick={handleMonthClick}
             >

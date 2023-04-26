@@ -12,7 +12,7 @@ export const StContent = styled.div`
   padding: 0 4rem;
   width: 1280px;
   margin: 0 auto;
-  min-height: calc(100vh - 80px - 1vh - 1vw);
+  min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
 `;

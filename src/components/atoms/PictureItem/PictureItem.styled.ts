@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StPictureItem = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.bgclr.secondary};
-  box-shadow: ${({ theme }) => theme.boxShadow.image};
+  box-shadow: ${({ theme }) => theme.boxShadow.normal};
   border-radius: 1.25rem;
   width: 100%;
   padding-bottom: 100%;

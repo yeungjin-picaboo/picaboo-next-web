@@ -6,7 +6,9 @@ const useGeolocation = () => {
 
   useEffect(() => {
     const onSuccess = (pos: GeolocationPosition) => {
-      setPosition(pos.coords);
+      if (pos != null) {
+        setPosition(pos.coords);
+      }
     };
 
     const onError = (err: GeolocationPositionError) => {

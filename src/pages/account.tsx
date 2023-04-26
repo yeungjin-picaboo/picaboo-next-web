@@ -1,5 +1,5 @@
 import Layout from '@/components/blocks/Layout/Layout';
 
 export default function AccountPage() {
-  return <Layout></Layout>;
+  return <Layout type='small'></Layout>;
 }
