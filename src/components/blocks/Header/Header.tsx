@@ -18,10 +18,19 @@ import useHeader from '@/hooks/useHeader';
 import comforterBrush from '@/styles/fonts/comforterBrush';
 import Image from 'next/image';
 import ubuntu from '@/styles/fonts/ubuntu';
+import WalletModal from '../WalletModal/WalletModal';
 
 export default function Header() {
-  const { route, isDropdownOpen, dropdownRef, handleDropdown, handleLogout } =
-    useHeader();
+  const {
+    route,
+    isModalOpen,
+    isDropdownOpen,
+    dropdownRef,
+    handleDropdown,
+    handleModalOpen,
+    handleModalClose,
+    handleLogout,
+  } = useHeader();
 
   return (
     <StHeader>
@@ -36,12 +45,13 @@ export default function Header() {
         />
       </StHeaderLeft>
       <StHeaderRight>
-        <StWalletBox>
+        <StWalletBox onClick={handleModalOpen}>
           <Wallet size={30} strokeWidth={1} />
           <StWalletText className={ubuntu.className}>
             Connect Wallet
           </StWalletText>
         </StWalletBox>
+        {isModalOpen && <WalletModal handleClose={handleModalClose} />}
         <StUserDropdown ref={dropdownRef} isOpen={isDropdownOpen}>
           <UserCircle onClick={handleDropdown} size={30} strokeWidth={1} />
           {isDropdownOpen && (

@@ -1,4 +1,3 @@
-import AlertTriangleFilled from '../../../../public/alert-triangle-filled.svg';
 import Image from 'next/image';
 import {
   StCancelBtn,
@@ -34,7 +33,7 @@ export default function DeleteModal({
           <StModalBody>
             <StModalIconBox>
               <Image
-                src={AlertTriangleFilled}
+                src='/icons/alert-triangle-filled.svg'
                 alt='alert'
                 width={70}
                 height={70}

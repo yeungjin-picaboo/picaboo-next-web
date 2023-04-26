@@ -1,11 +1,14 @@
 import { AxiosError } from 'axios';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { UseMutateFunction } from 'react-query';
 
 export default function useDeleteModal(
   id: number,
+  url: string,
   onDelete: UseMutateFunction<any, AxiosError<unknown, any>, number, unknown>
 ) {
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -24,7 +27,9 @@ export default function useDeleteModal(
   const handleDelete = () => {
     setIsDeleting(true);
     onDelete(id);
+    setIsDeleting(false);
     setIsModalOpen(false);
+    router.push(url);
   };
 
   return { isModalOpen, handleOpen, handleClose, handleDelete };

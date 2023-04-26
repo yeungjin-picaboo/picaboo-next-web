@@ -30,7 +30,7 @@ export const fetchDiaryWithDateFn = async (date: string) => {
 };
 
 export const fetchDiaryMetaFn = async (data: IDiaryAnalysisRequest) => {
-  const response = await axiosInstance.get('diary/meta', {
+  const response = await axiosInstance.post('diary/meta', {
     params: data,
   });
   return response.data;

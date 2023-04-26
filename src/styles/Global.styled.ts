@@ -54,6 +54,7 @@ const GlobalStyle = createGlobalStyle`
     font: inherit;
   }
   button{
+    font: inherit;
     background: inherit;
     border:none;
     box-shadow:none;

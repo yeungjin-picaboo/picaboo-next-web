@@ -7,6 +7,6 @@ export const StModalOverlay = styled.div`
   right: 0;
   bottom: 0;
   z-index: 289;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.6);
   ${({ theme }) => theme.mixins.flexBox()};
 `;

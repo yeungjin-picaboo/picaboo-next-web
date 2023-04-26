@@ -52,6 +52,7 @@ export default function DiaryHeader({
   });
   const { isModalOpen, handleOpen, handleClose, handleDelete } = useDeleteModal(
     diary?.diary_id,
+    'diary',
     mutate
   );
 
