@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { fetchNftsFn } from '@/apis/nftsApi';
 import useWeb3 from '@/hooks/useWeb3';
 import PictureItem from '@/components/atoms/PictureItem/PictureItem';
+import NftListHeader from '@/components/blocks/NftListHeader/NftListHeader';
 
 export default function MarketplacePage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,6 +31,11 @@ export default function MarketplacePage() {
       {isLoading && <Loading message='Loading nft pictures' />}
       {!isLoading && (
         <StPictureListContainer>
+          <NftListHeader
+            myContract={myContract}
+            numOfItem={listOfUrl.length}
+            setListOfUrl={setListOfUrl}
+          />
           <StPictureList>
             {[...listOfUrl].reverse().map(el => {
               return (
