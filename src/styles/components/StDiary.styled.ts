@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StDiaryContainer = styled.div`
-  min-height: calc(100vh - 80px - 1vh - 1vw);
+  min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
 `;
@@ -34,15 +34,6 @@ export const StDiaryMetaIcon = styled.div`
 
 export const StDiaryDate = styled.div`
   font-size: 1.25rem;
-`;
-
-export const StDiaryPictureBox = styled.div`
-  position: relative;
-  margin: 0.75rem 2.25rem;
-  background-color: #eeeeee;
-  border: 1px solid black;
-  display: flex;
-  justify-content: center;
 `;
 
 export const StDiaryContent = styled.div`

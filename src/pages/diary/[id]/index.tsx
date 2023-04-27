@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es';
@@ -13,7 +13,6 @@ import {
   StDiaryDate,
   StDiaryInfo,
   StDiaryMetaIcon,
-  StDiaryPictureBox,
   StDiaryTitle,
   StDiaryContainer,
 } from '@/styles/components/StDiary.styled';
@@ -21,6 +20,7 @@ import weather from '@/data/weather';
 import moods from '@/data/moods';
 import DiaryHeader from '@/components/blocks/DiaryHeader/DiaryHeader';
 import useModal from '@/hooks/useModal';
+import StDiaryPictureBox from '@/styles/components/StDiaryPictureBox';
 
 interface IWeatherEmotionIcons {
   weatherIcon: JSX.Element | undefined;
