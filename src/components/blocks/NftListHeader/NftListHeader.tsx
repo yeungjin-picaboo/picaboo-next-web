@@ -12,13 +12,13 @@ import { Dispatch, FormEvent, SetStateAction, useRef } from 'react';
 interface INftListHeader {
   myContract: any;
   numOfItem: number;
-  setListOfUrl: Dispatch<SetStateAction<any[]>>;
+  setNftList: Dispatch<SetStateAction<any[]>>;
 }
 
 export default function NftListHeader({
   myContract,
   numOfItem,
-  setListOfUrl,
+  setNftList,
 }: INftListHeader) {
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -26,7 +26,7 @@ export default function NftListHeader({
     const urlList = await myContract.getListHolder(
       searchInputRef.current.value
     );
-    setListOfUrl(urlList);
+    setNftList(urlList);
   };
 
   return (

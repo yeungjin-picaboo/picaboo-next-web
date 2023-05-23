@@ -30,7 +30,6 @@ interface IWeatherEmotionIcons {
 export default function DiaryDetailPage() {
   const router = useRouter();
   const [selectedDate, setSelectedDate] = useState('');
-  const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
   const [icons, setIcons] = useState<IWeatherEmotionIcons | undefined>();
   const { isLoading: diaryLoading, data: diary } = useQuery(
     // queryKey: 쿼리를 고유하게 식별하는 문자열이나 배열으로 쿼리 키가 변경되면 React Query는 새로운 데이터를 가져와 캐시를 업데이트함

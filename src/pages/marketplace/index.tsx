@@ -5,26 +5,35 @@ import {
   StPictureListContainer,
 } from '@/styles/components/StPictureList.styled';
 import { useEffect, useState } from 'react';
-import { fetchNftsFn } from '@/apis/nftsApi';
 import useWeb3 from '@/hooks/useWeb3';
 import PictureItem from '@/components/atoms/PictureItem/PictureItem';
 import NftListHeader from '@/components/blocks/NftListHeader/NftListHeader';
+import Pagination from '@/components/blocks/Pagination/Pagination';
+
+const ITEMS_PER_PAGE = 16; // 페이지 당 아이템 개수
 
 export default function MarketplacePage() {
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 번호
   const [isLoading, setIsLoading] = useState(false);
-  const [listOfUrl, setListOfUrl] = useState<any[]>([]);
+  const [nftList, setNftList] = useState<any[]>([]);
+  const [numOfToken, setNumOfToken] = useState<number>(0);
   const { myContract } = useWeb3();
 
   useEffect(() => {
     setIsLoading(true);
     if (myContract !== null) {
       (async () => {
-        const urlList = await fetchNftsFn(myContract);
-        setListOfUrl(urlList);
+        const urlList = await myContract.getListShortNFT(
+          ITEMS_PER_PAGE,
+          currentPage
+        );
+        const result = await myContract.getNumOfToken();
+        setNumOfToken(result.words[0]);
+        setNftList(urlList);
         setIsLoading(false);
       })();
     }
-  }, [myContract]);
+  }, [currentPage, myContract]);
 
   return (
     <Layout type='default'>
@@ -33,11 +42,11 @@ export default function MarketplacePage() {
         <StPictureListContainer>
           <NftListHeader
             myContract={myContract}
-            numOfItem={listOfUrl.length}
-            setListOfUrl={setListOfUrl}
+            numOfItem={nftList.length}
+            setNftList={setNftList}
           />
           <StPictureList>
-            {[...listOfUrl].reverse().map(el => {
+            {[...nftList].map(el => {
               return (
                 el.tokenId !== '0' &&
                 el.tokenURI !== undefined && (
@@ -51,6 +60,12 @@ export default function MarketplacePage() {
               );
             })}
           </StPictureList>
+          <Pagination
+            ITEMS_PER_PAGE={ITEMS_PER_PAGE}
+            currentPage={currentPage}
+            numOfToken={numOfToken}
+            setCurrentPage={setCurrentPage}
+          />
         </StPictureListContainer>
       )}
     </Layout>
