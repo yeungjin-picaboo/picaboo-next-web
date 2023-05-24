@@ -9,7 +9,7 @@ import useModal from './useModal';
 export default function useHeader() {
   const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const [isDropdownOpen, setIsDropdowOpen] = useDropdown(dropdownRef);
+  const [isDropdownOpen, , handleDropdownOpen] = useDropdown(dropdownRef);
   const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
   const { mutate } = useMutation(logoutFn, {
     onSuccess: data => {
@@ -28,7 +28,7 @@ export default function useHeader() {
     isModalOpen,
     handleModalOpen,
     handleModalClose,
-    handleDropdown: () => setIsDropdowOpen(!isDropdownOpen),
+    handleDropdown: handleDropdownOpen,
     handleLogout: () => mutate(),
   };
 }

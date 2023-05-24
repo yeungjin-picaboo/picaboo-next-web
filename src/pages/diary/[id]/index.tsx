@@ -19,7 +19,6 @@ import {
 import weather from '@/data/weather';
 import moods from '@/data/moods';
 import DiaryHeader from '@/components/blocks/DiaryHeader/DiaryHeader';
-import useModal from '@/hooks/useModal';
 import StDiaryPictureBox from '@/styles/components/StDiaryPictureBox';
 
 interface IWeatherEmotionIcons {
@@ -69,6 +68,7 @@ export default function DiaryDetailPage() {
         <StDiaryContainer>
           <DiaryHeader
             diary={diary}
+            emotion={diary.emotion}
             selectedDate={diary.date}
             setSelectedDate={setSelectedDate}
           />

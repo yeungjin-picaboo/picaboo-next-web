@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const StModal = styled.div`
+  width: 500px;
   position: relative;
-  padding: 2.25rem;
+  padding: 2rem;
   background-color: white;
-  border-radius: 1.25rem;
+  border-radius: 1.5rem;
   box-shadow: ${({ theme }) => theme.boxShadow.normal};
-
-  svg {
+  & > svg {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -18,19 +18,10 @@ export const StModal = styled.div`
   }
 `;
 
-export const StImageBox = styled.div`
-  border: 2px solid ${({ theme }) => theme.borderclr.base};
-  position: relative;
-  width: 150px;
-  height: 150px;
-  border-radius: 0.5rem;
-  overflow: hidden;
-`;
-
 export const StTitle = styled.div`
   text-align: center;
   font-size: 1.75rem;
-  padding-bottom: 1.25rem;
+  padding-bottom: 1.5rem;
   border-bottom: 2px solid ${({ theme }) => theme.borderclr.base};
   font-weight: bold;
 `;
@@ -44,8 +35,13 @@ export const StLabel = styled.div`
   font-size: 1.25rem;
 `;
 
+export const StGridBox = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.25rem;
+`;
+
 const StInput = styled.input`
-  font-size: 1rem;
   padding: 0.75rem;
   border-radius: 0.5rem;
   border: 2px solid ${({ theme }) => theme.borderclr.base};
@@ -55,21 +51,37 @@ const StInput = styled.input`
 `;
 
 export const StNameInput = styled(StInput)`
-  width: 400px;
+  width: 100%;
 `;
 
-export const StPriceBox = styled.div``;
+export const StPriceInputBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 export const StPriceInput = styled(StInput)`
-  width: 100px;
   margin-right: 0.75rem;
+  width: 70%;
+`;
+
+export const StDescTextarea = styled.textarea`
+  width: 100%;
+  height: 130px;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  resize: none;
+  border: 2px solid ${({ theme }) => theme.borderclr.base};
+  &::placeholder {
+    color: ${({ theme }) => theme.clr.quaternary};
+  }
 `;
 
 export const StCreateBtn = styled.button`
   padding: 1rem;
   font-size: 1.25rem;
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   background-color: ${({ theme }) => theme.bgclr.tertiary};
   color: ${({ theme }) => theme.clr.tertiary};
   transition: 0.5s;

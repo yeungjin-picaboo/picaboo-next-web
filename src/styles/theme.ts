@@ -9,6 +9,7 @@ export const theme: DefaultTheme = {
     quaternary: '#bababa',
     fifth: '#eeeeee',
     sixth: '#686D76',
+    eighth: '#a0a0a0',
     accent: '#DCA11D',
     enabled: '#ffffff',
     disabled: '#bababa',

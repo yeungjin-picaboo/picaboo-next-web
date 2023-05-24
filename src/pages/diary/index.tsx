@@ -66,22 +66,20 @@ export default function DiaryListPage() {
   return (
     <Layout type='default'>
       <StPictureListContainer>
-        {date && (
-          <StPickerLayout ref={dropdownRef}>
-            <StDateBox onClick={handlePickerOpen}>
-              <>{MONTHS_Full[Number(date.month) - 1]}</>
-              <StYear>{date.year}</StYear>
-              {isPickerOpen ? <ChevronUp /> : <ChevronDown />}
-            </StDateBox>
-            {isPickerOpen && (
-              <MonthPicker
-                date={date}
-                setDate={setDate}
-                setIsPickerOpen={setIsPickerOpen}
-              />
-            )}
-          </StPickerLayout>
-        )}
+        <StPickerLayout ref={dropdownRef}>
+          <StDateBox onClick={handlePickerOpen}>
+            <>{MONTHS_Full[Number(date.month) - 1]}</>
+            <StYear>{date.year}</StYear>
+            {isPickerOpen ? <ChevronUp /> : <ChevronDown />}
+          </StDateBox>
+          {isPickerOpen && (
+            <MonthPicker
+              date={date}
+              setDate={setDate}
+              setIsPickerOpen={setIsPickerOpen}
+            />
+          )}
+        </StPickerLayout>
         {isLoading && <Loading message={'Loading diary pictures...'} />}
         {isError && <></>}
         {data && (

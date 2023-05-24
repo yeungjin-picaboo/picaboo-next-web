@@ -24,12 +24,14 @@ import MintModal from '../MintModal/MintModal';
 
 interface IDiaryHeaderProps {
   diary: IDiary;
+  emotion: string;
   selectedDate: string;
   setSelectedDate: Dispatch<SetStateAction<string>>;
 }
 
 export default function DiaryHeader({
   diary,
+  emotion,
   selectedDate,
   setSelectedDate,
 }: IDiaryHeaderProps) {
@@ -90,7 +92,7 @@ export default function DiaryHeader({
   return (
     <StDiaryHeader>
       <Link href='/diary'>
-        <ArrowLeft />
+        <ArrowLeft strokeWidth={1.5} />
       </Link>
       <StDiaryIconContainer>
         <Image
@@ -102,6 +104,7 @@ export default function DiaryHeader({
         />
         {isNftModalOpen && (
           <MintModal
+            emotion={emotion}
             imageUrl={process.env.NEXT_PUBLIC_DIARY_IMAGE_URL + diary.source}
             handleClose={handleNftModalClose}
           />
@@ -113,9 +116,9 @@ export default function DiaryHeader({
           }}
           as={`/diary/${router.query.id}/edit`}
         >
-          <Edit />
+          <Edit strokeWidth={1.5} />
         </Link>
-        <Trash2 onClick={handleDeleteModalOpen} />
+        <Trash2 strokeWidth={1.5} onClick={handleDeleteModalOpen} />
         {isDeleteModalOpen && (
           <DeleteModal
             titleMsg='Delete Diary'
@@ -125,7 +128,7 @@ export default function DiaryHeader({
           />
         )}
         <StCalendarBox ref={dropdownRef}>
-          <Calendar onClick={handleCalendarOpen} />
+          <Calendar strokeWidth={1.5} onClick={handleCalendarOpen} />
           {calendarLoading && (
             <StCalendarLoadingBox>
               <ClipLoader />
