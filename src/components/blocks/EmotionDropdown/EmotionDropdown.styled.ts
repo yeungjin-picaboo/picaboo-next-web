@@ -32,6 +32,7 @@ export const StEmotionItem = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0.65rem 1rem;
+  height: 45.6px;
   border-bottom: 1px solid ${({ theme }) => theme.borderclr.base};
   color: ${({ theme }) => theme.clr.eighth};
   &:first-child {

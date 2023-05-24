@@ -49,6 +49,8 @@ export default function NftListHeader({
       <StToolkitContainer>
         <StToolBox>
           <EmotionDropdown
+            initialValue='All categories'
+            hasInitialValue={true}
             emotion={selectedEmotion}
             setEmotion={setSelectedEmotion}
           />

@@ -10,11 +10,15 @@ import moods from '@/data/moods';
 import { ChevronDown } from 'react-feather';
 
 interface IEmotionDropdown {
+  initialValue?: string;
+  hasInitialValue?: boolean;
   emotion: string;
   setEmotion: Dispatch<SetStateAction<string>>;
 }
 
 export default function EmotionDropdown({
+  initialValue = '',
+  hasInitialValue = false,
   emotion,
   setEmotion,
 }: IEmotionDropdown) {
@@ -28,6 +32,16 @@ export default function EmotionDropdown({
       </StSelectedEmotionBox>
       {isOpen && (
         <StEmotionDropdown>
+          {hasInitialValue && (
+            <StEmotionItem
+              onClick={() => {
+                setEmotion(initialValue);
+                setIsOpen(false);
+              }}
+            >
+              {initialValue}
+            </StEmotionItem>
+          )}
           {moods.map(item => {
             return (
               <StEmotionItem
