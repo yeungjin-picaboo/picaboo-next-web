@@ -20,9 +20,10 @@ import {
   StPictureList,
   StPictureListContainer,
 } from '@/styles/components/StPictureList.styled';
-import PictureItem from '@/components/atoms/PictureItem/PictureItem';
-import { StPictureItem } from '@/components/atoms/PictureItem/PictureItem.styled';
+import { StPictureItem } from '@/styles/components/StPictureItem.styled';
 import ImageLoading from '@/components/atoms/ImageLoading/ImageLoading';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function DiaryListPage() {
   const timerId = useRef<NodeJS.Timer>();
@@ -98,12 +99,16 @@ export default function DiaryListPage() {
                 );
               }
               return (
-                <PictureItem
-                  key={el.diary_id}
-                  link={`/diary/${el.diary_id}`}
-                  id={el.diary_id}
-                  src={process.env.NEXT_PUBLIC_DIARY_IMAGE_URL + el.source}
-                />
+                <Link href={`/diary/${el.diary_id}`} key={el.diary_id}>
+                  <StPictureItem>
+                    <Image
+                      src={process.env.NEXT_PUBLIC_DIARY_IMAGE_URL + el.source}
+                      sizes='268px'
+                      fill
+                      alt=''
+                    />
+                  </StPictureItem>
+                </Link>
               );
             })}
           </StPictureList>

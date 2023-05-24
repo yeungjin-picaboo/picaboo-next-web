@@ -8,15 +8,14 @@ export const StPictureItem = styled.div`
   width: 100%;
   padding-bottom: 100%;
   ${({ theme }) => theme.mixins.flexBox()};
+  & > img {
+    cursor: pointer;
+    border-radius: 1rem;
+  }
   &:hover {
     background-color: black;
     opacity: 0.8;
     transition: 0.2s;
     box-shadow: none;
-  }
-
-  img {
-    cursor: pointer;
-    border-radius: 1rem;
   }
 `;

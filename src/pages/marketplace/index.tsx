@@ -6,9 +6,20 @@ import {
 } from '@/styles/components/StPictureList.styled';
 import { useEffect, useRef, useState } from 'react';
 import useWeb3 from '@/hooks/useWeb3';
-import PictureItem from '@/components/atoms/PictureItem/PictureItem';
 import NftListHeader from '@/components/blocks/NftListHeader/NftListHeader';
 import Pagination from '@/components/blocks/Pagination/Pagination';
+import Link from 'next/link';
+import Image from 'next/image';
+import {
+  StNftMouseover,
+  StNftItem,
+  StMouseoverIcon,
+  StMouseoverFooter,
+  StEtherPrice,
+  StPrice,
+} from '@/styles/components/StNftItem';
+import { CurrencyEthereum } from 'tabler-icons-react';
+import axios from 'axios';
 
 const ITEMS_PER_PAGE = 16; // 페이지 당 아이템 개수
 
@@ -21,7 +32,35 @@ export default function MarketplacePage() {
   const { myContract } = useWeb3();
   const [selectedEmotion, setSelectedEmotion] = useState('All categories');
   const [selectedTime, setSelectedTime] = useState('All');
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [exchangeRate, setExchangeRate] = useState<number>(0);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
+
+  // 마우스 오버 이벤트 핸들러
+  const handleMouseOver = index => {
+    setHoveredIndex(index);
+  };
+
+  // 마우스 아웃 이벤트 핸들러
+  const handleMouseOut = () => {
+    setHoveredIndex(null);
+  };
+
+  useEffect(() => {
+    (async function getEthereumExchangeRate() {
+      try {
+        const response = await axios.get(
+          'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd'
+        );
+        const data = response.data;
+        if (data && data.ethereum && data.ethereum.usd) {
+          setExchangeRate(data.ethereum.usd);
+        }
+      } catch (error) {
+        console.log('Error fetching Ethereum exchange rate:', error);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     setIsPending(true);
@@ -76,16 +115,33 @@ export default function MarketplacePage() {
         {!isPending && (
           <>
             <StPictureList>
-              {currentNftList.map(el => {
+              {currentNftList.map((el, idx) => {
                 return (
                   el.tokenId !== '0' &&
                   el.tokenURI !== undefined && (
-                    <PictureItem
-                      key={el.tokenId}
-                      link={`/marketplace/${el.tokenId}`}
-                      id={el.tokenId}
-                      src={el.tokenURI}
-                    />
+                    <Link href={`/marketplace/${el.tokenId}`} key={el.tokenId}>
+                      <StNftItem
+                        onMouseEnter={() => handleMouseOver(idx)}
+                        onMouseLeave={handleMouseOut}
+                      >
+                        {hoveredIndex === idx && (
+                          <StNftMouseover>
+                            <StMouseoverIcon>
+                              <CurrencyEthereum
+                                strokeWidth={1.5}
+                                width={25.5}
+                                height={24}
+                              />
+                            </StMouseoverIcon>
+                            <StMouseoverFooter>
+                              <StEtherPrice>{el.price} ETH</StEtherPrice>
+                              <StPrice>${el.price * exchangeRate}</StPrice>
+                            </StMouseoverFooter>
+                          </StNftMouseover>
+                        )}
+                        <Image src={el.tokenURI} sizes='268px' fill alt='' />
+                      </StNftItem>
+                    </Link>
                   )
                 );
               })}

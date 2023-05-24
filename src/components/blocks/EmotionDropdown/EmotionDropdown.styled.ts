@@ -24,7 +24,7 @@ export const StEmotionDropdown = styled.div`
   box-shadow: ${({ theme }) => theme.boxShadow.button};
   border-radius: 0.75rem;
   margin-top: 0.75rem;
-  z-index: 100;
+  z-index: 2;
 `;
 
 export const StEmotionItem = styled.div`
