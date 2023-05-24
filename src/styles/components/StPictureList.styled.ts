@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StPictureListContainer = styled.div`
-  padding: 2.25rem;
+  padding: 2.75rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;

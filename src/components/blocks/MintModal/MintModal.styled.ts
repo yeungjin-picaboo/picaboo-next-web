@@ -43,7 +43,7 @@ export const StGridBox = styled.div`
 
 const StInput = styled.input`
   padding: 0.75rem;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   border: 2px solid ${({ theme }) => theme.borderclr.base};
   &::placeholder {
     color: ${({ theme }) => theme.clr.quaternary};
@@ -69,7 +69,7 @@ export const StDescTextarea = styled.textarea`
   height: 130px;
   font-size: 1rem;
   padding: 0.75rem;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   resize: none;
   border: 2px solid ${({ theme }) => theme.borderclr.base};
   &::placeholder {

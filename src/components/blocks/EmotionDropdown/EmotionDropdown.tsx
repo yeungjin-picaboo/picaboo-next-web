@@ -9,16 +9,19 @@ import {
 import moods from '@/data/moods';
 import { ChevronDown } from 'react-feather';
 
-interface IMoodDropdown {
+interface IEmotionDropdown {
   emotion: string;
   setEmotion: Dispatch<SetStateAction<string>>;
 }
 
-export default function MoodDropdown({ emotion, setEmotion }: IMoodDropdown) {
+export default function EmotionDropdown({
+  emotion,
+  setEmotion,
+}: IEmotionDropdown) {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen, handleOpen] = useDropdown(dropdownRef);
   return (
-    <StDropdownContainer ref={dropdownRef}>
+    <StDropdownContainer ref={dropdownRef} className='emotion'>
       <StSelectedEmotionBox onClick={handleOpen}>
         <>{emotion}</>
         <ChevronDown strokeWidth={1.5} />
