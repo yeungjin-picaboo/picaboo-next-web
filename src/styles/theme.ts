@@ -12,6 +12,7 @@ export const theme: DefaultTheme = {
     eighth: '#a0a0a0',
     enabled: '#ffffff',
     disabled: '#bababa',
+    accent: '#DCA11D',
     error: '#ff3333',
     danger: '#DF2E38',
   },

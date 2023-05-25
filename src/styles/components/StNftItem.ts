@@ -22,17 +22,6 @@ export const StNftMouseover = styled(StNftItem)`
   box-shadow: none;
 `;
 
-export const StMouseoverIcon = styled.div`
-  position: absolute;
-  top: 0.75rem;
-  left: 0.75rem; 
-  padding: 0.1rem;
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.bgclr.coin};
-  color: ${({ theme }) => theme.clr.base};
-  border: 2px solid ${({ theme }) => theme.borderclr.focus};
-`;
-
 export const StMouseoverFooter = styled.div`
   position: absolute;
   border-radius: 0 0 1.25rem 1.25rem;

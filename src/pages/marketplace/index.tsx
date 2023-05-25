@@ -13,13 +13,13 @@ import Image from 'next/image';
 import {
   StNftMouseover,
   StNftItem,
-  StMouseoverIcon,
   StMouseoverFooter,
   StEtherPrice,
   StPrice,
 } from '@/styles/components/StNftItem';
 import { CurrencyEthereum } from 'tabler-icons-react';
 import axios from 'axios';
+import StEtherIcon from '@/styles/components/StEtherIcon.styled';
 
 const ITEMS_PER_PAGE = 16; // 페이지 당 아이템 개수
 
@@ -126,13 +126,13 @@ export default function MarketplacePage() {
                       >
                         {hoveredIndex === idx && (
                           <StNftMouseover>
-                            <StMouseoverIcon>
+                            <StEtherIcon>
                               <CurrencyEthereum
                                 strokeWidth={1.5}
                                 width={25.5}
                                 height={24}
                               />
-                            </StMouseoverIcon>
+                            </StEtherIcon>
                             <StMouseoverFooter>
                               <StEtherPrice>{el.price} ETH</StEtherPrice>
                               <StPrice>${el.price * exchangeRate}</StPrice>
