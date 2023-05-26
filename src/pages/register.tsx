@@ -15,6 +15,7 @@ import ubuntu from '@/styles/fonts/ubuntu';
 import {
   confirmationOptions,
   emailOptions,
+  nicknameOptions,
   passwordOptions,
 } from '@/utils/inputOptions';
 import { AxiosError } from 'axios';
@@ -31,6 +32,7 @@ export default function RegisterPage() {
     errors,
     register,
     handleResetEmail,
+    handleResetNickname,
   } = useAuthForm(
     registerFn,
     data => {
@@ -47,6 +49,9 @@ export default function RegisterPage() {
   const { currentRef: confirmCurrentRef, ...confirmation } = useInputRef(
     register('confirmation', confirmationOptions(watch))
   );
+  const { currentRef: nicknameCurrentRef, ...nickname } = useInputRef(
+    register('nickname', nicknameOptions)
+  );
 
   return (
     <StAuthFormLayout className={ubuntu.className}>
@@ -61,7 +66,7 @@ export default function RegisterPage() {
                 label='Email'
                 placeholder='Email'
                 resetIconMode
-                handleResetEmail={handleResetEmail}
+                handleReset={handleResetEmail}
                 {...register('email', emailOptions)}
                 error={errors?.email}
               />
@@ -84,6 +89,17 @@ export default function RegisterPage() {
                 _ref={confirmCurrentRef}
                 {...confirmation}
                 error={errors?.confirmation}
+              />
+              <Input
+                id='nickname'
+                type='text'
+                label='Nickname'
+                placeholder='Nickname'
+                resetIconMode
+                handleReset={handleResetNickname}
+                _ref={nicknameCurrentRef}
+                {...nickname}
+                error={errors?.nickname}
               />
               <StButton disabled={isSubmitting}>Register</StButton>
             </StAuthForm>

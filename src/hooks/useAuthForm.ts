@@ -19,7 +19,7 @@ export default function useAuthForm(
     resetField,
     watch,
   } = useForm({
-    defaultValues: { email: '', password: '', confirmation: '' },
+    defaultValues: { email: '', password: '', confirmation: '', nickname: '' },
   });
 
   const onValid = async (data: ICredentials) => {
@@ -27,6 +27,9 @@ export default function useAuthForm(
   };
   const handleResetEmail = () => {
     resetField('email');
+  };
+  const handleResetNickname = () => {
+    resetField('nickname');
   };
 
   return {
@@ -38,5 +41,6 @@ export default function useAuthForm(
     resetField,
     watch,
     handleResetEmail,
+    handleResetNickname,
   };
 }

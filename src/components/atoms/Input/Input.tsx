@@ -21,9 +21,9 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
   label?: string;
   error?: FieldError | undefined;
-  resetIconMode?: true;
-  handleResetEmail?: () => void;
-  viewIconMode?: true;
+  resetIconMode?: boolean;
+  handleReset?: () => void;
+  viewIconMode?: boolean;
   _ref?: MutableRefObject<HTMLInputElement | null>;
 }
 
@@ -33,7 +33,7 @@ function Input(
     label,
     error,
     resetIconMode,
-    handleResetEmail,
+    handleReset,
     viewIconMode,
     _ref,
     ...restProps
@@ -41,7 +41,7 @@ function Input(
   ref: Ref<HTMLInputElement>
 ) {
   useEffect(() => {
-    if (resetIconMode && !handleResetEmail) {
+    if (resetIconMode && !handleReset) {
       console.warn(
         'Warning: handleResetEmail is missing while resetIconMode is true'
       );
@@ -49,7 +49,7 @@ function Input(
     if (viewIconMode && !_ref) {
       console.warn('Warning: _ref is missing while viewIconMode is true');
     }
-  }, [resetIconMode, handleResetEmail, viewIconMode, _ref]);
+  }, [resetIconMode, handleReset, viewIconMode, _ref]);
 
   return (
     <StFieldSet>
@@ -65,7 +65,7 @@ function Input(
           error={error != undefined ? true : false}
           {...restProps}
         />
-        {resetIconMode && handleResetEmail && <X onClick={handleResetEmail} />}
+        {resetIconMode && handleReset && <X onClick={handleReset} />}
         {viewIconMode && _ref && <ViewToggle inputRef={_ref} />}
       </StInputBox>
       {error && (

@@ -36,3 +36,10 @@ export const confirmationOptions = (watch: UseFormWatch<ICredentials>) => {
     },
   };
 };
+
+export const nicknameOptions = {
+  required: {
+    value: true,
+    message: 'The nickname is required',
+  },
+};
