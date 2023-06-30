@@ -53,7 +53,7 @@ export default function LoginPage() {
                 label='Email'
                 placeholder='Email'
                 resetIconMode
-                handleResetEmail={handleResetEmail}
+                handleReset={handleResetEmail}
                 {...register('email', emailOptions)}
                 error={errors?.email}
               />
