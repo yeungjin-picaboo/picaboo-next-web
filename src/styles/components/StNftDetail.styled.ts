@@ -7,7 +7,7 @@ export const StNftContainer = styled.div`
 `;
 
 export const StNftHeader = styled.div`
-  padding: 2.25rem 2.25rem 0.75rem 2.25rem;
+  padding: 2.25rem 0 0.75rem 0;
   position: sticky;
   top: 80px;
   z-index: 1;
@@ -21,7 +21,8 @@ export const StNftHeader = styled.div`
 `;
 
 export const StGrid = styled.div`
-  padding: 0.5rem 2.25rem;
+  padding: 1.5rem 0;
+  border-bottom: 2px solid ${({ theme }) => theme.borderclr.base};
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-gap: 2rem;
@@ -40,7 +41,7 @@ export const StNftTitle = styled.div`
   font-weight: bold;
 
   svg {
-    margin-right: 0.25rem;
+    margin-right: 0.5rem;
   }
 `;
 
@@ -63,6 +64,7 @@ export const StCreatedAt = styled.div`
 `;
 
 export const StNftDesc = styled.div`
+  word-break: break-all;
   line-height: 2rem;
   letter-spacing: 1px;
 `;

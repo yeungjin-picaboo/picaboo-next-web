@@ -35,7 +35,7 @@ export const theme: DefaultTheme = {
   },
   boxShadow: {
     normal:
-      '0 4px 10px 0  rgba(0, 0, 0, 0.25), 0 2px 6px 0  rgba(0, 0, 0, 0.5)',
+      '0 4px 10px 0  rgba(0, 0, 0, 0.01), 0 2px 6px 0  rgba(0, 0, 0, 0.5)',
     inset: 'inset 0px 0px 4px 1px rgba(0, 0, 0, 0.25)',
     button: '0 2px 6px 0  rgba(0, 0, 0, 0.25)',
   },

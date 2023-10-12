@@ -8,13 +8,13 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'picaboonftimage.s3.ap-northeast-2.amazonaws.com',
+        hostname: 'picaboo-nft-image.s3.ap-northeast-2.amazonaws.com',
         port: '',
         pathname: '/*',
       },
       {
         protocol: 'https',
-        hostname: 'picaboodiaryimage.s3.ap-northeast-2.amazonaws.com',
+        hostname: 'picaboo-diary-image.s3.ap-northeast-2.amazonaws.com',
         port: '',
         pathname: '/*',
       },

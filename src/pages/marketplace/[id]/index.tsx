@@ -32,6 +32,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/es';
 import axios from 'axios';
 import moods from '@/data/moods';
+import Comment from '@/components/blocks/Comment/Comment';
 
 export default function NftDetailPage() {
   const { query } = useRouter();
@@ -39,6 +40,34 @@ export default function NftDetailPage() {
   const [nftInfo, setNftInfo] = useState<INfts | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [exchangeRate, setExchangeRate] = useState<number>(0);
+  const buy = async () => {
+    if (account == null) {
+      alert('메타마스크에 로그인하세요');
+    } else if (account.toUpperCase() === nftInfo.owner.toUpperCase()) {
+      alert('이미 소유한것은 구매할 수 없습니다.');
+    } else {
+      // 산다.
+      await myContract.buyNFT(Number(nftInfo.tokenId), {
+        from: account,
+        value: Web3.utils.toWei(`${nftInfo.price}`, 'ether'),
+        gas: 1000000,
+      });
+      const nft = await myContract.getDetailOfNft(Number(query.id));
+      const nickname = await myContract.getNickName(nft.owner);
+      setNftInfo({
+        imageName: nft.imageName,
+        owner: nft.owner,
+        nickname,
+        price: nft.price,
+        released: nft.released,
+        tokenId: nft.tokenId,
+        tokenURI: nft.tokenURI,
+        emotion: nft.emotion,
+        description: nft.description,
+      });
+      alert('구매 완료');
+    }
+  };
 
   useEffect(() => {
     (async function getEthereumExchangeRate() {
@@ -128,44 +157,10 @@ export default function NftDetailPage() {
                 <StEtherPrice>{nftInfo.price} ETH</StEtherPrice>
                 <StPrice>${nftInfo.price * exchangeRate}</StPrice>
               </StPriceBox>
-              <StBuyBtn
-                onClick={async () => {
-                  if (account == null) {
-                    alert('메타마스크에 로그인하세요');
-                  } else if (
-                    account.toUpperCase() === nftInfo.owner.toUpperCase()
-                  ) {
-                    alert('이미 소유한것은 구매할 수 없습니다.');
-                  } else {
-                    // 산다.
-                    await myContract.buyNFT(Number(nftInfo.tokenId), {
-                      from: account,
-                      value: Web3.utils.toWei(`${nftInfo.price}`, 'ether'),
-                      gas: 1000000,
-                    });
-                    const nft = await myContract.getDetailOfNft(
-                      Number(query.id)
-                    );
-                    const nickname = await myContract.getNickName(nft.owner);
-                    setNftInfo({
-                      imageName: nft.imageName,
-                      owner: nft.owner,
-                      nickname,
-                      price: nft.price,
-                      released: nft.released,
-                      tokenId: nft.tokenId,
-                      tokenURI: nft.tokenURI,
-                      emotion: nft.emotion,
-                      description: nft.description,
-                    });
-                    alert('구매 완료');
-                  }
-                }}
-              >
-                Buy now
-              </StBuyBtn>
+              <StBuyBtn onClick={buy}>Buy now</StBuyBtn>
             </StGridRight>
           </StGrid>
+          <Comment />
         </StNftContainer>
       )}
     </Layout>

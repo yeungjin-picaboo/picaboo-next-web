@@ -73,7 +73,7 @@ export default function MarketplacePage() {
           address = await myContract.convertNickToAddr(address);
         }
         const urlList = await myContract.getList(selectedEmotion, address);
-        setNftList(urlList);
+        setNftList([...urlList].reverse());
         searchInputRef.current.value = '';
       })();
     }

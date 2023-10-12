@@ -39,10 +39,7 @@ export default function Header() {
           <Image src='/icons/logo.png' alt='' width={40} height={40} />
           <StLogoText>Picaboo</StLogoText>
         </StLogo>
-        <Navigation
-          route={route}
-          list={['diary', 'stats', 'marketplace', 'question']}
-        />
+        <Navigation route={route} list={['diary', 'marketplace', 'question']} />
       </StHeaderLeft>
       <StHeaderRight>
         <StWalletBox onClick={handleModalOpen}>
