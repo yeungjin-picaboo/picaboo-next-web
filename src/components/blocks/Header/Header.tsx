@@ -1,13 +1,16 @@
 import Link from 'next/link';
+import Flag from 'react-flagkit';
 import { LogOut, Shield } from 'react-feather';
-import { UserCircle, Wallet } from 'tabler-icons-react';
+import { UserCircle, Wallet, World } from 'tabler-icons-react';
 import Navigation from '../Navigation/Navigation';
 import {
+  AccountMenu,
   StDropdown,
   StDropdownItem,
   StHeader,
   StHeaderLeft,
   StHeaderRight,
+  StLanguageDropdown,
   StLogo,
   StLogoText,
   StUserDropdown,
@@ -15,23 +18,29 @@ import {
   StWalletText,
 } from './Header.styled';
 import useHeader from '@/hooks/useHeader';
-import comforterBrush from '@/styles/fonts/comforterBrush';
 import Image from 'next/image';
-import ubuntu from '@/styles/fonts/ubuntu';
 import WalletModal from '../WalletModal/WalletModal';
+import { useTranslation } from 'next-i18next';
+import { comforterBrush, meiryo } from '@/styles/fonts/font';
+import { useRouter } from 'next/router';
 
 export default function Header() {
   const {
     route,
     isModalOpen,
-    isDropdownOpen,
-    dropdownRef,
-    handleDropdown,
+    isUserDropdownOpen,
+    userDropdownRef,
+    isLangDropdownOpen,
+    langDropdownRef,
+    handleUserDropdown,
+    handleLangDropdown,
     handleModalOpen,
     handleModalClose,
     handleLogout,
   } = useHeader();
+  const { t } = useTranslation('header');
 
+  const router = useRouter();
   return (
     <StHeader>
       <StHeaderLeft>
@@ -39,31 +48,88 @@ export default function Header() {
           <Image src='/icons/logo.png' alt='' width={40} height={40} />
           <StLogoText>Picaboo</StLogoText>
         </StLogo>
-        <Navigation route={route} list={['diary', 'marketplace', 'question']} />
+        <Navigation route={route} list={['diary', 'marketplace', 'contact']} />
       </StHeaderLeft>
-      <StHeaderRight>
-        <StWalletBox onClick={handleModalOpen}>
-          <Wallet size={30} strokeWidth={1} />
-          <StWalletText className={ubuntu.className}>
-            Connect Wallet
-          </StWalletText>
-        </StWalletBox>
-        {isModalOpen && <WalletModal handleClose={handleModalClose} />}
-        <StUserDropdown ref={dropdownRef} isOpen={isDropdownOpen}>
-          <UserCircle onClick={handleDropdown} size={30} strokeWidth={1} />
-          {isDropdownOpen && (
+      <StHeaderRight className={meiryo.className}>
+        <AccountMenu>
+          <StWalletBox onClick={handleModalOpen}>
+            <Wallet size={30} strokeWidth={1} />
+            <StWalletText>{t('connect_wallet')}</StWalletText>
+          </StWalletBox>
+          {isModalOpen && <WalletModal handleClose={handleModalClose} />}
+          <StUserDropdown
+            ref={userDropdownRef}
+            isOpen={isUserDropdownOpen}
+            onClick={handleUserDropdown}
+          >
+            <UserCircle size={30} strokeWidth={1} />
+            {isUserDropdownOpen && (
+              <StDropdown>
+                <StDropdownItem>
+                  <Shield size={20} />
+                  <Link href='/account'>{t('account')}</Link>
+                </StDropdownItem>
+                <StDropdownItem onClick={handleLogout}>
+                  <LogOut size={20} />
+                  {t('logout')}
+                </StDropdownItem>
+              </StDropdown>
+            )}
+          </StUserDropdown>
+        </AccountMenu>
+        <StLanguageDropdown
+          ref={langDropdownRef}
+          isOpen={isLangDropdownOpen}
+          onClick={handleLangDropdown}
+        >
+          <World size={30} strokeWidth={1} />
+          {isLangDropdownOpen && (
             <StDropdown>
-              <StDropdownItem>
-                <Shield size={18} />
-                <Link href='/account'>Account</Link>
+              <StDropdownItem
+                onClick={() => {
+                  router.push(router.asPath, router.asPath, { locale: 'en' });
+                }}
+              >
+                <Flag
+                  country='US'
+                  role='button'
+                  style={{
+                    boxShadow: '0px 0px 4px 1px rgba(0, 0, 0, 0.25)',
+                    height: '16px',
+                  }}
+                />
               </StDropdownItem>
-              <StDropdownItem onClick={handleLogout}>
-                <LogOut size={18} />
-                Logout
+              <StDropdownItem
+                onClick={() => {
+                  router.push(router.asPath, router.asPath, { locale: 'ja' });
+                }}
+              >
+                <Flag
+                  country='JP'
+                  role='button'
+                  style={{
+                    boxShadow: '0px 0px 4px 1px rgba(0, 0, 0, 0.25)',
+                    height: '16px',
+                  }}
+                />
+              </StDropdownItem>
+              <StDropdownItem
+                onClick={() => {
+                  router.push(router.asPath, router.asPath, { locale: 'kr' });
+                }}
+              >
+                <Flag
+                  country='KR'
+                  role='button'
+                  style={{
+                    boxShadow: '0px 0px 4px 1px rgba(0, 0, 0, 0.25)',
+                    height: '16px',
+                  }}
+                />
               </StDropdownItem>
             </StDropdown>
           )}
-        </StUserDropdown>
+        </StLanguageDropdown>
       </StHeaderRight>
     </StHeader>
   );

@@ -22,6 +22,7 @@ import useDiaryEntryForm from '@/hooks/useDiaryEntryForm';
 import useDropdown from '@/hooks/useDropdown';
 import DatePicker from '@/components/atoms/DatePicker/DatePicker';
 import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 
 interface IDiaryEntryFormProps {
   today: string;
@@ -40,6 +41,7 @@ export default function DiaryEntryForm({
   setDate,
   setEntry,
 }: IDiaryEntryFormProps) {
+  const { t } = useTranslation('diary-form');
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isCalendarOpen, setIsCalendarOpen, handleCalendarOpen] =
     useDropdown(dropdownRef);
@@ -75,18 +77,20 @@ export default function DiaryEntryForm({
           <StDiaryEntryBox>
             <StDiaryTitleInput
               name='title'
-              placeholder='How was your day?'
+              placeholder={t('title_placeholder')}
               value={title}
               onChange={handleChange}
             />
             <StDiaryContentTextarea
               name='content'
-              placeholder='+ description'
+              placeholder={t('desc_placeholder')}
               value={content}
               onChange={handleChange}
             />
           </StDiaryEntryBox>
-          <StDiaryFormButton disabled={isDisabled}>Next</StDiaryFormButton>
+          <StDiaryFormButton disabled={isDisabled}>
+            {t('next')}
+          </StDiaryFormButton>
         </StDiaryForm>
       )}
     </>

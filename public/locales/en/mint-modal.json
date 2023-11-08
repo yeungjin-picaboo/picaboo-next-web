@@ -1,0 +1,10 @@
+{
+  "title": "Create new NFT",
+  "price": "Price",
+  "mood": "Mood",
+  "name": "Name",
+  "name_placeholder": "Please write a name for the image",
+  "description": "Description",
+  "desc_placeholder": "Please write a description for the image",
+  "create": "Create"
+}

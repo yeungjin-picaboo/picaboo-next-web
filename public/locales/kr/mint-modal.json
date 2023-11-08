@@ -1,0 +1,10 @@
+{
+  "title": "새로운 NFT 생성하기",
+  "price": "가격",
+  "mood": "기분",
+  "name": "이름",
+  "name_placeholder": "NFT의 이름을 입력해주세요",
+  "description": "설명",
+  "desc_placeholder": "NFT의 설명을 입력해주세요",
+  "create": "생성"
+}

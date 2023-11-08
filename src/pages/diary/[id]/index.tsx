@@ -20,6 +20,7 @@ import weather from '@/data/weather';
 import moods from '@/data/moods';
 import DiaryHeader from '@/components/blocks/DiaryHeader/DiaryHeader';
 import StDiaryPictureBox from '@/styles/components/StDiaryPictureBox';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 interface IWeatherEmotionIcons {
   weatherIcon: JSX.Element | undefined;
@@ -97,3 +98,17 @@ export default function DiaryDetailPage() {
     </Layout>
   );
 }
+
+export const getServerSideProps = async ({ locale, params }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'header',
+        'wallet-modal',
+        'mint-modal',
+        'delete-modal',
+      ])),
+      params,
+    },
+  };
+};

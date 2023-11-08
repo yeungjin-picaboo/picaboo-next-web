@@ -1,0 +1,8 @@
+{
+  "account_alert": "メタマスクにログインしてください",
+  "owner_alert": "すでに所有しているものは購入できません。",
+  "purchased_alert": "購入しました。",
+  "owner_by": "所有者",
+  "price": "価格",
+  "buy_now": "今すぐ購入"
+}

@@ -20,21 +20,26 @@ import {
 import { CurrencyEthereum } from 'tabler-icons-react';
 import axios from 'axios';
 import StEtherIcon from '@/styles/components/StEtherIcon.styled';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 
 const ITEMS_PER_PAGE = 16; // 페이지 당 아이템 개수
 
 export default function MarketplacePage() {
+  const { t } = useTranslation('marketplace');
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 번호
   const [isPending, setIsPending] = useState(false);
   const [nftList, setNftList] = useState<any[]>([]);
   const [currentNftList, setCurrentNftList] = useState<any[]>([]);
   const [numOfItem, setNumOfItem] = useState(0);
   const { myContract } = useWeb3();
-  const [selectedEmotion, setSelectedEmotion] = useState('All categories');
-  const [selectedTime, setSelectedTime] = useState('All');
+  const [selectedEmotion, setSelectedEmotion] = useState(t('all_categories'));
+  const [selectedTime, setSelectedTime] = useState(t('all'));
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [exchangeRate, setExchangeRate] = useState<number>(0);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const router = useRouter();
 
   // 마우스 오버 이벤트 핸들러
   const handleMouseOver = index => {
@@ -45,6 +50,10 @@ export default function MarketplacePage() {
   const handleMouseOut = () => {
     setHoveredIndex(null);
   };
+
+  useEffect(() => {
+    setSelectedEmotion(t('all_categories'));
+  }, [router.locale, t]);
 
   useEffect(() => {
     (async function getEthereumExchangeRate() {
@@ -67,13 +76,37 @@ export default function MarketplacePage() {
     if (myContract !== null) {
       (async () => {
         let address = searchInputRef.current.value;
+
+        //이것은 닉네임 설정하기 위한 코드
+        //if (address != "") {
+        // await myContract.setNickName(address, {
+        //    from: account,
+        //  });
+        //} else {
+        //  address = "0x0000000000000000000000000000000000000000";
+        //}
+        if (address == '') {
+          address = '0x0000000000000000000000000000000000000000';
+        }
+
         try {
           await myContract.checkAddress(address);
         } catch {
           address = await myContract.convertNickToAddr(address);
         }
-        const urlList = await myContract.getList(selectedEmotion, address);
-        setNftList([...urlList].reverse());
+
+        let urlList = [];
+        // console.log(
+        //   selectedEmotion,
+        //   t('all_categories'),
+        //   selectedEmotion == t('all_categories')
+        // );
+        if (selectedEmotion == t('all_categories')) {
+          urlList = await myContract.getList('all', address);
+        } else {
+          urlList = await myContract.getList(selectedEmotion, address);
+        }
+        setNftList(urlList);
         searchInputRef.current.value = '';
       })();
     }
@@ -82,7 +115,7 @@ export default function MarketplacePage() {
 
   useEffect(() => {
     let temp = nftList;
-    if (selectedTime !== 'All') {
+    if (selectedTime !== t('all')) {
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       today.setDate(today.getDate() - Number(selectedTime.slice(0, -1)));
@@ -115,7 +148,7 @@ export default function MarketplacePage() {
         {!isPending && (
           <>
             <StPictureList>
-              {currentNftList.map((el, idx) => {
+              {currentNftList.reverse().map((el, idx) => {
                 return (
                   el.tokenId !== '0' &&
                   el.tokenURI !== undefined && (
@@ -135,7 +168,9 @@ export default function MarketplacePage() {
                             </StEtherIcon>
                             <StMouseoverFooter>
                               <StEtherPrice>{el.price} ETH</StEtherPrice>
-                              <StPrice>${el.price * exchangeRate}</StPrice>
+                              <StPrice>
+                                ${(el.price * exchangeRate).toFixed(2)}
+                              </StPrice>
                             </StMouseoverFooter>
                           </StNftMouseover>
                         )}
@@ -158,3 +193,16 @@ export default function MarketplacePage() {
     </Layout>
   );
 }
+
+export const getStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'header',
+        'wallet-modal',
+        'marketplace',
+      ])),
+      locale,
+    },
+  };
+};

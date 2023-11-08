@@ -18,6 +18,7 @@ import Portal from '../Portal/Portal';
 import { useRouter } from 'next/router';
 import useTodayDate from '@/hooks/useTodayDate';
 import MoodDropdown from '../EmotionDropdown/EmotionDropdown';
+import { useTranslation } from 'next-i18next';
 
 interface IMintModal {
   imageUrl: string;
@@ -30,6 +31,7 @@ export default function MintModal({
   emotion,
   handleClose,
 }: IMintModal) {
+  const { t } = useTranslation('mint-modal');
   const [selectedEmotion, setSelectedEmotion] = useState(emotion);
   const router = useRouter();
   const { myContract, account } = useWeb3();
@@ -59,17 +61,17 @@ export default function MintModal({
         <StModal>
           <X onClick={handleClose} />
           <form onSubmit={handleSubmit}>
-            <StTitle>Create your NFT</StTitle>
+            <StTitle>{t('title')}</StTitle>
             <StGridBox>
               <StFieldset>
-                <StLabel>Price *</StLabel>
+                <StLabel>{t('price')} *</StLabel>
                 <StPriceInputBox>
                   <StPriceInput type='number' required ref={priceRef} />
                   <span>ETH</span>
                 </StPriceInputBox>
               </StFieldset>
               <StFieldset>
-                <StLabel>Emotion *</StLabel>
+                <StLabel>{t('mood')} *</StLabel>
                 <MoodDropdown
                   emotion={selectedEmotion}
                   setEmotion={setSelectedEmotion}
@@ -77,22 +79,22 @@ export default function MintModal({
               </StFieldset>
             </StGridBox>
             <StFieldset>
-              <StLabel>Name *</StLabel>
+              <StLabel>{t('name')} *</StLabel>
               <StNameInput
                 ref={nameRef}
-                placeholder='Please write a name for the image'
+                placeholder={t('name_placeholder')}
                 required
               />
             </StFieldset>
             <StFieldset>
-              <StLabel>Description *</StLabel>
+              <StLabel>{t('description')} *</StLabel>
               <StDescTextarea
                 ref={descRef}
-                placeholder='Please write a description for the image'
+                placeholder={t('desc_placeholder')}
                 required
               />
             </StFieldset>
-            <StCreateBtn>Create</StCreateBtn>
+            <StCreateBtn>{t('create')}</StCreateBtn>
           </form>
         </StModal>
       </StModalOverlay>

@@ -3,6 +3,7 @@ import DiaryMetaForm from '@/components/blocks/DiaryMetaForm/DiaryMetaForm';
 import Layout from '@/components/blocks/Layout/Layout';
 import useTodayDate from '@/hooks/useTodayDate';
 import IDiary from '@/types/IDiary';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useState } from 'react';
 
 export default function CreateDiaryPage() {
@@ -43,3 +44,16 @@ export default function CreateDiaryPage() {
     </Layout>
   );
 }
+
+export const getStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'header',
+        'wallet-modal',
+        'diary-form',
+      ])),
+      locale,
+    },
+  };
+};

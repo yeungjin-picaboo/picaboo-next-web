@@ -18,6 +18,7 @@ import {
 } from 'react';
 import { PhotoSearch, Search } from 'tabler-icons-react';
 import EmotionDropdown from '../EmotionDropdown/EmotionDropdown';
+import { useTranslation } from 'next-i18next';
 
 interface INftListHeader {
   numOfItem: number;
@@ -38,6 +39,7 @@ export default function NftListHeader({
   setSelectedTime,
   setSelectedEmotion,
 }: INftListHeader) {
+  const { t } = useTranslation('marketplace');
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsPending(true);
@@ -45,11 +47,11 @@ export default function NftListHeader({
 
   return (
     <div>
-      <StTitle>NFT Marketplace</StTitle>
+      <StTitle>{t('title')}</StTitle>
       <StToolkitContainer>
         <StToolBox>
           <EmotionDropdown
-            initialValue='All categories'
+            initialValue={t('all_categories')}
             hasInitialValue={true}
             emotion={selectedEmotion}
             setEmotion={setSelectedEmotion}
@@ -58,14 +60,14 @@ export default function NftListHeader({
             <Search />
             <StSearchInput
               ref={searchInputRef}
-              placeholder='Search by user address or nickname'
+              placeholder={t('search_placeholder')}
             />
             <StSearchBtn>
               <PhotoSearch />
             </StSearchBtn>
           </StSearchForm>
           <StTimeBox>
-            {['1d', '7d', '30d', 'All'].map(str => {
+            {[t('1d'), t('7d'), t('30d'), t('all')].map(str => {
               return (
                 <StTime
                   key={str}
@@ -79,7 +81,7 @@ export default function NftListHeader({
           </StTimeBox>
         </StToolBox>
         <StNumOfResults>
-          <span>{numOfItem}</span> results
+          <span>{numOfItem}</span> {t('results')}
         </StNumOfResults>
       </StToolkitContainer>
     </div>

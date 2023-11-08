@@ -34,6 +34,25 @@ export const StLogoText = styled.div`
 
 export const StHeaderRight = styled.div`
   ${({ theme }) => theme.mixins.flexBox()};
+  
+`;
+
+export const StLanguageDropdown = styled.div<{ isOpen: boolean }>`
+  position:relative;
+  padding: 0.25rem 0.75rem;
+  border: 2px solid ${({ theme }) => theme.borderclr.primary};
+  border-radius: 1rem;
+  background-color: ${({ isOpen, theme }) =>
+    isOpen && 'rgba(255, 255, 255, 0.1)'};
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: 0.2s;
+  }
+`;
+
+export const AccountMenu = styled.div`
+  margin-right: 0.75rem;
+  ${({ theme }) => theme.mixins.flexBox()};
   border: 2px solid ${({ theme }) => theme.borderclr.primary};
   border-radius: 1rem;
 `;
@@ -41,7 +60,6 @@ export const StHeaderRight = styled.div`
 export const StWalletBox = styled.div`
   ${({ theme }) => theme.mixins.flexBox()};
   padding: 0.25rem 0.75rem;
-  border-radius: 1rem 0rem 0rem 1rem;
   border-right: 2px solid ${({ theme }) => theme.borderclr.primary};
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
@@ -73,14 +91,14 @@ export const StDropdown = styled.ul`
   right: 0;
   color: ${({ theme }) => theme.clr.base};
   background-color: ${({ theme }) => theme.bgclr.primary};
-  box-shadow: ${({ theme }) => theme.boxShadow.normal};
-  margin-top: 0.75rem;
-  border-radius: 1rem;
+  box-shadow: ${({ theme }) => theme.boxShadow.button};
+  margin-top: 1rem;
+  border-radius: 0.75rem;
 `;
 
 export const StDropdownItem = styled.li`
   ${({ theme }) => theme.mixins.flexBox('row', 'center', 'flex-start')};
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1rem;
   border-bottom: 2px solid ${({ theme }) => theme.borderclr.base};
   &:first-child {
     border-radius: 1rem 1rem 0 0;

@@ -1,0 +1,10 @@
+{
+  "title": "新しいNFTを作成",
+  "price": "価格",
+  "mood": "気分",
+  "name": "NFTのタイトル",
+  "name_placeholder": "NFTのタイトルをご記入ください",
+  "description": "NFTの説明",
+  "desc_placeholder": "NFTの説明をご記入ください",
+  "create": "生成"
+}

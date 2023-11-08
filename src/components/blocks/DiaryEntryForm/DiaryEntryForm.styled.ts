@@ -55,9 +55,9 @@ export const StDiaryContentTextarea = styled.textarea`
   font: inherit;
   flex: 1;
   width: 100%;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 2rem;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   word-break: break-all;
   resize: none;
   border: none;

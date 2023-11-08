@@ -24,6 +24,7 @@ import { StPictureItem } from '@/styles/components/StPictureItem.styled';
 import ImageLoading from '@/components/atoms/ImageLoading/ImageLoading';
 import Link from 'next/link';
 import Image from 'next/image';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export default function DiaryListPage() {
   const timerId = useRef<NodeJS.Timer>();
@@ -121,3 +122,11 @@ export default function DiaryListPage() {
     </Layout>
   );
 }
+
+export const getStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['header', 'wallet-modal'])),
+    },
+  };
+};

@@ -10,19 +10,19 @@ export const StToolkitContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   font-size: 1.15rem;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
 `;
 
 export const StToolBox = styled.div`
   display: flex;
 
   .emotion {
-    width: 180px;
+    min-width: 190px;
   }
 `;
 
 export const StSearchForm = styled.form`
-  margin: 0 1.25rem;
+  margin: 0 1rem;
   padding-left: 0.75rem;
   border-radius: 0.75rem;
   border: 2px solid ${({ theme }) => theme.borderclr.base};
@@ -34,7 +34,7 @@ export const StSearchForm = styled.form`
 export const StSearchInput = styled.input`
   border: none;
   outline: none;
-  width: 334px;
+  width: 380px;
   margin-left: 0.5rem;
   &::placeholder {
     color: ${({ theme }) => theme.clr.quaternary};
@@ -57,7 +57,7 @@ export const StTimeBox = styled.div`
 `;
 
 export const StTime = styled.div<{ isSelected: boolean }>`
-  padding: 0.75rem;
+  padding: 0.6rem;
   display: flex;
   align-items: center;
   justify-content: center;

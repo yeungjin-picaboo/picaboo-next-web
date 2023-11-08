@@ -31,7 +31,7 @@ export const StModalTitle = styled.h1`
 `;
 
 export const StModalSubTitle = styled.h2`
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 2rem;
   width: 360px;
   margin: 0 auto;

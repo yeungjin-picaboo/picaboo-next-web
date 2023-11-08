@@ -121,8 +121,6 @@ export default function DiaryHeader({
         <Trash2 strokeWidth={1.5} onClick={handleDeleteModalOpen} />
         {isDeleteModalOpen && (
           <DeleteModal
-            titleMsg='Delete Diary'
-            subMsg='Are you sure you want to delete this diary?'
             handleDelete={handleDelete}
             handleClose={handleDeleteModalClose}
           />

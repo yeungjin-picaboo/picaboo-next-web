@@ -10,6 +10,7 @@ import {
 import { X } from 'react-feather';
 import Image from 'next/image';
 import useMetamask from '@/hooks/useMetamask';
+import { useTranslation } from 'next-i18next';
 
 interface IWalletModalProps {
   handleClose: () => void;
@@ -17,6 +18,7 @@ interface IWalletModalProps {
 
 export default function WalletModal({ handleClose }: IWalletModalProps) {
   const { connectWallet } = useMetamask(handleClose);
+  const { t } = useTranslation('wallet-modal');
 
   return (
     <Portal qs={'#__next'}>
@@ -24,11 +26,8 @@ export default function WalletModal({ handleClose }: IWalletModalProps) {
         <StModal>
           <X onClick={handleClose} />
           <StModalHeader>
-            <StModalTitle>Connect your wallet</StModalTitle>
-            <StModalSubTitle>
-              If you don&apos;t have a wallet, you can select a provider and
-              create one now.
-            </StModalSubTitle>
+            <StModalTitle>{t('title_msg')}</StModalTitle>
+            <StModalSubTitle>{t('sub_msg')}</StModalSubTitle>
           </StModalHeader>
           <StModalWalletBtn onClick={connectWallet}>
             <Image

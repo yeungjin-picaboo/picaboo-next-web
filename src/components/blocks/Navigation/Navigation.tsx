@@ -1,6 +1,7 @@
-import ubuntu from '@/styles/fonts/ubuntu';
+import { meiryo } from '@/styles/fonts/font';
 import Link from 'next/link';
 import { StNav, StNavItem } from './Navigation.styled';
+import { useTranslation } from 'next-i18next';
 
 interface INavigationProps {
   route: string;
@@ -8,12 +9,14 @@ interface INavigationProps {
 }
 
 export default function Navigation({ route, list }: INavigationProps) {
+  const { t } = useTranslation('header');
+
   return (
-    <StNav className={ubuntu.className}>
+    <StNav className={meiryo.className}>
       {list.map(el => (
         <StNavItem key={el} current={route.startsWith(`/${el}`)}>
           <Link href={`/${el}`}>
-            {el.charAt(0).toUpperCase() + el.slice(1)}
+            {t(el).charAt(0).toUpperCase() + t(el).slice(1)}
           </Link>
         </StNavItem>
       ))}

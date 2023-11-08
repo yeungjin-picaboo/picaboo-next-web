@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StDiaryHeader = styled.div`
-  padding: 2.25rem 2.25rem 0.75rem 2.25rem;
+  padding: 2.25rem 0 0.75rem 0;
   position: sticky;
   top: 80px;
   z-index: 1;

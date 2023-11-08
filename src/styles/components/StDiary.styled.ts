@@ -7,7 +7,6 @@ export const StDiaryContainer = styled.div`
 `;
 
 export const StDiaryTitle = styled.div`
-  padding: 0 2.5rem;
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
   font-size: 1.75rem;
@@ -17,7 +16,7 @@ export const StDiaryTitle = styled.div`
 
 export const StDiaryInfo = styled.div`
   color: ${({ theme }) => theme.clr.secondary};
-  padding: 0 2.75rem;
+  padding: 0 0.25rem;
   ${({ theme }) => theme.mixins.flexBox('row', 'center', 'space-between')};
 `;
 
@@ -37,7 +36,7 @@ export const StDiaryDate = styled.div`
 `;
 
 export const StDiaryContent = styled.div`
-  padding: 1rem 2.5rem 2.25rem 2.5rem;
+  padding: 1rem 0 2.25rem 0;
   font-size: 1.5rem;
   line-height: 2rem;
   color: ${({ theme }) => theme.clr.secondary};

@@ -1,7 +1,7 @@
 import { StLayout, StContent, StSmallContent } from './Layout.styled';
-import ubuntu from '@/styles/fonts/ubuntu';
 import Header from '../Header/Header';
 import IProps from '@/types/IProps';
+import { meiryo } from '@/styles/fonts/font';
 
 interface ILayoutProps extends IProps {
   type: 'default' | 'small';
@@ -12,10 +12,10 @@ export default function Layout({ children, type }: ILayoutProps) {
     <StLayout>
       <Header />
       {type === 'default' && (
-        <StContent className={ubuntu.className}>{children}</StContent>
+        <StContent className={meiryo.className}>{children}</StContent>
       )}
       {type === 'small' && (
-        <StSmallContent className={ubuntu.className}>{children}</StSmallContent>
+        <StSmallContent className={meiryo.className}>{children}</StSmallContent>
       )}
     </StLayout>
   );

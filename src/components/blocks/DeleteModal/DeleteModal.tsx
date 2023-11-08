@@ -12,20 +12,18 @@ import {
 } from './DeleteModal.styled';
 import { StModalOverlay } from '@/styles/components/StModalOverlay.styled';
 import Portal from '../Portal/Portal';
+import { useTranslation } from 'next-i18next';
 
 interface IDeleteModalProps {
-  titleMsg: string;
-  subMsg: string;
   handleDelete: () => void;
   handleClose: () => void;
 }
 
 export default function DeleteModal({
-  titleMsg,
-  subMsg,
   handleDelete,
   handleClose,
 }: IDeleteModalProps) {
+  const { t } = useTranslation('delete-modal');
   return (
     <Portal qs={'#__next'}>
       <StModalOverlay>
@@ -40,13 +38,13 @@ export default function DeleteModal({
               />
             </StModalIconBox>
             <StModalMsgBox>
-              <StModalTitleMsg>{titleMsg}</StModalTitleMsg>
-              <StModalSubMsg>{subMsg}</StModalSubMsg>
+              <StModalTitleMsg>{t('title_msg')}</StModalTitleMsg>
+              <StModalSubMsg>{t('sub_msg')}</StModalSubMsg>
             </StModalMsgBox>
           </StModalBody>
           <StModalFooter>
-            <StCancelBtn onClick={handleClose}>Cancel</StCancelBtn>
-            <StDeleteBtn onClick={handleDelete}>Delete</StDeleteBtn>
+            <StCancelBtn onClick={handleClose}>{t('cancel')}</StCancelBtn>
+            <StDeleteBtn onClick={handleDelete}>{t('delete')}</StDeleteBtn>
           </StModalFooter>
         </StModal>
       </StModalOverlay>

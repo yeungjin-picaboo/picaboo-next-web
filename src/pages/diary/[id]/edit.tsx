@@ -5,6 +5,7 @@ import DiaryMetaForm from '@/components/blocks/DiaryMetaForm/DiaryMetaForm';
 import Layout from '@/components/blocks/Layout/Layout';
 import useTodayDate from '@/hooks/useTodayDate';
 import IDiary from '@/types/IDiary';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
@@ -87,3 +88,16 @@ export default function DiaryEditPage() {
     </Layout>
   );
 }
+
+export const getServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'header',
+        'wallet-modal',
+        'diary-form',
+      ])),
+      locale,
+    },
+  };
+};

@@ -33,8 +33,11 @@ import 'dayjs/locale/es';
 import axios from 'axios';
 import moods from '@/data/moods';
 import Comment from '@/components/blocks/Comment/Comment';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 export default function NftDetailPage() {
+  const { t } = useTranslation('nft-detail');
   const { query } = useRouter();
   const { myContract, account } = useWeb3();
   const [nftInfo, setNftInfo] = useState<INfts | null>(null);
@@ -42,9 +45,9 @@ export default function NftDetailPage() {
   const [exchangeRate, setExchangeRate] = useState<number>(0);
   const buy = async () => {
     if (account == null) {
-      alert('메타마스크에 로그인하세요');
+      alert(t('account_alert'));
     } else if (account.toUpperCase() === nftInfo.owner.toUpperCase()) {
-      alert('이미 소유한것은 구매할 수 없습니다.');
+      alert(t('owner_alert'));
     } else {
       // 산다.
       await myContract.buyNFT(Number(nftInfo.tokenId), {
@@ -65,7 +68,7 @@ export default function NftDetailPage() {
         emotion: nft.emotion,
         description: nft.description,
       });
-      alert('구매 완료');
+      alert(t('purchased_alert'));
     }
   };
 
@@ -141,7 +144,7 @@ export default function NftDetailPage() {
               </StNftTitle>
               <StNftInfo>
                 <StNftOwner>
-                  Owner by &nbsp;<span>{nftInfo.nickname}</span>
+                  {t('owner_by')} &nbsp;<span>{nftInfo.nickname}</span>
                 </StNftOwner>
                 <StCreatedAt>
                   {dayjs(nftInfo.released)
@@ -152,17 +155,29 @@ export default function NftDetailPage() {
               <StNftDesc>{nftInfo.description}</StNftDesc>
             </StGridLeft>
             <StGridRight>
-              <StBoxTitle>Price</StBoxTitle>
+              <StBoxTitle>{t('price')}</StBoxTitle>
               <StPriceBox>
                 <StEtherPrice>{nftInfo.price} ETH</StEtherPrice>
                 <StPrice>${nftInfo.price * exchangeRate}</StPrice>
               </StPriceBox>
-              <StBuyBtn onClick={buy}>Buy now</StBuyBtn>
+              <StBuyBtn onClick={buy}>{t('buy_now')}</StBuyBtn>
             </StGridRight>
           </StGrid>
-          <Comment />
         </StNftContainer>
       )}
     </Layout>
   );
 }
+
+export const getServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'header',
+        'wallet-modal',
+        'nft-detail',
+      ])),
+      locale,
+    },
+  };
+};
