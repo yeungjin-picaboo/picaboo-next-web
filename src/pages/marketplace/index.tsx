@@ -125,10 +125,9 @@ export default function MarketplacePage() {
     }
     setNumOfItem(temp.length);
     setCurrentNftList(() => [
-      ...temp.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
-      ),
+      ...temp
+        .slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+        .reverse(),
     ]);
   }, [currentPage, selectedTime, nftList]);
 
@@ -148,7 +147,7 @@ export default function MarketplacePage() {
         {!isPending && (
           <>
             <StPictureList>
-              {currentNftList.reverse().map((el, idx) => {
+              {currentNftList.map((el, idx) => {
                 return (
                   el.tokenId !== '0' &&
                   el.tokenURI !== undefined && (

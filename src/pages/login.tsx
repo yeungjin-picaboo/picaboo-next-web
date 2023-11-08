@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { emailOptions, passwordOptions } from '@/utils/inputOptions';
-import ubuntu from '@/styles/fonts/ubuntu';
 import Loading from '@/components/atoms/Loading/Loading';
 import Input from '@/components/atoms/Input/Input';
 import { StButton } from '@/styles/components/StButton.styles';
@@ -41,7 +40,7 @@ export default function LoginPage() {
   );
 
   return (
-    <StAuthFormLayout className={ubuntu.className}>
+    <StAuthFormLayout>
       <StAuthFormContainer>
         {isLoading && <Loading message={'Please wait...'} />}
         {!isLoading && (

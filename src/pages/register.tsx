@@ -11,7 +11,6 @@ import {
   StAuthFormTitle,
 } from '@/styles/components/StAuthForm.styles';
 import { StButton } from '@/styles/components/StButton.styles';
-import ubuntu from '@/styles/fonts/ubuntu';
 import {
   confirmationOptions,
   emailOptions,
@@ -54,7 +53,7 @@ export default function RegisterPage() {
   );
 
   return (
-    <StAuthFormLayout className={ubuntu.className}>
+    <StAuthFormLayout>
       <StAuthFormContainer>
         {isLoading && <Loading message={'Please wait...'} />}
         {!isLoading && (
